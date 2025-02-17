@@ -1,0 +1,92 @@
+"use client";
+import React, { useEffect, useState } from 'react';
+
+import GetAppsDownload from '@/components/common/GetAppsDownload';
+import BackLink from './BackLink';
+import Filter from './Filter';
+import ProductList from './ProductList';
+import StoreCardInformation from './StoreCardInformation';
+import TopPicks from './TopPicks';
+import SpecialOffer from "./SpecialOffer";
+import DataLoader from '@/components/common/DataLoader';
+
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { getStoreDetail } from '@/store/features/Mart/MartStores/storeThunk';
+import { getProductList } from '@/store/features/Mart/MartProduct/productThunk';
+
+import "./martDetail.css"
+
+interface MartDetailProps {
+    storeId: string;
+}
+
+
+const Home: React.FC<MartDetailProps> = ({ storeId }) => {
+
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const dispatch = useAppDispatch();
+
+    const [filter, setFilter] = useState({
+        storeId: storeId,
+        type: searchParams.get("type") || "",
+        minPrice: searchParams.get("minPrice") || "",
+        maxPrice: searchParams.get("maxPrice") || "",
+        categoryId: searchParams.get("categoryId") || "",
+        sortBy: searchParams.get("sortBy") || "",
+        sortingOrder: searchParams.get("sortingOrder") || ""
+    });
+
+    const handleGoBack = () => {
+        router.back();
+    }
+    const { loading, error, storeDetail } = useAppSelector((state) => state.martStore);
+    const { loading: productLoading, error: productError, products } = useAppSelector((state) => state.martProduct)
+
+
+    useEffect(() => {
+        dispatch(getStoreDetail(storeId));
+    }, [dispatch, storeId]);
+
+    useEffect(() => {
+        dispatch(getProductList(filter));
+    }, [dispatch, storeId, filter]);
+
+    return (
+        <>
+            <div className='main-wrapper'>
+                <GetAppsDownload />
+                <div className='container px-0 bg-dark-gray'>
+                    <div className='px-40 purple-flate'>
+                        <BackLink onGoBack={handleGoBack} />
+                        <DataLoader loading={loading} error={error} retryFunction={() => dispatch(getStoreDetail(storeId))}>
+                            <StoreCardInformation
+                                name={storeDetail.name}
+                                address={storeDetail.address}
+                                time={storeDetail.time}
+                                type={storeDetail.type}
+                                rating={storeDetail.rating}
+                                openingHours={storeDetail.openingHours}
+                            />
+                        </DataLoader>
+                    </div>
+                    <div className='sec-detail purple-flate'>
+                        <div className='detail-white-wrapper py-4 px-40'>
+                            <SpecialOffer />
+                            <Filter />
+                            <TopPicks />
+
+                            <DataLoader loading={productLoading} error={productError} retryFunction={() => dispatch(getProductList(filter))}>
+                                <ProductList products={products} storeId={storeId} />
+                            </DataLoader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </>
+    );
+};
+
+export default Home;
