@@ -1,0 +1,168 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/app/_not-found/page-793263792e635eb1.js"
+    ],
+    "/[locale]/layout": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/css/d498c84e4ab246b3.css",
+      "static/css/0fdd3f077818801d.css",
+      "static/css/ca984f1d91789fa0.css",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/724-f14f32ffd4383527.js",
+      "static/chunks/266-be2727b69ffa387d.js",
+      "static/chunks/524-09db006c879c7984.js",
+      "static/chunks/app/[locale]/layout-9212b09b99b2d29a.js"
+    ],
+    "/[locale]/home/busbooking/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/css/56e5ad41c6b4bcd2.css",
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/e8686b1f-25c9635ff9e3d9c5.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/783-43952c4953c445b6.js",
+      "static/chunks/688-592604d2a7fd1977.js",
+      "static/chunks/605-de3a1d2b32653478.js",
+      "static/chunks/985-57d9eb349dc6abe2.js",
+      "static/chunks/862-f2cd27d5cec29d82.js",
+      "static/chunks/app/[locale]/home/busbooking/page-5312c18f19cd7ef0.js"
+    ],
+    "/[locale]/home/busbooking/SquchBusBookings/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/app/[locale]/home/busbooking/SquchBusBookings/page-3219b854ce18e294.js"
+    ],
+    "/[locale]/home/dine/category/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/728-463518e018350802.js",
+      "static/chunks/app/[locale]/home/dine/category/page-359b65f1ca8c2ffa.js"
+    ],
+    "/[locale]/home/food/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/783-43952c4953c445b6.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/688-592604d2a7fd1977.js",
+      "static/chunks/728-463518e018350802.js",
+      "static/chunks/app/[locale]/home/food/page-1c5c7b59338582ed.js"
+    ],
+    "/[locale]/home/dine/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/css/f800dc602a149a24.css",
+      "static/css/d3df112486f97f47.css",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/783-43952c4953c445b6.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/688-592604d2a7fd1977.js",
+      "static/chunks/728-463518e018350802.js",
+      "static/chunks/app/[locale]/home/dine/page-cd49fe1041978fd7.js"
+    ],
+    "/[locale]/home/mart/cart/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/724-f14f32ffd4383527.js",
+      "static/chunks/605-de3a1d2b32653478.js",
+      "static/chunks/985-57d9eb349dc6abe2.js",
+      "static/chunks/app/[locale]/home/mart/cart/page-2faa56a785164dd1.js"
+    ],
+    "/[locale]/home/mart/category/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/724-f14f32ffd4383527.js",
+      "static/chunks/728-463518e018350802.js",
+      "static/chunks/app/[locale]/home/mart/category/page-164d7735a6146bd8.js"
+    ],
+    "/[locale]/home/mart/offer/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/728-463518e018350802.js",
+      "static/chunks/app/[locale]/home/mart/offer/page-097ba6b48d3602d2.js"
+    ],
+    "/[locale]/home/mart/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/724-f14f32ffd4383527.js",
+      "static/chunks/728-463518e018350802.js",
+      "static/chunks/app/[locale]/home/mart/page-ed997f79fbf1d2d8.js"
+    ],
+    "/[locale]/home/mart/store-detail/[storeId]/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/css/f800dc602a149a24.css",
+      "static/css/54cb39497dc26660.css",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/783-43952c4953c445b6.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/688-592604d2a7fd1977.js",
+      "static/chunks/724-f14f32ffd4383527.js",
+      "static/chunks/605-de3a1d2b32653478.js",
+      "static/chunks/863-5a063c7aa2c26de0.js",
+      "static/chunks/app/[locale]/home/mart/store-detail/[storeId]/page-3c9f12f4ac87fb0f.js"
+    ],
+    "/[locale]/home/mart/store-detail/[storeId]/product/[productId]/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/783-43952c4953c445b6.js",
+      "static/chunks/651-d229f5666dde90ed.js",
+      "static/chunks/688-592604d2a7fd1977.js",
+      "static/chunks/724-f14f32ffd4383527.js",
+      "static/chunks/app/[locale]/home/mart/store-detail/[storeId]/product/[productId]/page-bf1bea68a37ca0f6.js"
+    ],
+    "/[locale]/page": [
+      "static/chunks/webpack-b5c96e3433ff3fa3.js",
+      "static/chunks/4bd1b696-caf940d0162b6a36.js",
+      "static/chunks/517-caf51b846ada7211.js",
+      "static/chunks/main-app-ee99f958294e7771.js",
+      "static/chunks/846-afb0565515b52a3b.js",
+      "static/chunks/app/[locale]/page-9fb7c58024e4a161.js"
+    ]
+  }
+}
