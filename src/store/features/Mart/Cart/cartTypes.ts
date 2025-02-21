@@ -10,10 +10,14 @@ export interface StoreAddressProps {
 export interface ProductProps {
     productName: string
     price: string;
+    type: string;
+    storeId: number;
+    productId: number;
 }
 
 export interface CartItemProps {
     id: number;
+    storeId: number;
     productName: string;
     cartId: number;
     productId: number;
@@ -26,6 +30,7 @@ export interface CartItemProps {
 
 export interface CartStateProps {
     loading: boolean;
+    productLoading: boolean;
     storeDetails: StoreAddressProps;
     items: CartItemProps[];
     totalPrice: number;
@@ -36,6 +41,12 @@ export interface AddProductProps {
     productId: number;
     storeId: number;
 };
+
+export interface RemoveProductProps {
+    cartId?: number;
+    productId: number;
+    storeId: number;
+}
 
 export interface AddProductResponsProps {
     storeDetails: StoreAddressProps;

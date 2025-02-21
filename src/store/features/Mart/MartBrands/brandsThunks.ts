@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BrandsProps, GET_ALL_DISOUNTED_BRANDS, GET_ALL_POPULAR_BRANDS, GET_ALL_PROMOTIONAL_BRANDS } from "./brandsTypes";
-import { fetchAllDiscountedBrands, fetchAllPopularBrands, fetchAllPromotionalBrands } from "@/services/martService";
+import { fetchAllDiscountedBrands, fetchAllPopularBrands, fetchAllPromotionalBrands } from "@/services/mart/service";
 
 export const getPopularBrands = createAsyncThunk<BrandsProps[], void, { rejectValue: string }>(
     GET_ALL_POPULAR_BRANDS,

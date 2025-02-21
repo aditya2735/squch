@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GET_ALL_MART_OFFER, OfferProps } from "./offerTypes";
-import { fetchAllMartOffer } from "@/services/martService";
+import { fetchAllMartOffer } from "@/services/mart/service";
 
 export const getAllMartOffer = createAsyncThunk<OfferProps[], void, { rejectValue: string }>(
     GET_ALL_MART_OFFER, 

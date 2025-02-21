@@ -4,6 +4,7 @@ import { addProductToCart, getCartItems, removeProductFromCart } from "./cartThu
 
 const initialState: CartStateProps = {
     loading: false,
+    productLoading: false,
     storeDetails: {} as StoreAddressProps,
     items: [],
     totalPrice: 0,
@@ -17,20 +18,25 @@ const handleAsyncActions = (
 ) => {
     builder
         .addCase(action.pending, (state: any) => {
-            state.loading = true;
+            if(extraKey) {
+                state.loading = true;
+            } else {
+                state.productLoading = true;
+            }
         })
         .addCase(action.fulfilled, (state: any, action: any) => {
-            console.log('action: ', action);
             if (extraKey) {
-                state.storeDetails = action.payload.storeDetails;
+                state.storeDetails = action.payload.Store;
+                state.loading = false;
             }
             state.items = action.payload.CartItems;
             state.totalPrice = action.payload.totalPrice;
-            state.loading = false;
+            state.productLoading = false;
             state.error = null;
         })
         .addCase(action.rejected, (state: any, action: any) => {
             state.loading = false;
+            state.productLoading = false;
             state.error = action.payload || `Operation failed`;
         });
 };

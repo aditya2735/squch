@@ -6,7 +6,7 @@ const withPWA = require("next-pwa")({
   disableDevLogs: true,
 });
 
-  
+
 // module.exports = withPWA({
 //   reactStrictMode: true,
 //   logging: false,
@@ -24,11 +24,9 @@ const nextConfig = {
   reactStrictMode: true,
   logging: false,
   images: {
-    domains: ["192.168.3.162", "res.cloudinary.com", "source.unsplash.com"],
+    domains: ["192.168.3.162", "192.168.3.162:3008", "res.cloudinary.com", "source.unsplash.com", "plus.unsplash.com", "encrypted-tbn0.gstatic.com", "media.istockphoto.com", "img.freepik.com"],
   },
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
 }

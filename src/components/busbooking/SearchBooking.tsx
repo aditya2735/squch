@@ -15,13 +15,9 @@ import ImageTab4 from "../../../public/images/icon-tab-4.png";
 
 
 import Nav from 'react-bootstrap/Nav';
-import Tab from 'react-bootstrap/Tab';
 import Form from 'react-bootstrap/Form';
-import Link from 'next/link';
 
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -32,7 +28,6 @@ import ModalAddPassengers from './ModalAddPassengers';
 const SearchBooking = () => {
 
     const [checkInDate, setCheckInDate] = useState<any>(null);
-    const [checkOutDate, setCheckOutDate] = useState(null);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -109,7 +104,7 @@ const SearchBooking = () => {
                                     <div className='btn-flip-icon'>
                                         <button className='flip-btn'>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5.3335 2L2.66683 4.66667M2.66683 4.66667L5.3335 7.33333M2.66683 4.66667H13.3335M10.6668 14L13.3335 11.3333M13.3335 11.3333L10.6668 8.66667M13.3335 11.3333H2.66683" stroke="#652669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M5.3335 2L2.66683 4.66667M2.66683 4.66667L5.3335 7.33333M2.66683 4.66667H13.3335M10.6668 14L13.3335 11.3333M13.3335 11.3333L10.6668 8.66667M13.3335 11.3333H2.66683" stroke="#652669" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
 
                                         </button>
@@ -147,15 +142,15 @@ const SearchBooking = () => {
 
                                         <div className='iconbox'>
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M6.6665 1.66669V4.16669" stroke="#838383" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M13.3335 1.66669V4.16669" stroke="#838383" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M2.9165 7.57501H17.0832" stroke="#838383" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M16.0085 13.1417L13.0585 16.0917C12.9419 16.2084 12.8335 16.425 12.8085 16.5834L12.6502 17.7084C12.5919 18.1167 12.8752 18.4 13.2835 18.3417L14.4085 18.1834C14.5669 18.1584 14.7919 18.05 14.9002 17.9334L17.8502 14.9834C18.3585 14.475 18.6002 13.8834 17.8502 13.1334C17.1085 12.3917 16.5169 12.6334 16.0085 13.1417Z" stroke="#838383" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M15.5835 13.5667C15.8335 14.4667 16.5335 15.1667 17.4335 15.4167" stroke="#838383" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M10 18.3334H6.66667C3.75 18.3334 2.5 16.6667 2.5 14.1667V7.08335C2.5 4.58335 3.75 2.91669 6.66667 2.91669H13.3333C16.25 2.91669 17.5 4.58335 17.5 7.08335V10" stroke="#838383" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M9.99607 11.4167H10.0036" stroke="#838383" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M6.91209 11.4167H6.91957" stroke="#838383" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M6.91209 13.9167H6.91957" stroke="#838383" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M6.6665 1.66669V4.16669" stroke="#838383" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M13.3335 1.66669V4.16669" stroke="#838383" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M2.9165 7.57501H17.0832" stroke="#838383" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M16.0085 13.1417L13.0585 16.0917C12.9419 16.2084 12.8335 16.425 12.8085 16.5834L12.6502 17.7084C12.5919 18.1167 12.8752 18.4 13.2835 18.3417L14.4085 18.1834C14.5669 18.1584 14.7919 18.05 14.9002 17.9334L17.8502 14.9834C18.3585 14.475 18.6002 13.8834 17.8502 13.1334C17.1085 12.3917 16.5169 12.6334 16.0085 13.1417Z" stroke="#838383" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M15.5835 13.5667C15.8335 14.4667 16.5335 15.1667 17.4335 15.4167" stroke="#838383" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M10 18.3334H6.66667C3.75 18.3334 2.5 16.6667 2.5 14.1667V7.08335C2.5 4.58335 3.75 2.91669 6.66667 2.91669H13.3333C16.25 2.91669 17.5 4.58335 17.5 7.08335V10" stroke="#838383" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M9.99607 11.4167H10.0036" stroke="#838383" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M6.91209 11.4167H6.91957" stroke="#838383" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M6.91209 13.9167H6.91957" stroke="#838383" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
                                         </div>
                                     </div>
@@ -167,17 +162,17 @@ const SearchBooking = () => {
                                     <div className='form-fild'>
                                         <button className='btn minus'>
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M9.93343 18.3334C14.5168 18.3334 18.2668 14.5834 18.2668 10C18.2668 5.41669 14.5168 1.66669 9.93343 1.66669C5.3501 1.66669 1.6001 5.41669 1.6001 10C1.6001 14.5834 5.3501 18.3334 9.93343 18.3334Z" stroke="#652669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M6.6001 10H13.2668" stroke="#652669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M9.93343 18.3334C14.5168 18.3334 18.2668 14.5834 18.2668 10C18.2668 5.41669 14.5168 1.66669 9.93343 1.66669C5.3501 1.66669 1.6001 5.41669 1.6001 10C1.6001 14.5834 5.3501 18.3334 9.93343 18.3334Z" stroke="#652669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M6.6001 10H13.2668" stroke="#652669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
 
                                         </button>
                                         <input type="text" className="form-control text-center" placeholder="01" />
                                         <button className='btn plus'>
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.0003 18.3334C14.5837 18.3334 18.3337 14.5834 18.3337 10C18.3337 5.41669 14.5837 1.66669 10.0003 1.66669C5.41699 1.66669 1.66699 5.41669 1.66699 10C1.66699 14.5834 5.41699 18.3334 10.0003 18.3334Z" stroke="#652669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M6.66699 10H13.3337" stroke="#652669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                <path d="M10 13.3334V6.66669" stroke="#652669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M10.0003 18.3334C14.5837 18.3334 18.3337 14.5834 18.3337 10C18.3337 5.41669 14.5837 1.66669 10.0003 1.66669C5.41699 1.66669 1.66699 5.41669 1.66699 10C1.66699 14.5834 5.41699 18.3334 10.0003 18.3334Z" stroke="#652669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M6.66699 10H13.3337" stroke="#652669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                <path d="M10 13.3334V6.66669" stroke="#652669" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             </svg>
 
                                         </button>

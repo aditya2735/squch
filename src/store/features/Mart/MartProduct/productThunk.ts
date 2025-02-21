@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GET_PRODUCT_DETAILS, GET_PRODUCT_LIST, ProductFilters, ProductListProps, ProductProps } from "./productTypes";
-import { fetchProductDetail, fetchProductList } from "@/services/martService";
+import { fetchProductDetail, fetchProductList } from "@/services/mart/service";
 
 export const getProductList = createAsyncThunk<ProductListProps, ProductFilters, { rejectValue: false }> (
     GET_PRODUCT_LIST,

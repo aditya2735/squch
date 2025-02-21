@@ -1,14 +1,13 @@
 "use client";
 import React from 'react'
 import SpecialOffers from './SpecialOffers'
-import GetAppsDownload from '../../common/GetAppsDownload'
+import GetAppsDownload from '../../common/core/GetAppsDownload'
 import Cuisines from './Cuisines'
 import PopularHotels from './PopularHotels'
-import UserAuth from '../../common/UserAuth'
+import UserAuth from '../../common/core/UserAuth'
 import FilterDesign from './FilterDesign'
 import TopExplore from './TopExplore'
-import SearchBar from '../../common/SearchBar';
-import { apiConnector } from '@/services/connector';
+import SearchBar from '../../common/core/SearchBar';
 import ImgOffer1 from "../../../../public/images/special-offers-img-1.jpg";
 import ImgOffer2 from "../../../../public/images/special-offers-img-2.jpg";
 
@@ -25,8 +24,6 @@ const Home: React.FC = () => {
 
     const handleSearch = async (query: string) => {
         if (!query.trim()) return;
-        const response = await apiConnector('post', "http://localhost:8080/search", { data: query });
-
     };
 
     return (

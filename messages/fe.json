@@ -1,0 +1,33 @@
+{
+    "Accommodation": {
+      "popularHotels": "Hôtels Populaires",
+      "nearYou": "Près de Chez Vous",
+      "others": "Autres",
+      "trendingDestinations": "Destinations Tendance",
+      "seeAll": "Voir Tout",
+      "upcomingStays": "Séjours à Venir",
+  
+      "FilterModal": {
+        "filters": "Filtres",
+        "typeOfPlace": "Type de Logement",
+        "anyType": "Tout type",
+        "room": "Chambre",
+        "entireHome": "Maison entière",
+        "priceRange": "Fourchette de Prix",
+        "minimum": "Minimum",
+        "maximum": "Maximum",
+        "roomsAndBeds": "Chambres et Lits",
+        "amenities": "Équipements",
+        "bookingOptions": "Options de Réservation",
+        "topRated": "Les Mieux Notés",
+        "starCategory": "Catégorie d'Étoiles",
+        "propertyType": "Type de Propriété",
+        "accessibilityFeatures": "Caractéristiques d'Accessibilité",
+        "clearAll": "Tout Effacer",
+        "showMore": "Afficher Plus",
+        "showLess": "Afficher Moins",
+        "userRating": "Évaluation des Utilisateurs"
+      }
+    }
+  }
+  

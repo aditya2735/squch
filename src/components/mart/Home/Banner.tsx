@@ -1,16 +1,21 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Coupan from '../../../../public/images/coupan-img.png';
 import BottomImgArrow from '../../../../public/images/bottom-img-arrow.png';
 import ImageBanner from '../../../../public/images/mart-banner.png';
-import { BannerProps } from "@/store/features/Banner/bannerTypes";
+import { BannerProps } from "@/store/features/common/Banner/bannerTypes";
 
 interface HomeBannerProps {
   banners: BannerProps[]
 }
 
 const Banner: React.FC<HomeBannerProps> = ({ banners }) => {
+
+  useEffect(() => {
+
+  },[banners])
+
   return (
     <div className='bannerCoupanSec'>
       <div className='container'>

@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect } from "react";
 
-import Loader from "@/components/common/Loader";
-import Show from "@/components/common/Show";
-import ErrorComponent from "@/components/common/ErrorComponent";
+import Loader from "@/components/common/core/Loader";
+import Show from "@/components/common/core/Show";
+import ErrorComponent from "@/components/common/core/ErrorComponent";
 
 import Image from "next/image";
 import Link from "next/link";

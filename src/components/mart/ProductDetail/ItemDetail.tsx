@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import Rating from "../../../../public/images/rating.svg";
 import Plus from "../../../../public/images/plus.svg";
 import Image from 'next/image';
 

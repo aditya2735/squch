@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { CategoryProps, GET_ALL_MART_CATRGORIES } from "./categoryTypes";
-import { fetchAllMartCategories } from "@/services/martService";
+import { fetchAllMartCategories } from "@/services/mart/service";
 
 
 

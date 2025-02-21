@@ -1,16 +1,16 @@
 "use client";
 import React from 'react'
-import GetAppsDownload from '@/components/common/GetAppsDownload';
-import SearchBar from '@/components/common/SearchBar';
-import UserAuth from '@/components/common/UserAuth';
+import GetAppsDownload from '@/components/common/core/GetAppsDownload';
+import SearchBar from '@/components/common/core/SearchBar';
+import UserAuth from '@/components/common/core/UserAuth';
+import PageTitle from '@/components/common/core/PageTitle';
+import Categories from './Categories';
 
 
 const Page: React.FC = () => {
 
     const handleSearch = async (query: string) => {
         if (!query.trim()) return;
-        const response = null;
-
     };
 
     return (
@@ -22,12 +22,15 @@ const Page: React.FC = () => {
                         <div className='px-40'>
                             <UserAuth />
                         </div>
-                        {/* <DinoutCategoriesTitle /> */}
+                        <PageTitle title="Cuisines" />
                         <div className='px-40'>
-                            <SearchBar onSearch={handleSearch} placeHolder={`search "item category"`} />
+                            <SearchBar
+                                onSearch={handleSearch}
+                                placeHolder={`search "item category"`}
+                            />
                         </div>
                     </div>
-                    {/* <CuisinesCategories /> */}
+                    <Categories />
                 </div>
             </div>
         </div>

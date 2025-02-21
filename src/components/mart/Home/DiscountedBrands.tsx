@@ -19,7 +19,7 @@ import martSell02 from '../../../../public/images/martSell02.png';
 import martSell03 from '../../../../public/images/martSell03.png';
 import leftArrow from "../../../../public/images/left-arrow.svg";
 import rightArrow from "../../../../public/images/right-arrow.svg";
-import { BrandsProps } from '@/store/features/Mart/MartBrands/brandsTypes';
+// import { BrandsProps } from '@/store/features/Mart/MartBrands/brandsTypes';
 
 const disocountedBrandData = [
     { id: 1, image: martSell01 },
@@ -30,9 +30,9 @@ const disocountedBrandData = [
     { id: 6, image: martSell03 },
 ]
 
-interface DiscountedBrandsProps {
-    brands: BrandsProps[]
-}
+// interface DiscountedBrandsProps {
+//     brands: BrandsProps[]
+// }
 
 const DiscountedBrands: React.FC = () => {
     return (

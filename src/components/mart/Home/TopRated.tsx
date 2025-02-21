@@ -22,7 +22,6 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 
 
-
 interface TopRatedProps {
     stores: MartStoreProps[]
 }
@@ -84,7 +83,7 @@ const TopRated: React.FC<TopRatedProps> = ({ stores }) => {
                             className="topratedyou-sec"
                         >
                             {
-                                stores.map((store) => (
+                                stores?.map((store) => (
                                     <SwiperSlide key={store.storeId} onClick={() => handleClick(store.storeId)}>
                                         <div className="topratedyou-box">
                                             <div className="topratedyou-item" >

@@ -2,19 +2,19 @@
 import Image from "next/image";
 import Link from 'next/link';
 
-import { useState } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
-import { Grid, Navigation, Pagination, Mousewheel, Keyboard, Thumbs, FreeMode } from 'swiper/modules';
+import { Grid, Navigation } from 'swiper/modules';
 
 import ImagesTravelStories1 from "../../../public/images/travel-stories-img-1.jpg";
 import ImagesTravelStories2 from "../../../public/images/travel-stories-img-2.jpg";
 import ImagesTravelStories3 from "../../../public/images/travel-stories-img-3.jpg";
-import ImagesTravelStories4 from "../../../public/images/travel-stories-img-4.jpg";
+
 
 const TravelStories = () => {
     return (
@@ -66,7 +66,7 @@ const TravelStories = () => {
                         <SwiperSlide>
                             <Link href="" className="card-travel-stories">
                                 <div className="cardtravel-Img">
-                                    <Image src={ImagesTravelStories1} 
+                                    <Image src={ImagesTravelStories1}
                                         alt="" />
                                 </div>
                                 <p className="m-0">Places to visit in new York</p>
@@ -75,7 +75,7 @@ const TravelStories = () => {
                         <SwiperSlide>
                             <Link href="" className="card-travel-stories">
                                 <div className="cardtravel-Img">
-                                    <Image src={ImagesTravelStories2} 
+                                    <Image src={ImagesTravelStories2}
                                         alt="" />
                                 </div>
                                 <p className="m-0">Places to visit in new York</p>
@@ -84,7 +84,7 @@ const TravelStories = () => {
                         <SwiperSlide>
                             <Link href="" className="card-travel-stories">
                                 <div className="cardtravel-Img">
-                                    <Image src={ImagesTravelStories3} 
+                                    <Image src={ImagesTravelStories3}
                                         alt="" />
                                 </div>
                                 <p className="m-0">Places to visit in new York</p>
@@ -93,7 +93,7 @@ const TravelStories = () => {
                         <SwiperSlide>
                             <Link href="" className="card-travel-stories">
                                 <div className="cardtravel-Img">
-                                    <Image src={ImagesTravelStories1} 
+                                    <Image src={ImagesTravelStories1}
                                         alt="" />
                                 </div>
                                 <p className="m-0">Places to visit in new York</p>
@@ -102,7 +102,7 @@ const TravelStories = () => {
                         <SwiperSlide>
                             <Link href="" className="card-travel-stories">
                                 <div className="cardtravel-Img">
-                                    <Image src={ImagesTravelStories2} 
+                                    <Image src={ImagesTravelStories2}
                                         alt="" />
                                 </div>
                                 <p className="m-0">Places to visit in new York</p>

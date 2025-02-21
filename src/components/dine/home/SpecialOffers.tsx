@@ -28,11 +28,14 @@ const SpecialOffers: React.FC<SpecialOffersProps> = ({ offers }) => {
                         <h2 className='heading02 m-0'>Special Offers</h2>
                         <div className='ms-auto'>
                             <Link href="" className='link'>
-                                See All <Image src={Arrow} alt="arrow imgae" />
+                                See All
+                                <Image src={Arrow} alt="arrow icon" />
+
                             </Link>
                         </div>
                     </div>
                 </div>
+
                 <Swiper
                     slidesPerView={3.3}
                     mousewheel={true}

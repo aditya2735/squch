@@ -22,7 +22,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({ categories }) => {
         <div className="sec-mart-product sec-gap">
             <div className="container">
                 <div className="px-40">
-                    {categories.map((category, index) => (
+                    {categories?.map((category, index) => (
                         <div key={index} className="mb-5" onClick={() => handleClick()}>
                             <div className="section-heading">
                                 <h2 className="heading-title m-0">{category.categoryName}</h2>

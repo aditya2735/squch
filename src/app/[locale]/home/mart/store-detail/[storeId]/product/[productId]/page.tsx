@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation';
 
 const Page: React.FC = () => {
     // @ts-ignore
-    const { productId } = useParams();  // ✅ Ignores TypeScript errors
+    const { productId } = useParams();
 
     return <Home productId={productId} />;
 };

@@ -1,13 +1,12 @@
 "use client";
 import React, { lazy, Suspense, useEffect } from "react";
 
-import GetAppsDownload from "../../common/GetAppsDownload";
-import UserAuth from "../../common/UserAuth";
-import SearchBar from "../../common/SearchBar";
+import GetAppsDownload from "../../common/core/GetAppsDownload";
+import UserAuth from "../../common/core/UserAuth";
+import SearchBar from "../../common/core/SearchBar";
 import CategorySection from "./Category";
+import Loader from "@/components/common/core/Loader";
 
-import { apiConnector } from "@/services/connector";
-import Loader from "@/components/common/Loader"; 11
 const Offer = lazy(() => import("./Offer"));
 const TopRated = lazy(() => import("./TopRated"));
 const HomeBanner = lazy(() => import("./Banner"));
@@ -18,27 +17,24 @@ const PromotionalBrands = lazy(() => import("./PromotionalBrands"));
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 import { getAllMartOffer } from "@/store/features/Mart/MartOffer/offerThunk";
-import { getAllBanners } from "@/store/features/Banner/bannerThunk";
+import { getAllBanners } from "@/store/features/common/Banner/bannerThunk";
 import { getMartStores } from "@/store/features/Mart/MartStores/storeThunk";
 import { getAllMartCategory } from "@/store/features/Mart/MartCategory/categoryThunk";
 import { getDiscountedBrands } from "@/store/features/Mart/MartBrands/brandsThunks";
-import DataLoader from "@/components/common/DataLoader";
+import DataLoader from "@/components/common/core/DataLoader";
+import { getAddressList } from "@/store/features/common/Address/addressThunk";
+
 
 const Mart: React.FC = () => {
 
     const dispatch = useAppDispatch();
-    const { banner, loading: loadingBanners, error: errorBanners } = useAppSelector((state) => state.banner);
+    const { banner } = useAppSelector((state) => state.banner);
     const { offer, loading: loadingOffers, error: errorOffers } = useAppSelector((state) => state.martOffer);
     const { stores, loading: loadingStores, error: errorStores } = useAppSelector((state) => state.martStore);
     const { categories, loading: loadingCategories, error: errorCategories } = useAppSelector((state) => state.martCategory);
 
     const handleSearch = async (query: string) => {
         if (!query.trim()) return;
-        const response = await apiConnector(
-            "post",
-            "http://localhost:8080/search",
-            { data: query }
-        );
     };
 
     useEffect(() => {
@@ -47,6 +43,7 @@ const Mart: React.FC = () => {
         dispatch(getMartStores("grocery"));
         dispatch(getAllMartCategory("grocery"));
         dispatch(getDiscountedBrands());
+        dispatch(getAddressList());
     }, [dispatch]);
 
 

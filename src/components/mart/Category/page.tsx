@@ -1,15 +1,14 @@
 import React from 'react';
-import UserAuth from '@/components/common/UserAuth';
-import GetAppsDownload from '@/components/common/GetAppsDownload';
-import SearchBar from '@/components/common/SearchBar';
-import PageTitle from '../../common/PageTitle';
+import UserAuth from '@/components/common/core/UserAuth';
+import GetAppsDownload from '@/components/common/core/GetAppsDownload';
+import SearchBar from '@/components/common/core/SearchBar';
+import PageTitle from '../../common/core/PageTitle';
 import Category from './Category';
 
 const Home: React.FC = () => {
 
     const handleSearch = async (query: string) => {
         if (!query.trim()) return;
-        const response = null
     };
 
     return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/grid";
@@ -20,6 +20,11 @@ const SliderBanner: React.FC<SliderBannerProps> = ({
     price,
     productName
 }) => {
+
+    useEffect(() => {
+
+    }, [productId])
+
     return (
         <div className="card card-simple">
             <div className="banner-slider-item">

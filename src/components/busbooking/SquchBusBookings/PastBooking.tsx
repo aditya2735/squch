@@ -36,8 +36,8 @@ const PastBooking = () => {
             <h3 className="trip-link-purple d-flex align-items-center">
               <span>Kumasi</span>
               <span><svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M5.16113 13L34.8386 13" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M5.16113 13L34.8386 13" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
               </svg></span>
               <span>Tamale</span>
             </h3>
@@ -52,8 +52,8 @@ const PastBooking = () => {
             <h3 className="trip-link-purple d-flex align-items-center">
               <span>Albany, NY</span>
               <span><svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M5.16113 13L34.8386 13" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M5.16113 13L34.8386 13" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
               </svg></span>
               <span>Boston, NY</span>
             </h3>
@@ -68,8 +68,8 @@ const PastBooking = () => {
             <h3 className="trip-link-purple d-flex align-items-center">
               <span>Albany, NY</span>
               <span><svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M5.16113 13L34.8386 13" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M5.16113 13L34.8386 13" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
               </svg></span>
               <span>Boston, NY</span>
             </h3>
@@ -84,8 +84,8 @@ const PastBooking = () => {
             <h3 className="trip-link-purple d-flex align-items-center">
                 <span>Albany, NY</span>
                 <span><svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M5.16113 13L34.8386 13" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M5.16113 13L34.8386 13" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                 </svg></span>
                 <span>Boston, NY</span>
             </h3>
@@ -100,8 +100,8 @@ const PastBooking = () => {
             <h3 className="trip-link-purple d-flex align-items-center">
                 <span>Albany, NY</span>
                 <span><svg width="40" height="26" viewBox="0 0 40 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M5.16113 13L34.8386 13" stroke="#410E44" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M28.4194 6.47314L34.9463 13L28.4194 19.5269" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M5.16113 13L34.8386 13" stroke="#410E44" strokeWidth="3" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                 </svg></span>
                 <span>Boston, NY</span>
             </h3>
