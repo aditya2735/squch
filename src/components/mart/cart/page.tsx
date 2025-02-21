@@ -11,7 +11,7 @@ const Page:React.FC = () => {
 
     const handleBack = () => {
         router.back()
-    }
+    } 
     
     return (
         <div className='main-wrapper  bg-dark-gray'>
