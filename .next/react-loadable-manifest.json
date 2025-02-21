@@ -1,0 +1,53 @@
+{
+  "components/mart/Home/page.tsx -> ./Banner": {
+    "id": 15981,
+    "files": [
+      "static/chunks/5981.6e2264f2ca38dfe4.js"
+    ]
+  },
+  "components/mart/Home/page.tsx -> ./DiscountedBrands": {
+    "id": 64908,
+    "files": [
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/5783-a0833dec970b2749.js",
+      "static/chunks/8307-af59450fb1fdffc6.js",
+      "static/chunks/4908.93436ab54131b3e4.js"
+    ]
+  },
+  "components/mart/Home/page.tsx -> ./Offer": {
+    "id": 37276,
+    "files": [
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/5783-a0833dec970b2749.js",
+      "static/chunks/8307-af59450fb1fdffc6.js",
+      "static/chunks/7276.acab0c9692411371.js"
+    ]
+  },
+  "components/mart/Home/page.tsx -> ./PopularBrands": {
+    "id": 80947,
+    "files": [
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/5783-a0833dec970b2749.js",
+      "static/chunks/947.d52da46a2ea0c102.js"
+    ]
+  },
+  "components/mart/Home/page.tsx -> ./PromotionalBrands": {
+    "id": 96704,
+    "files": [
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/5783-a0833dec970b2749.js",
+      "static/chunks/8307-af59450fb1fdffc6.js",
+      "static/chunks/6704.0af6f5743e14c385.js"
+    ]
+  },
+  "components/mart/Home/page.tsx -> ./TopRated": {
+    "id": 81955,
+    "files": [
+      "static/css/f800dc602a149a24.css",
+      "static/chunks/5783-a0833dec970b2749.js",
+      "static/chunks/8307-af59450fb1fdffc6.js",
+      "static/chunks/7266-aa376490eeaa618d.js",
+      "static/chunks/1955.18523babca52bb30.js"
+    ]
+  }
+}
