@@ -1,7 +1,6 @@
 import React from 'react'
 import GetAppsDownload from './GetAppsDownload'
-import UserAuth from './UserAuth'
-import SearchBar from './SearchBar'
+
 import SearchBooking from './SearchBooking'
 import UpcomingTrips from './UpcomingTrips'
 import TopDestinations from './TopDestinations'
@@ -9,6 +8,7 @@ import TravelOffersDeals from './TravelOffersDeals'
 import TravelStories from './TravelStories'
 import TabsStartSearchingMobile from './TabsStartSearchingMobile'
 import NavigationBottom from './NavigationBottom'
+import UserAuth from '../common/core/UserAuth'
 
 const Home = () => {
     return (

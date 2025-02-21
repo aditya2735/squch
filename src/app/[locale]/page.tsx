@@ -9,8 +9,6 @@ import Grocery from '../../../public/images/Grocery.png'
 import Dining from '../../../public/images/Dining.png'
 
 
-
-
 export default function Home() {
   return (
     <div className="main-page-sec">
@@ -57,7 +55,7 @@ export default function Home() {
                       Location, City & Street
                     </span>
                     <span>
-                      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 10.5L12 15.5L7 10.5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 10.5L12 15.5L7 10.5" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                     </span>
                   </Link>
                 </li>
@@ -86,25 +84,25 @@ export default function Home() {
                   <h6>Travel</h6>
                   <Image src={Travel} alt=""></Image>
                   <span className="btn-bottom">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>
                 </Link>
               </div>
               <div className="menu-item-box">
-                <Link href="" className="menu-link">
+                <Link href="/home/dine" className="menu-link">
                   <h6>Food</h6>
                   <Image src={Food} alt=""></Image>
                   <span className="btn-bottom">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>
                 </Link>
               </div>
               <div className="menu-item-box">
-                <Link href="" className="menu-link">
+                <Link href="/home/accommodation" className="menu-link">
                   <h6>Stay</h6>
                   <Image src={Stay} alt=""></Image>
                   <span className="btn-bottom">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>
                 </Link>
               </div>
@@ -113,7 +111,7 @@ export default function Home() {
                   <h6>Mart</h6>
                   <Image src={Grocery} alt=""></Image>
                   <span className="btn-bottom">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>
                 </Link>
               </div>
@@ -122,7 +120,7 @@ export default function Home() {
                   <h6>Dining</h6>
                   <Image src={Dining} alt=""></Image>
                   <span className="btn-bottom">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" stroke-width="1.63636" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#972EEF" /><path d="M26.6514 17.3779L33.2732 23.9997L26.6514 30.6216" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /><path d="M14.7275 24H33.0875" stroke="white" strokeWidth="1.63636" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>
                 </Link>
               </div>

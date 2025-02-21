@@ -1,15 +1,14 @@
-import GetAppsDownload from '@/components/common/GetAppsDownload'
-import UserAuth from '@/components/common/UserAuth'
+import GetAppsDownload from '@/components/common/core/GetAppsDownload'
+import UserAuth from '@/components/common/core/UserAuth'
 import React from 'react'
-import PageTitle from '../../common/PageTitle'
-import SearchBar from '@/components/common/SearchBar'
+import PageTitle from '../../common/core/PageTitle'
+import SearchBar from '@/components/common/core/SearchBar'
 import Offer from './Offer'
 
 const Home: React.FC = () => {
 
     const handleSearch = async (query: string) => {
         if (!query.trim()) return;
-        const response = null;
     };
 
 

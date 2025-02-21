@@ -2,14 +2,14 @@
 import Image from "next/image";
 import Link from 'next/link';
 
-import { useState } from "react";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
-import { Grid, Navigation, Pagination, Mousewheel, Keyboard, Thumbs, FreeMode } from 'swiper/modules';
+import { Grid, Navigation,  } from 'swiper/modules';
 
 import ImagesDeals1 from "../../../public/images/deals-img-1.png";
 import ImagesDeals2 from "../../../public/images/deals-img-2.png";

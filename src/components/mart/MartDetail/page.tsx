@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 
-import GetAppsDownload from '@/components/common/GetAppsDownload';
+import GetAppsDownload from '@/components/common/core/GetAppsDownload';
 import BackLink from './BackLink';
 import Filter from './Filter';
 import ProductList from './ProductList';
 import StoreCardInformation from './StoreCardInformation';
 import TopPicks from './TopPicks';
 import SpecialOffer from "./SpecialOffer";
-import DataLoader from '@/components/common/DataLoader';
+import DataLoader from '@/components/common/core/DataLoader';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -16,6 +16,7 @@ import { getStoreDetail } from '@/store/features/Mart/MartStores/storeThunk';
 import { getProductList } from '@/store/features/Mart/MartProduct/productThunk';
 
 import "./martDetail.css"
+import { getCartItems } from '@/store/features/Mart/Cart/cartThunk';
 
 interface MartDetailProps {
     storeId: string;
@@ -53,6 +54,10 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
         dispatch(getProductList(filter));
     }, [dispatch, storeId, filter]);
 
+    useEffect(() => {
+        dispatch(getCartItems());
+    }, [])
+
     return (
         <>
             <div className='main-wrapper'>
@@ -60,6 +65,7 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
                 <div className='container px-0 bg-dark-gray'>
                     <div className='px-40 purple-flate'>
                         <BackLink onGoBack={handleGoBack} />
+
                         <DataLoader loading={loading} error={error} retryFunction={() => dispatch(getStoreDetail(storeId))}>
                             <StoreCardInformation
                                 name={storeDetail.name}
@@ -74,17 +80,22 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
                     <div className='sec-detail purple-flate'>
                         <div className='detail-white-wrapper py-4 px-40'>
                             <SpecialOffer />
-                            <Filter />
-                            <TopPicks />
+
+                            <Filter filter={filter} setFilter={setFilter} />
 
                             <DataLoader loading={productLoading} error={productError} retryFunction={() => dispatch(getProductList(filter))}>
-                                <ProductList products={products} storeId={storeId} />
+                                {products.length > 0 && (
+                                    <TopPicks categoryName={products[0].categoryName} products={products[0].products} />
+                                )}
+                            </DataLoader>
+
+                            <DataLoader loading={productLoading} error={productError} retryFunction={() => dispatch(getProductList(filter))}>
+                                {products.length > 1 && <ProductList products={products.slice(1)} storeId={storeId} />}
                             </DataLoader>
                         </div>
                     </div>
                 </div>
             </div>
-
         </>
     );
 };

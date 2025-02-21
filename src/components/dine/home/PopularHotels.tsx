@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Mousewheel, Navigation, Pagination } from "swiper/modules";
+import { Mousewheel, Navigation } from "swiper/modules";
 import Link from "next/link";
 
 /****slider img******** */

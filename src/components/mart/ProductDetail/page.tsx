@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect } from 'react'
 
-import GetAppsDownload from '@/components/common/GetAppsDownload'
+import GetAppsDownload from '@/components/common/core/GetAppsDownload'
 import BackLink from '../MartDetail/BackLink'
 import SliderBanner from './SliderBanner'
 import ItemDetail from './ItemDetail';
-import DataLoader from '@/components/common/DataLoader';
+import DataLoader from '@/components/common/core/DataLoader';
 
 import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';

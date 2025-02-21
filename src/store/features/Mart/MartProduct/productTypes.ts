@@ -9,7 +9,16 @@ export interface ProductFilters {
     categoryId?: string;
     sortBy?: string;
     sortingOrder?: string;
-}
+};
+
+
+export interface ProductStock {
+    id: number;
+    quantity: number;
+    location: string;
+    unit: string;
+    productId: number;
+};
 
 export interface ProductProps {
     images: string[];
@@ -22,20 +31,25 @@ export interface ProductProps {
     productType: string;
     subCategoryId: number;
     storeId: number;
-    ProductStocks: [];
+    ProductStocks: ProductStock;
     inCart: boolean;
     quantity: number;
-}
+};
+
+export interface CategoryProps {
+    categoryName: string;
+    products: ProductProps[];
+};
 
 export interface ProductListProps {
-  products: ProductProps[];
-  storeId: string;
-}
+    products: CategoryProps[];
+    storeId: string;
+};
 
 
 export interface ProductStateProps {
     loading: boolean;
     productDetails: ProductProps;
-    products: ProductProps[];
+    products: CategoryProps[];
     error: string | null;
 };

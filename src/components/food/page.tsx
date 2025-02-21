@@ -1,10 +1,9 @@
 "use client";
 import React from 'react'
-import GetAppsDownload from '../common/GetAppsDownload'
-import UserAuth from '../common/UserAuth'
-import SearchBar from '../common/SearchBar';
-import Banner from '../common/Banner';
-import { apiConnector } from '@/services/connector';
+import GetAppsDownload from '../common/core/GetAppsDownload'
+import UserAuth from '../common/core/UserAuth'
+import SearchBar from '../common/core/SearchBar';
+import Banner from '../common/core/Banner';
 
 const Food: React.FC = () => {
 
@@ -23,8 +22,6 @@ const Food: React.FC = () => {
 
     const handleSearch = async (query: string) => {
         if (!query.trim()) return;
-        const response = await apiConnector('post', "http://localhost:8080/search", { data: query });
-
     };
 
     return (
@@ -34,7 +31,6 @@ const Food: React.FC = () => {
                 <div className='wrapper-box'>
                     <div className='gradient-1 px-40'>
                         <UserAuth />
-                        
                         <SearchBar
                             onSearch={handleSearch}
                             placeHolder='Searcg "item Categiry" '
@@ -47,7 +43,6 @@ const Food: React.FC = () => {
                         />
                     </div>
                 </div>
-
             </div>
         </div>
     )

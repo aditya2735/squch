@@ -12,7 +12,6 @@ import {
     Keyboard,
 } from "swiper/modules";
 import Link from "next/link";
-import { BrandsProps } from '@/store/features/Mart/MartBrands/brandsTypes';
 
 import martOffer01 from '../../../../public/images/mart-offer-01.png';
 import martOffer02 from '../../../../public/images/mart-offer-02.png';

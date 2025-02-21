@@ -19,7 +19,6 @@ import ImagesCuisines5 from "../../../public/images/image-cuisines-5.png";
 import Arrow from "../../../public/images/arrow.svg";
 
 
-
 const Categories: React.FC = () => {
     return (
         <div className="px-40 bg-dark-gray">

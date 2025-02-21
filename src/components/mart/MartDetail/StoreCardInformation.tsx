@@ -1,7 +1,6 @@
 import React from 'react'
 import Rating from "../../../../public/images/rating.svg";
 import Image from 'next/image';
-import { MartStoreProps } from '@/store/features/Mart/MartStores/storeTypes';
 
 interface StoreCardInformationProps {
     name: string;

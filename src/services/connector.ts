@@ -22,7 +22,6 @@ axiosInstance.interceptors.request.use(
                 }
             }
         }
-
         return config;
     },
     (error) => Promise.reject(error)
@@ -33,7 +32,6 @@ axiosInstance.interceptors.response.use(
     (error) => Promise.reject(error)
 );
 
-// const ongoingRequests: { [key: string]: any } = {};
 
 export const apiConnector = (
     method: 'get' | 'post' | 'put' | 'delete',
@@ -42,28 +40,18 @@ export const apiConnector = (
     headers = { "ngrok-skip-browser-warning": "69420" },
     params = {},
 ) => {
-    // const abortController = new AbortController();
-    // const signal = abortController.signal;
-
-    // if (ongoingRequests[url]) {
-    //     ongoingRequests[url].abort();
-    // }
-
-    // ongoingRequests[url] = abortController;
-
     const config = {
         method,
         url,
         data: bodyData || null,
         headers: { ...headers },
         params: params || {},
+
     };
     return axios(config)
         .then((response) => {
-            // delete ongoingRequests[url];
             return response;
         }).catch((error) => {
- 
             if (error.name === 'AbortError') {
                 console.log('Request canceled:', error.message);
             } else {

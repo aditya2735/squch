@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GET_ALL_MART_STORE, GET_STORE_DETAILS, MartStoreProps } from "./storeTypes";
-import { fetchAllMartStores, fetchStoreDetails } from "@/services/martService";
-import { create } from "axios";
+import { fetchAllMartStores, fetchStoreDetails } from "@/services/mart/service";
 
 
 export const getMartStores = createAsyncThunk<MartStoreProps[], string, { rejectValue: string }>(

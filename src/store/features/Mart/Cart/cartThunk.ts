@@ -1,6 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ADD_PRODUCT_TO_CART, AddProductProps, AddProductResponsProps, GET_CART_ITEMS, REMOVE_PRODUCT_FROM_CART } from "./cartTypes";
-import { addProduct, fetchCartItem, removerProduct } from "@/services/martService";
+import { addProduct, fetchCartItem, removerProduct } from "@/services/mart/service";
+import {
+    ADD_PRODUCT_TO_CART,
+    AddProductProps,
+    AddProductResponsProps,
+    GET_CART_ITEMS,
+    REMOVE_PRODUCT_FROM_CART,
+    RemoveProductProps
+} from "./cartTypes";
 
 
 export const getCartItems = createAsyncThunk<AddProductResponsProps, void, { rejectValue: string }>(
@@ -8,7 +15,7 @@ export const getCartItems = createAsyncThunk<AddProductResponsProps, void, { rej
     async (_, { rejectWithValue }) => {
         try {
             const items = await fetchCartItem();
-            console.log('items.data.data[0]: ', items.data.data[0]);
+
             return items.data.data[0];
         } catch (error: any) {
             return rejectWithValue(error.message || "Failed to fetch cart items");
@@ -28,7 +35,7 @@ export const addProductToCart = createAsyncThunk<AddProductResponsProps, AddProd
     }
 );
 
-export const removeProductFromCart = createAsyncThunk<AddProductResponsProps, AddProductProps, { rejectValue: string }> (
+export const removeProductFromCart = createAsyncThunk<AddProductResponsProps, RemoveProductProps, { rejectValue: string }>(
     REMOVE_PRODUCT_FROM_CART,
     async (data, { rejectWithValue }) => {
         try {

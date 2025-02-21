@@ -1,10 +1,18 @@
 "use client";
 import React from 'react'
-import GetAppsDownload from '@/components/common/GetAppsDownload'
+import GetAppsDownload from '@/components/common/core/GetAppsDownload'
 import BackLink from '../MartDetail/BackLink'
 import BookingSummary from './BookingSummary';
+import { useRouter } from 'next/navigation';
 
 const Page:React.FC = () => {
+    
+    const router = useRouter();
+
+    const handleBack = () => {
+        router.back()
+    }
+    
     return (
         <div className='main-wrapper  bg-dark-gray'>
             <div className='container px-0 pb-5'>
@@ -12,7 +20,7 @@ const Page:React.FC = () => {
                 <div className='wrapper-box'>
                     <div className='gradient-1'>
                         <div className='px-40'>
-                            <BackLink onGoBack={() => console.log()} />
+                            <BackLink onGoBack={() => handleBack()} />
                             <BookingSummary />
                         </div>
                     </div>

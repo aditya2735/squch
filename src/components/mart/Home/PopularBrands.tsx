@@ -6,8 +6,6 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { BrandsProps } from '@/store/features/Mart/MartBrands/brandsTypes';
-
 import ImageBrandLogo1 from "../../../../public/images/brand-img-1.png";
 import ImageBrandLogo2 from "../../../../public/images/brand-img-2.png";
 import ImageBrandLogo3 from "../../../../public/images/brand-img-3.png";
@@ -55,13 +53,15 @@ const PopularBrands: React.FC = () => {
             // modules={[Pagination, Navigation]}
             className="brand-slider"
           >
-            {brandData.map((brand) => (
-              <SwiperSlide key={brand.id}>
-                <div className="card-brand-logo">
-                  <Image src={brand.image} alt="" />
-                </div>
-              </SwiperSlide>
-            ))}
+            {
+              brandData.map((brand) => (
+                <SwiperSlide key={brand.id}>
+                  <div className="card-brand-logo">
+                    <Image src={brand.image} alt="" />
+                  </div>
+                </SwiperSlide>
+              ))
+            }
           </Swiper>
         </div>
       </div>
