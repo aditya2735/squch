@@ -1,0 +1,38 @@
+{
+    "MART":{
+        "Top Rated Near You": "Top Rated Near You"
+    },
+    "Accommodation": {
+
+    "popularHotels": "Popular Hotels",
+    "nearYou": "Near You",
+    "others": "Others",
+    "trendingDestinations": "Trending Destinations",
+    "seeAll": "See All",
+    "upcomingStays": "Upcoming Stays",
+
+    "FilterModal": {
+      "filters": "Filters",
+      "typeOfPlace": "Type of Place",
+      "anyType":"Any Type",
+      "room":"Room",
+      "entireHome":"Entire Home",
+      "priceRange": "Price Range",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "roomsAndBeds": "Rooms and Beds",
+      "amenities": "Amenities",
+      "bookingOptions": "Booking Options",
+      "topRated": "Top Rated",
+       "userRating": "User Rating",
+      "starCategory": "Star Category",
+      "propertyType": "Property Type",
+      "accessibilityFeatures": "Accessibility Features",
+      "clearAll": "Clear All",
+      "showMore": "Show More",
+      "showLess": "Show Less"
+
+    }
+
+  }
+}
