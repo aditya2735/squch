@@ -27,41 +27,41 @@ export default function Home() {
     }
   }, [isActive]);
 
-  useEffect(() => {
-    // ✅ Register Firebase Service Worker
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("/firebase-messaging-sw.js")
-        .then((registration) => {
-          console.log("✅ Service Worker Registered", registration);
-        })
-        .catch((err) => console.error("❌ Service Worker Registration Failed", err));
-    }
+  // useEffect(() => {
+  //   // ✅ Register Firebase Service Worker
+  //   if ("serviceWorker" in navigator) {
+  //     navigator.serviceWorker
+  //       .register("/firebase-messaging-sw.js")
+  //       .then((registration) => {
+  //         console.log("✅ Service Worker Registered", registration);
+  //       })
+  //       .catch((err) => console.error("❌ Service Worker Registration Failed", err));
+  //   }
 
-    // ✅ Request Notification Permission
-    requestNotificationPermission().then((granted) => {
-      if (granted) {
-        getFCMToken().then((token) => {
-          if (token) {
-            console.log("✅ FCM Token:", token);
-            // 🔥 Send token to backend for push notifications
-            fetch("/api/register-device", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ token }),
-            });
-          }
-        });
-      }
-    });
+  //   // ✅ Request Notification Permission
+  //   requestNotificationPermission().then((granted) => {
+  //     if (granted) {
+  //       getFCMToken().then((token) => {
+  //         if (token) {
+  //           console.log("✅ FCM Token:", token);
+  //           // 🔥 Send token to backend for push notifications
+  //           fetch("/api/register-device", {
+  //             method: "POST",
+  //             headers: { "Content-Type": "application/json" },
+  //             body: JSON.stringify({ token }),
+  //           });
+  //         }
+  //       });
+  //     }
+  //   });
 
-    // ✅ Listen for incoming messages when app is in the foreground
-    onMessageListener().then((payload: any) => {
-      console.log("🔥 Foreground Notification Received:", payload);
-      alert(payload.notification.body); // Display an alert with the notification
-    });
+  //   // ✅ Listen for incoming messages when app is in the foreground
+  //   onMessageListener().then((payload: any) => {
+  //     console.log("🔥 Foreground Notification Received:", payload);
+  //     alert(payload.notification.body); // Display an alert with the notification
+  //   });
 
-  }, []);
+  // }, []);
 
   return (
     <>
