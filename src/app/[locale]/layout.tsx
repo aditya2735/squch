@@ -5,6 +5,7 @@ import "../globals.css";
 import StoreProvider from "../providers/storeProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

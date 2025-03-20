@@ -11,6 +11,7 @@ import Header from "@/components/Home/Header";
 import SearchBar from "@/components/Home/SearchBar";
 import CategoryCards from "@/components/Home/CategoryCard";
 import FoodCarousel from "@/components/Home/FoodCarousel";
+import {requestNotificationPermission, getFCMToken, onMessageListener } from "@/lib/firebase";
 
 export default function Home() {
   const [showModalLogin, setModalLogin] = useState(false);
@@ -25,6 +26,42 @@ export default function Home() {
       document.body.classList.remove("open-menu");
     }
   }, [isActive]);
+
+  useEffect(() => {
+    // ✅ Register Firebase Service Worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/firebase-messaging-sw.js")
+        .then((registration) => {
+          console.log("✅ Service Worker Registered", registration);
+        })
+        .catch((err) => console.error("❌ Service Worker Registration Failed", err));
+    }
+
+    // ✅ Request Notification Permission
+    requestNotificationPermission().then((granted) => {
+      if (granted) {
+        getFCMToken().then((token) => {
+          if (token) {
+            console.log("✅ FCM Token:", token);
+            // 🔥 Send token to backend for push notifications
+            fetch("/api/register-device", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ token }),
+            });
+          }
+        });
+      }
+    });
+
+    // ✅ Listen for incoming messages when app is in the foreground
+    onMessageListener().then((payload: any) => {
+      console.log("🔥 Foreground Notification Received:", payload);
+      alert(payload.notification.body); // Display an alert with the notification
+    });
+
+  }, []);
 
   return (
     <>

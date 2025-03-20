@@ -75,7 +75,7 @@ const Mart: React.FC = () => {
         <div className="main-wrapper">
             <div className="container px-0 bg-dark-gray">
                 <GetAppsDownload />
-                <NotificationButton />
+                {/* <NotificationButton /> */}
                 <div className="wrapper-box">
                     <div className="gradient-1 px-40">
                         <UserAuth />
