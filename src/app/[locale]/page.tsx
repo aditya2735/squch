@@ -14,9 +14,9 @@ import FoodCarousel from "@/components/Home/FoodCarousel";
 import {requestNotificationPermission, getFCMToken, onMessageListener } from "@/lib/firebase";
 
 export default function Home() {
+  
   const [showModalLogin, setModalLogin] = useState(false);
   const [showOtpVerification, setOtpVerification] = useState(false);
-
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
