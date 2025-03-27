@@ -63,7 +63,7 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
                 <div className='container px-0 bg-dark-gray'>
                     <GetAppsDownload />
                     <div className='px-40 purple-flate'>
-                        <BackLink />
+                        <BackLink ShowOption={true}/>
                         <DataLoader loading={loading.storeLoading} error={error} retryFunction={() => dispatch(getStoreDetail(storeId))} data={storeDetail}>
                             <StoreCardInformation
                                 name={storeDetail.name}

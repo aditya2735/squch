@@ -22,7 +22,7 @@ const Page = () => {
                             height={1000}
                             width={1300}
                         />
-                        <BackLink />
+                        <BackLink ShowOption={false}/>
                     </div>
                     <div className='gradient-1'>
                         <div className='px-40'>

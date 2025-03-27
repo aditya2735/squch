@@ -6291,7 +6291,6 @@ button.menu-toggle {
 
 .booking-summary-cart-sec .biggie-mart-sec .biggie-mart-bottom-details .biggie-mart-box {
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(231, 231, 231, 1);
   padding-top: 10px;
 }
 
@@ -12705,7 +12704,8 @@ body .sec-get-app .container {
   text-align: center;
 }
 
-.otp-inputs .form-control:focus {
+.otp-inputs .form-control:focus,
+.input-modal-form .form-control:focus {
   border-color: var(--purple);
 }
 
@@ -12799,6 +12799,44 @@ body .sec-get-app .container {
   text-decoration: underline;
   color: rgba(93, 93, 93, 1);
 }
+
+.order-details-box .accordion-button {
+  padding: 0;
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  color: #000;
+}
+
+.order-details-box .accordion-button:after {
+  margin-left: 30px;
+}
+
+.order-details-box .accordion-header {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.order-details-box .accordion-item {
+  border: 0;
+}
+
+.order-details-box .biggie-mart-box {
+  width: 100%;
+}
+
+.order-details-box .btn-border.btn:hover {
+  color: #652669;
+}
+
+.order-details-box .card.card-saved-address {
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 0;
+}
+
+.order-details-box .location-option .text-lead {
+  font-size: 14px;
+}
+
 
 
 @media only screen and (max-width:1680px) {
@@ -14860,6 +14898,7 @@ body .sec-get-app .container {
   }
 
 }
+
 
 
 

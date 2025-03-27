@@ -5,7 +5,8 @@ const ENDPOINTS = {
     COMMON: {
         ADDRESS: {
             GET_ADDRESS_LIST: `${API_BASE_URL}/mart/address-list`,
-            ADD_DELIVERY_ADDRESS: `${API_BASE_URL}/mart/add-delivery-address`
+            ADD_DELIVERY_ADDRESS: `${API_BASE_URL}/mart/add-delivery-address`,
+            SET_CURRENT_ADDRESS: `${API_BASE_URL}/mart/set-current-address`
         }
     }
 };

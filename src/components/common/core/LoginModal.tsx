@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import CloseModal from "../../../../public/images/close-modal.png";
 import Link from 'next/link';
 import PhoneDropdown from "./PhoneDropdown";
+import { SignInWithGoogle, logout } from '@/lib/firebase';
 import "./flag.css";
 
 const ModalLogin = ({ show, setModalLogin, setOtpVerification }: any) => {
@@ -88,7 +89,7 @@ const ModalLogin = ({ show, setModalLogin, setOtpVerification }: any) => {
                             </li>
 
                             <li>
-                                <Link href="">
+                                <Link href="" onClick={SignInWithGoogle}>
                                     <span className='socail-icon'>
                                         <Image src={"/images/google.svg"} height={20} width={20} alt='google icon' />
                                     </span>

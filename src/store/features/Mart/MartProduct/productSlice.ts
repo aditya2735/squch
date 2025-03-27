@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ProductProps, ProductStateProps } from "./productTypes";
 import {
+    addProductFromProductDetail,
     addProductFromProductList,
     getProductDetails,
     getProductList,
+    removeProductFromProductDetail,
     removeProductFromProductList
 } from "./productThunk";
+import { access } from "fs";
 
 const initialState: ProductStateProps = {
     loading: {
@@ -106,6 +109,32 @@ const ProductSlice = createSlice({
                 }
             })
             .addCase(removeProductFromProductList.rejected, (state, action) => {
+                state.loading.quantityLoading = false;
+                state.error = action.payload || "Failed to remove product"
+            })
+            .addCase(addProductFromProductDetail.pending, (state, action) => {
+                state.loading.quantityLoading = true
+            })
+            .addCase(addProductFromProductDetail.fulfilled, (state, action) => {
+                state.productDetails.quantity = action.payload.quantity
+                state.error = null;
+            })
+            .addCase(addProductFromProductDetail.rejected, (state, action) => {
+                state.loading.quantityLoading = false;
+                state.error = action.payload || "Failed to add product"
+            })
+            .addCase(removeProductFromProductDetail.pending, (state, action) => {
+                state.loading.quantityLoading = true;
+            })
+            .addCase(removeProductFromProductDetail.fulfilled, (state, action) => {
+                const newProduct = action.payload;
+                if (newProduct) {
+                    state.productDetails.quantity = newProduct.quantity;
+                } else {
+                    state.productDetails.quantity = 0;
+                }
+            })
+            .addCase(removeProductFromProductDetail.rejected, (state, action) => {
                 state.loading.quantityLoading = false;
                 state.error = action.payload || "Failed to remove product"
             })

@@ -32,6 +32,6 @@
     ".next/types/**/*.ts",
     "src/app/[locale]/home/page.jsx",
     "src/store/thunk.js"
-  ],
+, "worker/index.js"  ],
   "exclude": ["node_modules"]
 }

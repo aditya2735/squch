@@ -37,11 +37,6 @@ const BookingSummary = () => {
         <div className="booking-summary-cart-sec">
 
             <DataLoader loading={loading.storeLoading} error={error} data={items} retryFunction={() => dispatch(getCartItems())}>
-                {/* {
-                !items ?
-                    (<div>No Items in Cart</div>)
-                    :
-                    ( */}
                 <div className="row">
                     <div className="col-lg-8">
                         <div className="booking-summary-box bg-white rounded-radius">

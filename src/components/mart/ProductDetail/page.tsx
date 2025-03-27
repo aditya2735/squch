@@ -17,19 +17,12 @@ interface ItemDetailsProps {
 const Page: React.FC<ItemDetailsProps> = ({ productId }) => {
 
     const dispatch = useAppDispatch();
-    const {
-        loading,
-        error,
-        productDetails
-    } = useAppSelector((state) => state.martProduct)
+    const { loading, error, productDetails } = useAppSelector((state) => state.martProduct)
 
     useEffect(() => {
         dispatch(getProductDetails(productId));
     }, [dispatch, productId]);
 
-    useEffect(() => {
-        console.log('productDetails: ', productDetails);
-    }, [productDetails])
 
     return (
         <DataLoader
@@ -44,15 +37,15 @@ const Page: React.FC<ItemDetailsProps> = ({ productId }) => {
                     <div className='wrapper-box'>
                         <div className='gradient-1'>
                             <div className='px-40'>
-                                <BackLink />
-                                
+                                <BackLink ShowOption={true} />
+
                                 <DataLoader
                                     loading={loading.pageLoading}
                                     error={error}
                                     retryFunction={() => dispatch(getProductDetails(productId))}
                                     data={productDetails}
                                 >
-                                    <SliderBanner {...productDetails} />
+                                    <SliderBanner product={productDetails} />
                                 </DataLoader>
 
                                 <DataLoader

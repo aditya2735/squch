@@ -5,7 +5,7 @@ import { getUserLocation } from '@/services/common/service';
 import DataLoader from '../../core/DataLoader';
 
 const SaveLocation = () => {
-    const [location, setLocation] = useState<{ lat: number; lon: number } | null>(null);
+    const [location, setLocation] = useState<[number, number] | null>(null);
     const [error, setError] = useState<any>();
     const [locationAddress, setLocationAddress] = useState<{ address?: { county?: string }; display_name?: string } | null>(null);
     const [mapUrl, setMapUrl] = useState<string>("");
@@ -23,7 +23,7 @@ const SaveLocation = () => {
                 const { latitude, longitude } = position.coords;
                 console.log('latitude: ', latitude);
                 console.log("Fetched coordinates:", latitude, longitude);
-                setLocation({ lat: latitude, lon: longitude });
+                setLocation([longitude, latitude]);
                 setMapUrl(`https://www.google.com/maps?q=${latitude},${longitude}&hl=en&z=15&output=embed`);
 
                 try {
@@ -98,8 +98,9 @@ const SaveLocation = () => {
                     {/* Show loader if still fetching location, else show form */}
                     <DataLoader loading={isLoading} error={error} retryFunction={fetchLocation} data={locationAddress}>
                         {
-                            (locationAddress && location?.lat && location?.lon) &&
-                            <AddressForm address={locationAddress.address} location={location} />
+                            (locationAddress && location && location?.length > 0 &&
+                                <AddressForm address={locationAddress.address} location={location} />
+                            )
                         }
                     </DataLoader>
                 </div>

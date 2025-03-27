@@ -37,7 +37,7 @@ const Home: React.FC<RestaurantDetailProps> = ({ restaurantId }) => {
                 <GetAppsDownload />
                 <div className='gradient-1 pb-5'>
                     <div className='px-40'>
-                        <BackLink />
+                        <BackLink ShowOption={true}/>
                         <div className='row'>
                             <div className='col-lg-8'>
                                 <DetailsThumbSlider />

@@ -9,7 +9,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useEffect, useState } from "react";
 import { getUserLocation } from "@/services/common/service";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getAddressList } from "@/store/features/common/Address/addressThunk";
+import { getAddressList, setCurrentAddress } from "@/store/features/common/Address/addressThunk";
 import Link from "next/link";
 import { AddressProps } from "@/store/features/common/Address/addressTypes";
 import { setLatLong, setSelectedAddress } from "@/store/features/common/Address/addressSlice";
@@ -34,7 +34,8 @@ const UserAuth = () => {
             display_name: name
         }
         setLocation(temp);
-        dispatch(setSelectedAddress(address));
+        // dispatch(setSelectedAddress(address));
+        dispatch(setCurrentAddress({ addressId: address.id }));
     };
 
     const getCurrentLocation = () => {
@@ -58,7 +59,7 @@ const UserAuth = () => {
                 setLocation("Location access denied");
             }
         );
-       
+
     };
 
     useEffect(() => {
@@ -74,7 +75,7 @@ const UserAuth = () => {
             setLocation(temp);
         }
 
-        if(addresses.length == 0) {
+        if (addresses.length == 0) {
             dispatch(getAddressList());
         }
     }, []);
@@ -95,7 +96,7 @@ const UserAuth = () => {
                             </span>
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
+                        {/* <Dropdown.Menu>
                             {addresses && addresses?.slice(0, 3).map((address, index) => {
                                 const { addressAlias, adresstype, city, area, state, zipCode, country } = address;
 
@@ -146,7 +147,50 @@ const UserAuth = () => {
                             <Dropdown.Item onClick={() => getCurrentLocation()}>
                                 Use Current Location
                             </Dropdown.Item>
+                        </Dropdown.Menu> */}
+
+                        <Dropdown.Menu>
+                            {addresses && [...addresses].reverse().slice(0, 3).map((address, index) => {
+                                const { addressAlias, adresstype, city, area, state, zipCode, country } = address;
+
+                                return (
+                                    <Dropdown.Item key={index} onClick={() => handleAddress(address)}>
+                                        <span className="d-flex align-items-center">
+                                            <Image
+                                                src={
+                                                    ["home", "work", "other", "friend and family"].some((type) =>
+                                                        adresstype?.toLowerCase().includes(type)
+                                                    )
+                                                        ? `/images/${adresstype?.replace(/\s+/g, "").toLowerCase()}.svg`
+                                                        : `/images/other.svg`
+                                                }
+                                                alt="Map Icon"
+                                                height={16}
+                                                width={17}
+                                            />
+                                            {addressAlias}
+                                        </span>
+                                        <p className="m-0">{`${city}, ${area}, ${state}, ${zipCode}, ${country}`}</p>
+                                    </Dropdown.Item>
+                                );
+                            })}
+
+                            {addresses?.length > 3 && (
+                                <>
+                                    <Dropdown.Divider />
+                                    <Link href="/home/address/savedAddress" passHref legacyBehavior>
+                                        <Dropdown.Item>Select Other Address</Dropdown.Item>
+                                    </Link>
+                                </>
+                            )}
+
+                            <Link href="/home/address/addAddress" passHref legacyBehavior>
+                                <Dropdown.Item>Add New Address</Dropdown.Item>
+                            </Link>
+
+                            <Dropdown.Item onClick={() => getCurrentLocation()}>Use Current Location</Dropdown.Item>
                         </Dropdown.Menu>
+
                     </Dropdown>
 
                     <p className="m-0">

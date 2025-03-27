@@ -32,3 +32,12 @@ export const addDeliveryAddress = async (data: NewAddressProps): Promise<any> =>
         throw new Error(error.response?.data?.message || "Failed to add address");
     }
 };
+
+export const setDeliveryAddress = async (addressId: number): Promise<any> => {
+    try {
+        const response: any = await apiConnector('post', COMMON.ADDRESS.SET_CURRENT_ADDRESS, { addressId });
+        return { data: response.data }
+    } catch (error: any) {
+        throw new Error(error.response?.data?.message || "Failed to set current address");
+    }
+};

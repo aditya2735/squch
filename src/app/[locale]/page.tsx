@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import "simplebar-react/dist/simplebar.min.css";
@@ -6,19 +7,19 @@ import '../Home.css';
 import QRCODE from '../../../public/images/app-qr-code.png';
 import GetappLogo from '../../../public/images/logo-get-app.svg';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Home/Header";
 import SearchBar from "@/components/Home/SearchBar";
 import CategoryCards from "@/components/Home/CategoryCard";
 import FoodCarousel from "@/components/Home/FoodCarousel";
-import {requestNotificationPermission, getFCMToken, onMessageListener } from "@/lib/firebase";
+import { requestNotificationPermission, getFCMToken, onMessageListener } from "@/lib/firebase";
 
 export default function Home() {
-  
-  const [showModalLogin, setModalLogin] = useState(false);
-  const [showOtpVerification, setOtpVerification] = useState(false);
+  const [fcmToken, setFcmToken] = useState<string | null>(null);
   const [isActive, setIsActive] = useState(false);
+  const isFirstRun = useRef(true); // ✅ Prevents `useEffect()` from running twice in development
 
+  // ✅ Handle sidebar open/close
   useEffect(() => {
     if (isActive) {
       document.body.classList.add("open-menu");
@@ -27,41 +28,64 @@ export default function Home() {
     }
   }, [isActive]);
 
-  // useEffect(() => {
-  //   // ✅ Register Firebase Service Worker
-  //   if ("serviceWorker" in navigator) {
-  //     navigator.serviceWorker
-  //       .register("/firebase-messaging-sw.js")
-  //       .then((registration) => {
-  //         console.log("✅ Service Worker Registered", registration);
-  //       })
-  //       .catch((err) => console.error("❌ Service Worker Registration Failed", err));
-  //   }
+// ✅ Register Service Worker and Fetch FCM Token
+useEffect(() => {
+  if (typeof window === "undefined") return;
 
-  //   // ✅ Request Notification Permission
-  //   requestNotificationPermission().then((granted) => {
-  //     if (granted) {
-  //       getFCMToken().then((token) => {
-  //         if (token) {
-  //           console.log("✅ FCM Token:", token);
-  //           // 🔥 Send token to backend for push notifications
-  //           fetch("/api/register-device", {
-  //             method: "POST",
-  //             headers: { "Content-Type": "application/json" },
-  //             body: JSON.stringify({ token }),
-  //           });
-  //         }
-  //       });
-  //     }
-  //   });
+  // ✅ Prevent duplicate execution in development mode (Strict Mode)
+  if (isFirstRun.current) {
+    isFirstRun.current = false;
 
-  //   // ✅ Listen for incoming messages when app is in the foreground
-  //   onMessageListener().then((payload: any) => {
-  //     console.log("🔥 Foreground Notification Received:", payload);
-  //     alert(payload.notification.body); // Display an alert with the notification
-  //   });
+    // ✅ Register the Service Worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/firebase-messaging-sw.js")
+        .then((registration) => {
+          console.log("✅ Service Worker Registered:", registration);
+        })
+        .catch((err) => console.error("❌ Service Worker Registration Failed", err));
+    }
 
-  // }, []);
+    // ✅ Request Notification Permission
+    requestNotificationPermission().then((granted) => {
+      if (granted) {
+        getFCMToken().then((token) => {
+          if (token) {
+            console.log("✅ FCM Token:", token);
+            setFcmToken(token);
+            
+            // 🔥 Send token to backend
+            fetch("/api/register-device", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ token }),
+            })
+              .then(res => res.json())
+              .then(data => console.log("✅ Device registered:", data))
+              .catch(err => console.error("❌ Device registration failed:", err));
+          }
+        });
+      }
+    });
+
+    // ✅ Listen for foreground notifications
+    onMessageListener().then((payload: any) => {
+      console.log("🔥 Foreground Notification Received:", payload);
+
+      // ✅ Manually display notification when the app is open
+      if (Notification.permission === "granted") {
+        new Notification(payload.notification.title, {
+          body: payload.notification.body,
+          icon: "/icons/icon-192x192.png",
+        });
+      } else {
+        alert(`🔔 ${payload.notification.title}: ${payload.notification.body}`);
+      }
+    }).catch(err => console.error("❌ Error handling foreground notification:", err));
+  }
+}, []);
+
+
 
   return (
     <>
@@ -203,5 +227,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  ); 
 }

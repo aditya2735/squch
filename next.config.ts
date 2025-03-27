@@ -4,6 +4,7 @@ const withNextIntl = createNextIntlPlugin();
 const withPWA = require("next-pwa")({
   dest: "public",
   disableDevLogs: true,
+  customWorkerDir: 'worker'
 });
 
 const nextConfig = {
@@ -27,6 +28,14 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/manifest.json',
+        destination: '/manifest.json', // Serve the file directly
+      },
+    ];
+  }
 }
 
 module.exports = withNextIntl(withPWA(nextConfig));

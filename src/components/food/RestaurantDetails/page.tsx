@@ -57,7 +57,7 @@ const Page: React.FC<RestaurantDetailProps> = ({ restaurantId }) => {
             <GetAppsDownload />
             <div className='container px-0 bg-dark-gray'>
                 <div className='px-40 purple-flate'>
-                    <BackLink />
+                    <BackLink ShowOption={true}/>
                     <RestaurantInformationCard
                         name={storeDetail.name}
                         address={storeDetail.address}

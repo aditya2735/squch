@@ -19,7 +19,7 @@ const Page = () => {
                 <div className='gradient-1 pb-5'>
                     <div className='px-40'>
                         <UserAuth />
-                        <BackLink />
+                        <BackLink ShowOption={false}/>
                         <SearchBar 
                         onSearch={handleSearch} 
                         placeHolder='search addresses'

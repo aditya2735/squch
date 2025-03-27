@@ -4,7 +4,7 @@ import GetAppsDownload from '@/components/common/core/GetAppsDownload'
 import BackLink from '../../common/core/BackLink'
 import BookingSummary from './BookingSummary';
 
-const Page:React.FC = () => {
+const Page: React.FC = () => {
     return (
         <div className='main-wrapper  bg-dark-gray'>
             <div className='container px-0 pb-5'>
@@ -12,7 +12,7 @@ const Page:React.FC = () => {
                 <div className='wrapper-box'>
                     <div className='gradient-1'>
                         <div className='px-40'>
-                            <BackLink />
+                            <BackLink ShowOption={false} />
                             <BookingSummary />
                         </div>
                     </div>

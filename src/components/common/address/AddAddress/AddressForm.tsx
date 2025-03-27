@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 
 
 const AddressForm: React.FC<{ address: any | null, location: any | null }> = ({ address, location }) => {
-    console.log('location: ', location);
 
     const dispatch = useAppDispatch();
 
@@ -103,29 +102,6 @@ const AddressForm: React.FC<{ address: any | null, location: any | null }> = ({ 
                         />
                         <small className='type-text'>{charCount}/200</small>
                     </div>
-
-                    {/* Address type */}
-                    {/* <div className='col-md-12 input-single'>
-                        <label>Address Type</label>
-                        <div className='d-flex flex-wrap list-address-type'>
-                            <button className='btn'>
-                                <Image src={"/images/home.svg"} alt="home icon" height={16} width={16} />
-                                Home
-                            </button>
-                            <button className='btn'>
-                                <Image src={"/images/work.svg"} alt="work icon" height={16} width={17} />
-                                Work
-                            </button>
-                            <button className='btn'>
-                                <Image src={"/images/friends.svg"} alt="friends icon" height={16} width={17} />
-                                Friend and Family
-                            </button>
-                            <button className='btn active'>
-                                <Image src={"/images/other.svg"} alt="other icon" height={16} width={16} />
-                                Other
-                            </button>
-                        </div>
-                    </div> */}
 
                     <div className='col-md-12 input-single'>
                         <label>Address Type</label>

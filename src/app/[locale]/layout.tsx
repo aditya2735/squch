@@ -5,7 +5,7 @@ import "../globals.css";
 import StoreProvider from "../providers/storeProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { useEffect } from "react";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,8 +37,8 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <head>
-        <title>Squach App</title>
-        <link rel="icon" href="logo.svg" />
+        <title>Squch</title>
+        <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

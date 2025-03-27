@@ -1,6 +1,8 @@
 export const GET_PRODUCT_LIST = "product/product-list";
 export const GET_PRODUCT_DETAILS = "produtc/product-details";
 export const ADD_PRODUCT_FROM_PRODUCT_LIST = "product/add-product";
+export const ADD_PRODUCT_FROM_PRODUCT_DETAIL = "product/add-product-from-detail";
+export const REMOVE_PRODUCT_FROM_PRODUCT_DETAIL = "product/remove-product-from-detail";
 export const REMOVE_PRODUCT_FROM_PRODUCT_LIST = "produtc/remove-product"
 
 export interface ProductFilters {
