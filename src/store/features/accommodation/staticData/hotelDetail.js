@@ -126,6 +126,18 @@ export const hotelDetailData=
         "hotelStaff": 4,
         "checkinRating": 4
     },
+    "Hosts": [
+        {
+            "id": 1,
+            "hotelId": 1,
+            "firstName": "John",
+            "lastName": "Doe",
+            "phoneNumber": "1234567890",
+            "profilePicture": "https://img.freepik.com/free-photo/closeup-young-female-professional-making-eye-contact-against-colored-background_662251-651.jpg",
+            "createdAt": "2025-03-07T14:53:54.000Z",
+            "updatedAt": "2025-03-07T14:53:54.000Z"
+        }
+    ],
     "avg_ratings": 4.5,
     "total_ratings": 2,
     "isInWishList": true,

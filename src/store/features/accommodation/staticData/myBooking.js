@@ -1,7 +1,7 @@
 export const mybookingData={
     "success": true,
     "message": "Bookings fetched successfully",
-    "data":{
+    "data": {
         "upcoming": [
             {
                 "id": 1,
@@ -26,12 +26,13 @@ export const mybookingData={
                 "basePrice": "0.00",
                 "taxesAndFees": "0.00",
                 "refundAmount": "0.00",
-                "partiallyPaidAmount": "0.00",
+                "partiallyPaidAmount": null,
                 "promoCodeUsed": null,
                 "transactionId": null,
                 "createdAt": "2025-02-28T08:11:31.000Z",
                 "updatedAt": "2025-02-28T08:11:31.000Z",
                 "hotel": {
+                    "id": 1,
                     "name": "The Grand Palace",
                     "address": "123 Royal Street",
                     "contactNumber": "+1 212-555-1234",
@@ -39,9 +40,35 @@ export const mybookingData={
                     "state": "New York",
                     "country": "USA",
                     "latitude": "40.71280000",
-                    "longitude": "-74.00600000"
+                    "longitude": "-74.00600000",
+                    "refundableTill": 4,
+                    "isDateChangeAvailable": false,
+                    "cancelCandidate": null
+                },
+                "roomDetails": {
+                    "id": 1,
+                    "roomType": "Deluxe Room"
+                },
+                "hostDetails": {
+                    "id": 1,
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "phoneNumber": "1234567890",
+                    "profilePicture": "https://img.freepik.com/free-photo/closeup-young-female-professional-making-eye-contact-against-colored-background_662251-651.jpg"
+                },
+                "primaryImage": {
+                    "id": 1,
+                    "url": "https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "hotelId": 1,
+                    "hotelViewId": 1,
+                    "type": "hotel",
+                    "isPrimary": true,
+                    "createdAt": "2025-02-07T18:38:15.000Z",
+                    "updatedAt": "2025-02-24T19:09:33.000Z"
                 }
-            },
+            }
+        ],
+        "active": [
             {
                 "id": 2,
                 "hotelId": 1,
@@ -65,12 +92,13 @@ export const mybookingData={
                 "basePrice": "0.00",
                 "taxesAndFees": "0.00",
                 "refundAmount": "0.00",
-                "partiallyPaidAmount": "0.00",
+                "partiallyPaidAmount": null,
                 "promoCodeUsed": null,
                 "transactionId": null,
                 "createdAt": "2025-02-28T13:07:41.000Z",
                 "updatedAt": "2025-02-28T13:07:41.000Z",
                 "hotel": {
+                    "id": 1,
                     "name": "The Grand Palace",
                     "address": "123 Royal Street",
                     "contactNumber": "+1 212-555-1234",
@@ -78,11 +106,35 @@ export const mybookingData={
                     "state": "New York",
                     "country": "USA",
                     "latitude": "40.71280000",
-                    "longitude": "-74.00600000"
+                    "longitude": "-74.00600000",
+                    "refundableTill": 4,
+                    "isDateChangeAvailable": false,
+                    "cancelCandidate": null
+                },
+                "roomDetails": {
+                    "id": 1,
+                    "roomType": "Deluxe Room"
+                },
+                "hostDetails": {
+                    "id": 1,
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "phoneNumber": "1234567890",
+                    "profilePicture": "https://img.freepik.com/free-photo/closeup-young-female-professional-making-eye-contact-against-colored-background_662251-651.jpg"
+                },
+                "primaryImage": {
+                    "id": 1,
+                    "url": "https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "hotelId": 1,
+                    "hotelViewId": 1,
+                    "type": "hotel",
+                    "isPrimary": true,
+                    "createdAt": "2025-02-07T18:38:15.000Z",
+                    "updatedAt": "2025-02-24T19:09:33.000Z"
                 }
             }
         ],
-        "active": [
+        "checkedOut": [
             {
                 "id": 6,
                 "hotelId": 1,
@@ -106,12 +158,13 @@ export const mybookingData={
                 "basePrice": "0.00",
                 "taxesAndFees": "0.00",
                 "refundAmount": "0.00",
-                "partiallyPaidAmount": "0.00",
+                "partiallyPaidAmount": null,
                 "promoCodeUsed": null,
                 "transactionId": null,
                 "createdAt": "2025-02-28T13:22:19.000Z",
                 "updatedAt": "2025-02-28T13:22:19.000Z",
                 "hotel": {
+                    "id": 1,
                     "name": "The Grand Palace",
                     "address": "123 Royal Street",
                     "contactNumber": "+1 212-555-1234",
@@ -119,11 +172,35 @@ export const mybookingData={
                     "state": "New York",
                     "country": "USA",
                     "latitude": "40.71280000",
-                    "longitude": "-74.00600000"
+                    "longitude": "-74.00600000",
+                    "refundableTill": 4,
+                    "isDateChangeAvailable": false,
+                    "cancelCandidate": null
+                },
+                "roomDetails": {
+                    "id": 1,
+                    "roomType": "Deluxe Room"
+                },
+                "hostDetails": {
+                    "id": 1,
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "phoneNumber": "1234567890",
+                    "profilePicture": "https://img.freepik.com/free-photo/closeup-young-female-professional-making-eye-contact-against-colored-background_662251-651.jpg"
+                },
+                "primaryImage": {
+                    "id": 1,
+                    "url": "https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "hotelId": 1,
+                    "hotelViewId": 1,
+                    "type": "hotel",
+                    "isPrimary": true,
+                    "createdAt": "2025-02-07T18:38:15.000Z",
+                    "updatedAt": "2025-02-24T19:09:33.000Z"
                 }
             }
         ],
-        "checkedOut": [
+        "cancelled": [
             {
                 "id": 7,
                 "hotelId": 1,
@@ -138,8 +215,8 @@ export const mybookingData={
                 "infantsCount": 6,
                 "petsCount": 3,
                 "specialCareCount": 2,
-                "bookingStatus": "PENDING",
-                "cancellationReason": null,
+                "bookingStatus": "CANCELLED",
+                "cancellationReason": "Found better",
                 "paymentStatus": "PENDING",
                 "paymentMode": null,
                 "currency": "USD",
@@ -147,12 +224,13 @@ export const mybookingData={
                 "basePrice": "0.00",
                 "taxesAndFees": "0.00",
                 "refundAmount": "0.00",
-                "partiallyPaidAmount": "0.00",
+                "partiallyPaidAmount": null,
                 "promoCodeUsed": null,
                 "transactionId": null,
                 "createdAt": "2025-02-28T13:26:43.000Z",
                 "updatedAt": "2025-02-28T13:26:43.000Z",
                 "hotel": {
+                    "id": 1,
                     "name": "The Grand Palace",
                     "address": "123 Royal Street",
                     "contactNumber": "+1 212-555-1234",
@@ -160,11 +238,34 @@ export const mybookingData={
                     "state": "New York",
                     "country": "USA",
                     "latitude": "40.71280000",
-                    "longitude": "-74.00600000"
+                    "longitude": "-74.00600000",
+                    "refundableTill": 4,
+                    "isDateChangeAvailable": false,
+                    "cancelCandidate": null
+                },
+                "roomDetails": {
+                    "id": 1,
+                    "roomType": "Deluxe Room"
+                },
+                "hostDetails": {
+                    "id": 1,
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "phoneNumber": "1234567890",
+                    "profilePicture": "https://img.freepik.com/free-photo/closeup-young-female-professional-making-eye-contact-against-colored-background_662251-651.jpg"
+                },
+                "primaryImage": {
+                    "id": 1,
+                    "url": "https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "hotelId": 1,
+                    "hotelViewId": 1,
+                    "type": "hotel",
+                    "isPrimary": true,
+                    "createdAt": "2025-02-07T18:38:15.000Z",
+                    "updatedAt": "2025-02-24T19:09:33.000Z"
                 }
             }
-        ],
-        "cancelled": []
+        ]
     },
     "code": 200
 }

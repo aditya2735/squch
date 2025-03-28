@@ -9,23 +9,64 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setSelectedRoom } from "@/store/features/accommodation/slices/hotelDetailSlice";
 import { Room } from "@/store/features/accommodation/types/hotelTypes";
 import { checkInPost } from "@/services/accommodation/bookingServices";
-import { calculateNights, getCurrencySymbol } from "@/utils/formatData";
+import { calculateNights, formatDate, getCurrencySymbol } from "@/utils/formatData";
 
-const RightBookingDetails = () => {
-  const { rooms, selectedRooms, selectedRoom } = useAppSelector(
-    (state) => state.hotelDetail
-  );
-  const { avgPricePerNight, id: hotel_id } = useAppSelector(
-    (state) => state.hotelDetail.data
-  );
-  const { housePolicy } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const guestTypes = [
-    { key: "adults", label: "Adult" },
-    { key: "children", label: "Children" },
-    { key: "specialCare", label: "Special Care" },
-  ];
+const BookingDetailDefault = () => {
+  // Redux state and hooks
+const { rooms, selectedRoom } = useAppSelector((state) => state.hotelDetail);
+const { name, avgPricePerNight, id: hotel_id } = useAppSelector((state) => state.hotelDetail.data);
+const { housePolicy } = useAppSelector((state) => state);
+const dispatch = useAppDispatch();
+const router = useRouter();
+
+// Guest types
+const guestTypes = [
+  { key: "adults", label: "Adult" },
+  { key: "children", label: "Children" },
+  { key: "specialCare", label: "Special Care" },
+];
+
+// Calculate nights
+const nights = calculateNights(housePolicy?.checkIn, housePolicy?.checkOut); // Defaults to 1 if invalid
+
+// Format dates
+const [checkInFormatted, checkOutFormatted] = ["checkIn", "checkOut"].map((key) =>
+  housePolicy?.[key] ? formatDate(housePolicy[key], true, false) : "N/A"
+);
+
+// Format guests string
+const guests = guestTypes
+  .map(({ key, label }) => {
+    const count = housePolicy?.[key] || 0;
+    return count ? `${count} ${label}${count > 1 && label !== "Children" ? "s" : ""}` : "";
+  })
+  .filter(Boolean)
+  .join(", ");
+
+// Total guests
+const totalGuests = housePolicy?.guests || 1;
+
+// Night details string
+const nightDetails = `${totalGuests} Guest${totalGuests !== 1 ? "s" : ""} - ${nights} Night${nights !== 1 ? "s" : ""}`;
+
+// Calculate total price for a room
+const calculateTotalPrice = (room: Room) => {
+  const { maxOccupancy, currency, pricePerNight, priceInPerOccupancy } = room;
+  const baseRoomPrice = parseFloat(pricePerNight); // Room price per night
+  const extraGuestPrice = parseFloat(priceInPerOccupancy); // Extra guest charge
+  const hotelBasePrice = parseFloat(avgPricePerNight); // Base hotel price
+
+  // Calculate room price including extra guest charges
+  const roomTotalPrice =
+    totalGuests <= maxOccupancy
+      ? baseRoomPrice // No extra charge if guests are within maxOccupancy
+      : baseRoomPrice + (totalGuests - maxOccupancy) * extraGuestPrice; // Charge for extra guests
+
+  // Final total price including hotel base price
+  const totalPrice = roomTotalPrice + hotelBasePrice;
+  const currencySymbol = getCurrencySymbol(currency);
+  return `${currencySymbol} ${totalPrice.toFixed(2)}`;
+};
 
   const handleBookNow = async () => {
     try {
@@ -60,57 +101,8 @@ const RightBookingDetails = () => {
     }
   };
 
-  const nights = calculateNights(housePolicy?.checkIn, housePolicy?.checkOut); // by default nights = 1
-
-  // Function to format date (e.g., "Wed, 8 Jan")
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString("en-US", {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-    });
-  };
-
-  const checkInFormatted = housePolicy.checkIn? formatDate(housePolicy.checkIn): "N/A";
-  const checkOutFormatted = housePolicy.checkOut? formatDate(housePolicy.checkOut): "N/A";
-
-  // Guests & Night info
-  const guests = guestTypes.map(({ key, label }) => 
-    {    const count = housePolicy[key];
-      return count ? `${count} ${label}${count > 1 && label!="Children" ? "s" : ""}` : "";
-    })
-    .filter(Boolean)
-    .join(", ");
-
-  const totalGuests = housePolicy?.guests;
-
-  const nightDetails = `${totalGuests} Guest${
-    totalGuests !== 1 ? "s" : ""
-  } - ${nights} Night${nights !== 1 ? "s" : ""}`;
-
-  const calculateTotalPrice = (room: Room, totalGuests: number) => {
-    const { maxOccupancy, currency, pricePerNight, priceInPerOccupancy } = room;
-
-    const baseRoomPrice = parseFloat(pricePerNight); // Room price per night
-    const extraGuestPrice = parseFloat(priceInPerOccupancy); // Extra guest charge
-    const hotelBasePrice = parseFloat(avgPricePerNight); // Base hotel price
-
-    // Calculate room price including extra guest charges
-    const roomTotalPrice =
-      totalGuests <= maxOccupancy
-        ? baseRoomPrice // No extra charge if guests are within maxOccupancy
-        : baseRoomPrice + (totalGuests - maxOccupancy) * extraGuestPrice; // Charge for extra guests
-
-    // Final total price including hotel base price
-    const totalPrice = roomTotalPrice + hotelBasePrice;
-    const currencySymbol= getCurrencySymbol(currency)
-    return `${currencySymbol} ${totalPrice.toFixed(2)}`;
-  };
-
   return (
     <>
-      <div className="booking-date-sec">
         <div className="top-booking-details bg-white mb-4">
           <h5>Your booking details</h5>
           <div className="list-booking">
@@ -241,7 +233,7 @@ const RightBookingDetails = () => {
               </div>
               <div className="right-amount-box">
                 {selectedRoom ? (
-                  <h6>{calculateTotalPrice(selectedRoom, totalGuests)}</h6>
+                  <h6>{calculateTotalPrice(selectedRoom)}</h6>
                 ) : (
                   <p>Select a Room</p>
                 )}
@@ -278,82 +270,8 @@ const RightBookingDetails = () => {
             </p>
           </div>
         </div>
-        <div className="bottom-booking-details bg-white mb-4">
-          <h5>Meet Your Host</h5>
-          <div className="host-list-details">
-            <div className="host-list d-flex align-items-center gap-2">
-              <div className="host-img-box">
-                <Image src={HostImg} alt="" />
-              </div>
-              <div className="host-img-details">
-                <h6>Zara Millers</h6>
-                <p>Host, Accra Marriott Hotel</p>
-                <ul className="d-flex align-items-center gap-2">
-                  <li>
-                    <Link
-                      href=""
-                      className="btn btn-light d-flex align-items-center gap-1"
-                    >
-                      <svg
-                        width="17"
-                        height="16"
-                        viewBox="0 0 17 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <rect
-                          x="0.25"
-                          width="16"
-                          height="16"
-                          rx="8"
-                          stroke="#F6F6F6"
-                        />
-                        <path
-                          d="M14.4576 11.9454C14.4576 12.1698 14.4078 12.4004 14.3018 12.6248C14.1958 12.8493 14.0587 13.0612 13.8779 13.2607C13.5724 13.5973 13.2358 13.8404 12.8555 13.9963C12.4815 14.1521 12.0763 14.2332 11.64 14.2332C11.0041 14.2332 10.3246 14.0835 9.60775 13.7781C8.89087 13.4726 8.17398 13.0612 7.46333 12.5438C6.74645 12.0202 6.06697 11.4404 5.41866 10.7984C4.77658 10.15 4.19684 9.47056 3.67944 8.75991C3.16827 8.04926 2.75684 7.33861 2.45762 6.6342C2.1584 5.92355 2.00879 5.24407 2.00879 4.59576C2.00879 4.17186 2.08359 3.76666 2.2332 3.39264C2.38281 3.01238 2.6197 2.66329 2.95009 2.3516C3.34905 1.95887 3.78541 1.76562 4.24671 1.76562C4.42126 1.76562 4.5958 1.80303 4.75165 1.87783C4.91372 1.95264 5.0571 2.06485 5.16931 2.22692L6.61554 4.26537C6.72775 4.42121 6.80879 4.56459 6.86489 4.70173C6.921 4.83264 6.95217 4.96355 6.95217 5.08199C6.95217 5.2316 6.90853 5.38121 6.82126 5.52459C6.74022 5.66796 6.62178 5.81757 6.47217 5.96718L5.9984 6.45965C5.92983 6.52822 5.89866 6.60926 5.89866 6.709C5.89866 6.75887 5.90489 6.80251 5.91736 6.85238C5.93606 6.90225 5.95476 6.93965 5.96723 6.97705C6.07944 7.18277 6.27269 7.45082 6.54697 7.77498C6.82749 8.09913 7.12671 8.42952 7.45087 8.75991C7.78749 9.0903 8.11165 9.39576 8.44204 9.67627C8.76619 9.95056 9.03424 10.1376 9.24619 10.2498C9.27736 10.2622 9.31476 10.281 9.3584 10.2997C9.40827 10.3184 9.45814 10.3246 9.51424 10.3246C9.62022 10.3246 9.70126 10.2872 9.76983 10.2186L10.2436 9.75108C10.3994 9.59524 10.549 9.47679 10.6924 9.40199C10.8358 9.31472 10.9792 9.27108 11.135 9.27108C11.2535 9.27108 11.3781 9.29602 11.5153 9.35212C11.6524 9.40822 11.7958 9.48926 11.9516 9.59524L14.015 11.0602C14.1771 11.1724 14.2893 11.3033 14.3579 11.4591C14.4202 11.615 14.4576 11.7708 14.4576 11.9454Z"
-                          stroke="#262626"
-                          strokeWidth="1.4026"
-                          strokeMiterlimit="10"
-                        />
-                      </svg>
-                      Call hotel
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href=""
-                      className="btn btn-light d-flex align-items-center gap-1"
-                    >
-                      <svg
-                        width="17"
-                        height="16"
-                        viewBox="0 0 17 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M6.08301 14.8802C5.89634 14.8802 5.703 14.8336 5.52966 14.7403C5.14966 14.5403 4.91634 14.1402 4.91634 13.7136V12.767C2.90301 12.5603 1.58301 11.0802 1.58301 8.96025V4.96029C1.58301 2.66695 3.12301 1.12695 5.41634 1.12695H12.083C14.3763 1.12695 15.9163 2.66695 15.9163 4.96029V8.96025C15.9163 11.2536 14.3763 12.7936 12.083 12.7936H9.56966L6.72966 14.687C6.53632 14.8136 6.30967 14.8802 6.08301 14.8802ZM5.41634 2.12028C3.69634 2.12028 2.58301 3.23361 2.58301 4.95361V8.95365C2.58301 10.6737 3.69634 11.787 5.41634 11.787C5.68967 11.787 5.91634 12.0137 5.91634 12.287V13.707C5.91634 13.7937 5.96968 13.8336 6.00301 13.8536C6.03634 13.8736 6.10302 13.8936 6.17635 13.847L9.14303 11.8737C9.22303 11.8203 9.32301 11.787 9.42301 11.787H12.0897C13.8097 11.787 14.923 10.6737 14.923 8.95365V4.95361C14.923 3.23361 13.8097 2.12028 12.0897 2.12028H5.41634Z"
-                          fill="#262626"
-                        />
-                        <path
-                          d="M8.7502 8.07324C8.47687 8.07324 8.2502 7.84658 8.2502 7.57324V7.43327C8.2502 6.65993 8.81686 6.27993 9.03019 6.13326C9.27686 5.96659 9.35685 5.85326 9.35685 5.67993C9.35685 5.3466 9.08354 5.07324 8.7502 5.07324C8.41687 5.07324 8.14355 5.3466 8.14355 5.67993C8.14355 5.95326 7.91689 6.17993 7.64355 6.17993C7.37022 6.17993 7.14355 5.95326 7.14355 5.67993C7.14355 4.79326 7.86354 4.07324 8.7502 4.07324C9.63687 4.07324 10.3569 4.79326 10.3569 5.67993C10.3569 6.43993 9.79688 6.81992 9.59021 6.95992C9.33021 7.13325 9.2502 7.2466 9.2502 7.43327V7.57324C9.2502 7.85324 9.02354 8.07324 8.7502 8.07324Z"
-                          fill="#262626"
-                        />
-                        <path
-                          d="M8.75 9.7334C8.47 9.7334 8.25 9.50673 8.25 9.2334C8.25 8.96007 8.47667 8.7334 8.75 8.7334C9.02333 8.7334 9.25 8.96007 9.25 9.2334C9.25 9.50673 9.03 9.7334 8.75 9.7334Z"
-                          fill="#262626"
-                        />
-                      </svg>
-                      Need help
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
 
-export default RightBookingDetails;
+export default BookingDetailDefault;

@@ -3,7 +3,8 @@ export const ADD_PRODUCT_TO_CART = "martCart/addProduct";
 export const REMOVE_PRODUCT_FROM_CART = "martCart/removeProduct";
 export const GET_CART_OFFERS = "martCart/getOffers";
 export const APPLY_CART_OFFER = "martCart/applyOffer";
-export const REMOVE_CART_OFFER = "martCart/removeOffer"
+export const REMOVE_CART_OFFER = "martCart/removeOffer";
+export const PLACE_ORDER_FROM_CART = "martCart/place-order";
 
 export interface StoreAddressProps {
     storeId: number | string;
@@ -72,6 +73,7 @@ export interface CartStateProps {
     distance: number;
     tipAmount: number | null;
     deliveryCharge: number;
+    paymentSuccess: boolean;
 };
 
 export interface AddProductProps {
@@ -129,4 +131,12 @@ export interface RemoveOfferResponse {
     cartAmount: number,
     offerId: number,
     discountAmount: number,
+};
+
+export interface PlaceOrderRequest {
+    cartId: number;
+    addressId: number;
+    deliveryInstruction: string;
+    tipAmount: number | null;
+    deliveryFee: number;
 }

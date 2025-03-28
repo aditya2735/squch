@@ -21,6 +21,8 @@ const PopularHotels = () => {
 
   return (
     <div className="multislider-sec">
+      {PopularStays?.length>0 && 
+      
       <div className="px-40">
         <div className="inner-multislider md:px-3">
           <div className="block-header">
@@ -85,6 +87,7 @@ const PopularHotels = () => {
           </div>
         </div>
       </div>
+      }
     </div>
   );
 };

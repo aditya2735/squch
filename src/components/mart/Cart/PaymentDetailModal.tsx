@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -13,6 +13,8 @@ import PaymentLogo2 from "../../../../public/images/payment-logo-2.png";
 import PaymentLogo3 from "../../../../public/images/payment-logo-3.png";
 import PaymentLogo4 from "../../../../public/images/payment-logo-4.png";
 import PaymentSuccessfullModal from './PaymentSuccessfullModal';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { placeMartOrder } from '@/store/features/Mart/Cart/cartThunk';
 
 
 interface PaymentDetailProps {
@@ -22,7 +24,31 @@ interface PaymentDetailProps {
 
 const PaymentDetailModal: React.FC<PaymentDetailProps> = ({ show, handleClose }) => {
 
+    const dispatch = useAppDispatch();
+    const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
     const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
+
+    const { items, tipAmount } = useAppSelector((state) => state.martCart);
+    const { selectedAddress } = useAppSelector((state) => state.address);
+    const { paymentSuccess } = useAppSelector((state) => state.martCart);
+
+    const address = JSON.parse(JSON.stringify(selectedAddress));
+
+    const handlePayment = () => {
+        dispatch(placeMartOrder({
+            cartId: items[0].cartId,
+            addressId: address.id,
+            deliveryInstruction: "No Instruction",
+            tipAmount: tipAmount,
+            deliveryFee: 10
+        }))
+
+        handleClose();
+    };
+
+    useEffect(() => {
+        setShowSuccessModal(paymentSuccess);
+    }, [paymentSuccess])
 
     return (
         <div>
@@ -166,10 +192,7 @@ const PaymentDetailModal: React.FC<PaymentDetailProps> = ({ show, handleClose })
                 <Modal.Footer className="modal-footer-box">
                     <button
                         className='btn btn-primary w-100'
-                        onClick={() => {
-                            handleClose();
-                            setShowCancelConfirmation(true);
-                        }}
+                        onClick={() => handlePayment()}
                     >
                         Confirm & Pay  ₵ 1750
                     </button>
@@ -177,8 +200,8 @@ const PaymentDetailModal: React.FC<PaymentDetailProps> = ({ show, handleClose })
             </Modal>
 
             <PaymentSuccessfullModal
-                show={showCancelConfirmation}
-                handleClose={() => setShowCancelConfirmation(false)}
+                show={showSuccessModal}
+                handleClose={() => setShowSuccessModal(false)}
             />
         </div>
     )

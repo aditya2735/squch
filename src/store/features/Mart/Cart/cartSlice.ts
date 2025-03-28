@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartStateProps, StoreAddressProps } from "./cartTypes";
-import { addProductToCart, applyCartOffer, getCartItems, getCartOffers, removeCartOffer, removeProductFromCart } from "./cartThunk";
+import { addProductToCart, applyCartOffer, getCartItems, getCartOffers, placeMartOrder, removeCartOffer, removeProductFromCart } from "./cartThunk";
 
 const initialState: CartStateProps = {
     loading: {
@@ -20,7 +20,8 @@ const initialState: CartStateProps = {
     distance: 0,
     deliveryCharge: 0,
     tipAmount: 0,
-    error: null
+    error: null,
+    paymentSuccess: false,
 };
 
 const cartSlice = createSlice({
@@ -147,6 +148,20 @@ const cartSlice = createSlice({
             .addCase(removeCartOffer.rejected, (state, action) => {
                 state.loading.offerLoading = false;
                 state.error = action.payload || "Failed to remove Cart Offer";
+            })
+            .addCase(placeMartOrder.pending, (state, action) => {
+                state.loading.productLoading = false;
+            })
+            .addCase(placeMartOrder.fulfilled, (state, action) => {
+                state.paymentSuccess = true;
+                state.loading.productLoading = false;
+                state.error = null;
+            })
+            .addCase(placeMartOrder.rejected, (state, action) => {
+                console.log('action: ', action.payload);
+                state.paymentSuccess = false;
+                state.loading.productLoading = false;
+                state.error = action.payload || "Failed to place order"
             })
     }
 });

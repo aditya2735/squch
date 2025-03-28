@@ -1,6 +1,7 @@
 import { Hotel } from "./hotelTypes";
 
-export interface CountryHotels {
-    [country: string]: Hotel[];
-  }
-  
+export type HotelsByLocation = Record<string, Hotel[]>;
+
+export interface WishlistData {
+  hotels: HotelsByLocation;
+}

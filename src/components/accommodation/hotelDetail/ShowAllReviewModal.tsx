@@ -7,13 +7,26 @@ import CloseModal from "../../../../public/images/close-modal.png";
 import Link from "next/link";
 import { useAppSelector } from "@/store/hooks";
 import { formatDate } from "@/utils/formatData";
+import { Review } from "@/store/features/accommodation/types/hotelTypes";
+import Dropdown from 'react-bootstrap/Dropdown';
 
-const ShowAllReviewModal = ({ show, handleClose }: any) => {
+interface ShowAllReviewModalProps {
+  show: boolean;
+  handleClose: () => void;
+  reviews: Review[] | null;
+  loading: boolean;
+}
+
+const ShowAllReviewModal = ({
+  show,
+  handleClose,
+  reviews,
+  loading,
+}: ShowAllReviewModalProps) => {
 
   const {
     avg_ratings: avgRating,
     total_ratings: totalRating,
-    reviews,
     categoryRatings,
   } = useAppSelector((state) => state.hotelDetail.data);
 
@@ -62,7 +75,7 @@ const ShowAllReviewModal = ({ show, handleClose }: any) => {
   
   //   setLoading(true);
   //   try {
-  //     const response = await fetchFilterHotels({ data: pageNum });
+  //     const response = await somefunction({ data: pageNum });
   
   //     if (response.data.length === 0) {
   //       setHasMore(false); // No more pages
@@ -190,26 +203,27 @@ const ShowAllReviewModal = ({ show, handleClose }: any) => {
           </div>
           <div className="review-top-filter d-flex align-items-center justify-content-between gap-2">
             <div className="left-top-filter">
-              <p>All 90 reviews</p>
+              <p>All {reviews && reviews.length} reviews</p>
             </div>
             <div className="right-top-filter">
               <ul className="d-flex align-items-center gap-2">
-                <li>
+                {/* <li>
                   <Link href="" className="active btn btn-border">
                     All (90)
                   </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link href="" className=" btn btn-border">
                     Squch(50)
                   </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link href="" className=" btn btn-border">
                     Google(40)
                   </Link>
-                </li>
-                <li>
+                </li> */}
+
+                {/* <li>
                   <Link
                     href=""
                     className="btn-modal d-flex align-items-center gap-2"
@@ -236,12 +250,27 @@ const ShowAllReviewModal = ({ show, handleClose }: any) => {
                       />
                     </svg>
                   </Link>
+                </li> */}
+                <li>
+                <Dropdown className="btn-modal d-flex align-items-center gap-2">
+        <Dropdown.Toggle id="dropdown-autoclose-true">
+        Sort by
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item href="#">Relevance</Dropdown.Item>
+          <Dropdown.Item href="#">Recent reviews</Dropdown.Item>
+          <Dropdown.Item href="#">high to low rating</Dropdown.Item>
+          <Dropdown.Item href="#">low to high rating</Dropdown.Item>
+
+        </Dropdown.Menu>
+      </Dropdown>
                 </li>
               </ul>
             </div>
           </div>
           <div className="review-bottom-sec">
-            {reviews?.length > 0 &&
+            {/* {reviews?.length > 0 &&
               reviews.map((item) => (
                 <div key={item.id} className="review-bottom-box mb-3">
                   <div className="review-box d-flex align-items-center gap-2">
@@ -302,8 +331,79 @@ const ShowAllReviewModal = ({ show, handleClose }: any) => {
                     </div>
                   </div>
                 </div>
-              ))}
-
+              ))} */}
+ {loading ? (
+          <p>Loading reviews...</p>
+        ) : reviews && reviews.length > 0 ? (
+          <ul>
+            {reviews.map((item) => 
+            { const {firstName,lastName}= item.user
+              return (
+              <div key={item.id} className="review-bottom-box mb-3">
+                <div className="review-box d-flex align-items-center gap-2">
+                  <h5>{firstName} {lastName}</h5>
+                  <StarRating rating={item.rating} />
+                </div>
+                <p>{item?.comment}</p>
+                <div className="review-date-logo d-flex align-items-center gap-2 justify-content-between">
+                  <h6> {formatDate(item.createdAt)}</h6>
+                  <div className="d-flex align-items-center gap-1">
+                    <span className="text">reviewed on</span>
+                    <span className="icons">
+                      <svg
+                        width="56"
+                        height="20"
+                        viewBox="0 0 56 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3.87278 2.50391C1.7344 2.50391 0.000976562 4.23733 0.000976562 6.37571C0.000976562 8.51409 1.7344 10.2475 3.87278 10.2475H7.74459V6.37571C7.74459 4.23733 6.01116 2.50391 3.87278 2.50391Z"
+                          fill="#6200DD"
+                        />
+                        <path
+                          d="M0.000976562 14.1189C0.000976562 16.2573 1.7344 17.9907 3.87278 17.9907C6.01116 17.9907 7.74459 16.2573 7.74459 14.1189V10.2471H3.87278C1.7344 10.2471 0.000976562 11.9805 0.000976562 14.1189Z"
+                          fill="#FF8211"
+                        />
+                        <path
+                          d="M15.4858 6.37571C15.4858 4.23733 13.7524 2.50391 11.614 2.50391C9.47561 2.50391 7.74219 4.23733 7.74219 6.37571V10.2475H11.614C13.7524 10.2475 15.4858 8.51409 15.4858 6.37571Z"
+                          fill="#02CAB5"
+                        />
+                        <path
+                          d="M11.414 16.0564C12.6975 16.0564 13.7381 15.0159 13.7381 13.7323C13.7381 12.4487 12.6975 11.4082 11.414 11.4082C10.1304 11.4082 9.08984 12.4487 9.08984 13.7323C9.08984 15.0159 10.1304 16.0564 11.414 16.0564Z"
+                          fill="#CD99FE"
+                        />
+                        <path
+                          d="M22.2783 10.4661C22.4023 11.3593 23.0494 11.9179 24.1198 11.9179C25.0905 11.9179 25.5884 11.4587 25.5884 10.8388C25.5884 10.3304 25.1772 9.93353 24.518 9.77181L23.0373 9.40003C21.482 9.00316 20.723 8.2215 20.723 6.91936C20.723 5.34396 22.0293 4.32715 23.7347 4.32715C25.539 4.32715 26.808 5.45642 27.0448 7.10618H25.4019C25.2154 6.25016 24.655 5.71666 23.7217 5.71666C22.9627 5.71666 22.3902 6.11353 22.3902 6.79574C22.3902 7.35433 22.7883 7.67685 23.4606 7.84973L24.9292 8.23452C26.559 8.65648 27.2565 9.40004 27.2565 10.7031C27.2565 12.1791 26.0248 13.3083 24.1077 13.3083C22.2037 13.3083 20.7855 12.1549 20.6484 10.468H22.2783V10.4661Z"
+                          fill="#CD99FE"
+                        />
+                        <path
+                          d="M33.5027 15.763V12.575C32.9302 13.0463 32.2206 13.3316 31.4374 13.3316C29.5213 13.3316 28.0024 11.8185 28.0024 9.95773C28.0024 8.10908 29.5203 6.58386 31.4374 6.58386C32.2216 6.58386 32.9432 6.8692 33.5158 7.35251V6.74466H35.1335V15.763H33.5027ZM31.5735 7.99754C30.5031 7.99754 29.6201 8.87865 29.6201 9.95773C29.6201 11.0489 30.504 11.9049 31.5735 11.9049C32.6561 11.9049 33.5269 11.0489 33.5269 9.95773C33.5269 8.87772 32.6561 7.99754 31.5735 7.99754Z"
+                          fill="#CD99FE"
+                        />
+                        <path
+                          d="M37.8822 6.74463V10.5033C37.8822 11.297 38.4175 11.8798 39.2137 11.8798C40.01 11.8798 40.5573 11.3212 40.5573 10.5033V6.74463H42.1872V13.1578H40.5573V12.5871C40.1089 13.0462 39.4869 13.3065 38.7904 13.3065C37.2846 13.3065 36.2514 12.2144 36.2514 10.8258V6.74463H37.8822Z"
+                          fill="#CD99FE"
+                        />
+                        <path
+                          d="M46.6172 11.8919C47.3016 11.8919 47.862 11.5694 48.2349 11.0609L49.3921 11.9049C48.745 12.7488 47.8741 13.3186 46.6172 13.3186C44.6265 13.3186 43.0833 11.8054 43.0833 9.94469C43.0833 8.08395 44.6265 6.58291 46.6172 6.58291C47.8741 6.58291 48.745 7.15358 49.3921 7.99658L48.2349 8.84052C47.862 8.33211 47.3016 8.0096 46.6172 8.0096C45.5598 8.0096 44.7011 8.86561 44.7011 9.94469C44.7011 11.0238 45.5598 11.8919 46.6172 11.8919Z"
+                          fill="#CD99FE"
+                        />
+                        <path
+                          d="M51.6942 13.1578H50.0643V4.47493H51.6942V7.30321C52.1427 6.83199 52.7767 6.57081 53.4863 6.57081C54.9791 6.57081 56.0001 7.67499 56.0001 9.07659V13.1578H54.3702V9.3991C54.3702 8.56818 53.835 8.0226 53.0387 8.0226C52.2545 8.0226 51.6942 8.54401 51.6942 9.3991V13.1578Z"
+                          fill="#CD99FE"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+            )}
+          </ul>
+        ) : (
+          <p>No reviews available.</p>
+        )}
             {/* <div className="review-bottom-box mb-3">
               <div className="review-box d-flex align-items-center gap-2">
                 <h5>User name</h5>

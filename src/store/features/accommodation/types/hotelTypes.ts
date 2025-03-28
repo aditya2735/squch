@@ -99,6 +99,7 @@ export interface ImageHotel {
     user: User
   }
 
+
 export interface TransportFacility {
     id: number
     hotelId: number
@@ -112,6 +113,17 @@ export interface TransportFacility {
 export interface NearByFacility {
     transportFacilities: TransportFacility[]
     restaurantFacilities: any[]
+  }
+
+export interface Host {
+    id: number
+    hotelId?: number
+    firstName: string
+    lastName: string
+    phoneNumber: string
+    profilePicture: string
+    createdAt?: string
+    updatedAt?: string
   }
 
 export  interface Hotel {
@@ -141,6 +153,7 @@ export  interface Hotel {
   updatedAt: string
   isBooked?: any
   maxCanCap?: number
+    Hosts: Host[];
     primaryImages: ImageHotel[];
     categoryRatings: CategoryRatings;
     amenitiesUsedArray: Amenity[];

@@ -20,7 +20,8 @@ const initialState: CartStateProps = {
     distance: 0,
     deliveryCharge: 0,
     tipAmount: 0,
-    error: null
+    error: null,
+    paymentSuccess: false
 };
 
 

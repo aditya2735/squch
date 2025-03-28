@@ -22,6 +22,8 @@ const Nearyou = () => {
   );
 
   return (
+    <>
+      {nearYouData?.length>0 && 
     <div className="multislider-sec sec-gap">
       <div className="px-40">
         <div className="inner-multislider md:px-3">
@@ -91,6 +93,8 @@ const Nearyou = () => {
         </div>
       </div>
     </div>
+      }
+    </>
   );
 };
 

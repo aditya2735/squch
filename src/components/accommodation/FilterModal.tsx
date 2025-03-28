@@ -58,6 +58,14 @@ interface FilterModalProps {
 }
 
 const FilterModal = ({ show, setShow }: FilterModalProps) => {
+  <style>
+  {`
+    .custom-backdrop {
+      z-index: 9998 !important; /* Ensures backdrop covers everything */
+    }
+  `}
+</style>
+
   // testing start
   const t = useTranslations("Accommodation.FilterModal");
   const dispatch = useAppDispatch();
@@ -115,9 +123,9 @@ const FilterModal = ({ show, setShow }: FilterModalProps) => {
   ];
 
   const roomFilters = [
-    { id: 1, label: "Bedrooms", key: "bedRoomCount" },
-    { id: 2, label: "Beds", key: "bedCount" },
-    { id: 3, label: "Bathrooms", key: "bathRoomCount" },
+    { id: 1, label: t("bedrooms"), key: "bedRoomCount" },
+    { id: 2, label: t("beds"), key: "bedCount" },
+    { id: 3, label: t("bathrooms"), key: "bathRoomCount" },
   ];
 
   const handleToggle = () => setShowAll(!showAll);
@@ -179,15 +187,22 @@ const FilterModal = ({ show, setShow }: FilterModalProps) => {
     </form>
   );
 
+  useEffect(() => {
+    if (show) {
+      document.querySelector(".modal-backdrop")?.setAttribute("style", "z-index: 9999 !important;");
+    }
+  }, [show]);
+
   return (
     <>
       <Modal
         show={show}
         onHide={handleClose}
         centered
-        className="modal-filter pt-4"
+        className="modal-filter pt-4" 
+        style={{ zIndex: 10000 }}
       >
-        <Modal.Header>
+         <Modal.Header>
           <Button variant="close-btn" onClick={handleClose}>
             <Image src={CloseModal} alt="" />
           </Button>

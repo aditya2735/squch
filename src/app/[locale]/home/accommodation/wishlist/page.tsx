@@ -17,28 +17,25 @@ const Page = () => {
   }, [ ])
   
   return (
-   <>
- <div className="sec-accommodation-main bg-dark-gray">
-        <div className="container px-0">
-            <div className="d-md-block d-none">
-            <GetAppsDownload/>
-            </div>
-            
-            <div className='wrapper-box'>
-                <div className='gradient-1 mb-4'>
-                    <div className="px-40">
-                        <UserAuth />
-                        <SquchStayTitle />
-                    </div>
+    <div className="sec-accommodation-main bg-dark-gray">
+    <div className="container px-0">
+        <div className="d-md-block d-none">
+        <GetAppsDownload/>
+        </div>
+        
+        <div className='wrapper-box'>
+            <div className='gradient-1 mb-4'>
+                <div className="px-40">
+                    <UserAuth />
+                    <SquchStayTitle />
                 </div>
             </div>
-            <div className='bg-dark-gray position-relative'>
-                <GhanaSquchStay />
-                {/* <KunasiSquchStay /> */}
-            </div>
+        </div>
+        <div className='bg-dark-gray position-relative pb-5'>
+            <GhanaSquchStay />
         </div>
     </div>
-   </>
+</div>
   )
 }
 

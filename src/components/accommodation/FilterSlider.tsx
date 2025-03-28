@@ -115,7 +115,8 @@ const FilterSlider = () => {
                     <span className="icons-btn">
                       <Image src={SliderIcon} alt={item.optionName} />
                     </span>
-                    {item.optionName}
+                   
+        <span style={{ whiteSpace: "nowrap" }}>{item.optionName}</span> 
                   </div>
                 </button>
               </SwiperSlide>

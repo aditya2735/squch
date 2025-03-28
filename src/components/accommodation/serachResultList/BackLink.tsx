@@ -10,40 +10,38 @@ const BackLink = ({ pageName }: { pageName: string | undefined }) => {
   const { checkIn, checkOut, guests, locationName } = useAppSelector(
     (state) => state.housePolicy
   );
-  console.log("page name is", pageName)
 
   const categoryName = {
     near: {
       id: 1,
       label: "Nearby Properties",
-      functionName: "fetchNearProperties",
     },
     other: {
       id: 2,
       label: "Other Properties",
-      functionName: "fetchOtherProperties",
     },
     popular: {
       id: 3,
       label: "Popular Properties",
-      functionName: "fetchPopularProperties",
     },
     recommended: {
       id: 4,
-      label: "You might also like",
-      functionName: "fetchRecommendedProperties",
+      label: "You Might Also Like",
     },
-    nearBy: {
+    similarProperty: {
       id: 5,
-      label: "Similar properties Nearby",
-      functionName: "fetchSimilarProperties",
+      label: "Similar Properties Nearby",
     },
-    trending: {
-      id: 4,
-      label: "Trending Destinations",
-      functionName: "fetchRecommendedProperties",
+    map:{
+      id: 6,
+      label: "Map View",
     },
+    trending:{
+      id:7,
+      label:"Trending Destinations"
+    }
   };
+  
   type CategoryKeys = keyof typeof categoryName;
   const isValidCategory = (key: string): key is CategoryKeys =>
     key in categoryName;
@@ -86,12 +84,11 @@ const BackLink = ({ pageName }: { pageName: string | undefined }) => {
                   ? categoryName[pageName].label
                   : "Search")}
             </h6>
-            <div className="date-details-box d-flex align-items-center gap-3">
-              {checkIn && checkOut && (
-                <p>{getDateNGuest(checkIn, checkOut, guests)}</p>
-              )}
-
-              <span>
+         
+              {pageName==="search" && checkIn && checkOut && (
+               <div className="date-details-box d-flex align-items-center gap-3">
+                  <p>{getDateNGuest(checkIn, checkOut, guests)}</p>
+                  <span>
                 <svg
                   width="33"
                   height="33"
@@ -165,7 +162,9 @@ const BackLink = ({ pageName }: { pageName: string | undefined }) => {
                   />
                 </svg>
               </span>
-            </div>
+              </div>
+              )}
+           
           </div>
         </div>
       </div>

@@ -32,14 +32,20 @@ import Tabs from 'react-bootstrap/Tabs';
 import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
 import { UseStateNumber } from "@/store/features/accommodation/types/hotelTypes";
+import FilterModal from "./FilterModal";
+import { useAppDispatch } from "@/store/hooks";
+import { setReload } from "@/store/features/accommodation/slices/selectedFilterSlice";
  
 
 const SearchBar = () => {
-
+    const dispatch=useAppDispatch()
     const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    dispatch(setReload({ key: "reload", value:0 })); 
+    setShow(true);
+  };
 
   const [activeTab, setActiveTab] = useState("any");
   const [values, setValues] = useState([850, 15000]);
@@ -134,7 +140,7 @@ const SearchBar = () => {
                             <Image src={IconFilterPurple} alt="" />
                             </button>
 
-                            <Modal show={show} onHide={handleClose} centered className="modal-filter pt-4">
+                            {/* <Modal show={show} onHide={handleClose} centered className="modal-filter pt-4">
                             <Modal.Header>
                                 <Button variant="close-btn" onClick={handleClose}>
                                     <Image src={CloseModal} alt=""/>
@@ -156,7 +162,7 @@ const SearchBar = () => {
                                         <p className="mb-0">Nightly prices before fees and taxes</p>
                                         </div>
 
-                                        {/* Range Slider */}
+                                    
                                         <Range
                                             step={50}
                                             min={850}
@@ -210,7 +216,7 @@ const SearchBar = () => {
                                             )}
                                         />
 
-                                        {/* Minimum and Maximum Price Display */}
+                                     
                                         <div className="d-flex align-items-center justify-content-between range-content-box mt-3">
                                             <div>
                                             <span className="text-top">Minimum</span>
@@ -231,14 +237,14 @@ const SearchBar = () => {
                                             </div>
                                             <form className="">
                                                 <div className="add-remove-btn-box position-relative d-flex align-items-center">
-                                                    {/* Decrement Button */}
+                                                 
                                                     <button type="button" onClick={() => decrement(setAdults, adults)} className="remove-btn-box" >
                                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.9134 18.3337C15.4967 18.3337 19.2467 14.5837 19.2467 10.0003C19.2467 5.41699 15.4967 1.66699 10.9134 1.66699C6.33008 1.66699 2.58008 5.41699 2.58008 10.0003C2.58008 14.5837 6.33008 18.3337 10.9134 18.3337Z" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M7.58008 10H14.2467" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                                     </button>
-                                                    {/* Input Field */}
+                                                  
                                                     <input type="text" value={adults} readOnly className="input-box"
                                                     />
-                                                    {/* Increment Button */}
+                                                  
                                                     <button type="button" onClick={() => increment(setAdults, adults)} className="add-btn-box" >
                                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3939 18.3337C14.9772 18.3337 18.7272 14.5837 18.7272 10.0003C18.7272 5.41699 14.9772 1.66699 10.3939 1.66699C5.81055 1.66699 2.06055 5.41699 2.06055 10.0003C2.06055 14.5837 5.81055 18.3337 10.3939 18.3337Z" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M7.06055 10H13.7272" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M10.3945 13.3337V6.66699" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                                     </button>
@@ -251,14 +257,14 @@ const SearchBar = () => {
                                             </div>
                                             <form className="">
                                                 <div className="add-remove-btn-box position-relative d-flex align-items-center">
-                                                    {/* Decrement Button */}
+                                                 
                                                     <button type="button" onClick={() => decrement(setChildren, children)} className="remove-btn-box" >
                                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.9134 18.3337C15.4967 18.3337 19.2467 14.5837 19.2467 10.0003C19.2467 5.41699 15.4967 1.66699 10.9134 1.66699C6.33008 1.66699 2.58008 5.41699 2.58008 10.0003C2.58008 14.5837 6.33008 18.3337 10.9134 18.3337Z" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M7.58008 10H14.2467" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                                     </button>
-                                                    {/* Input Field */}
+                                                  
                                                     <input type="text" value={children} readOnly className="input-box"
                                                     />
-                                                    {/* Increment Button */}
+                                                
                                                     <button type="button"  onClick={() => increment(setChildren, children)} className="remove-btn-box" >
                                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3939 18.3337C14.9772 18.3337 18.7272 14.5837 18.7272 10.0003C18.7272 5.41699 14.9772 1.66699 10.3939 1.66699C5.81055 1.66699 2.06055 5.41699 2.06055 10.0003C2.06055 14.5837 5.81055 18.3337 10.3939 18.3337Z" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M7.06055 10H13.7272" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M10.3945 13.3337V6.66699" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                                     </button>
@@ -271,14 +277,14 @@ const SearchBar = () => {
                                             </div>
                                             <form className="">
                                                 <div className="add-remove-btn-box position-relative d-flex align-items-center">
-                                                    {/* Decrement Button */}
+                                                 
                                                     <button type="button" onClick={() => decrement(setInfants, infants)} className="remove-btn-box" >
                                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.9134 18.3337C15.4967 18.3337 19.2467 14.5837 19.2467 10.0003C19.2467 5.41699 15.4967 1.66699 10.9134 1.66699C6.33008 1.66699 2.58008 5.41699 2.58008 10.0003C2.58008 14.5837 6.33008 18.3337 10.9134 18.3337Z" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M7.58008 10H14.2467" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                                     </button>
-                                                    {/* Input Field */}
+                                                  
                                                     <input type="text" value={infants} readOnly className="input-box"
                                                     />
-                                                    {/* Increment Button */}
+                                                  
                                                     <button type="button"  onClick={() => increment(setInfants, infants)} className="remove-btn-box">
                                                     <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3939 18.3337C14.9772 18.3337 18.7272 14.5837 18.7272 10.0003C18.7272 5.41699 14.9772 1.66699 10.3939 1.66699C5.81055 1.66699 2.06055 5.41699 2.06055 10.0003C2.06055 14.5837 5.81055 18.3337 10.3939 18.3337Z" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M7.06055 10H13.7272" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/><path d="M10.3945 13.3337V6.66699" stroke="#652669" strokeLinecap="round" strokeLinejoin="round"/></svg>
                                                     </button>
@@ -303,7 +309,6 @@ const SearchBar = () => {
                                         </div>
                                     </div>
 
-                                    {/* Toggle Button */}
                                     <div className="text-center btn-show-less mt-4">
                                         <button
                                         onClick={handleToggle}
@@ -359,15 +364,7 @@ const SearchBar = () => {
                                         <p className="heading-small-text mt-3 mb-3">User Rating</p>
                                         <div className="booking-bottom">
                                         <form action="">
-                                            {/* <Form.Group className="mb-2" controlId="formBasicCheckbox">
-                                            <Form.Check type="checkbox" label="Excellent :- 4.5+" />
-                                            </Form.Group>
-                                            <Form.Group className="mb-2" controlId="formBasicCheckbox">
-                                            <Form.Check type="checkbox" label="Very Good :- 3.5+" />
-                                            </Form.Group>
-                                            <Form.Group className="mb-2" controlId="formBasicCheckbox">
-                                            <Form.Check type="checkbox" label="Very Good :- 3.5+" />
-                                            </Form.Group> */}
+                                        
 
                                                 {userRatingOptions.map((option) => (
                                                 <Form.Group className="mb-2" controlId={option.id} key={option.id}>
@@ -489,8 +486,8 @@ const SearchBar = () => {
                                 </li>
                                 </ul>
                             </Modal.Footer>
-                            </Modal>
-
+                            </Modal> */}
+    <FilterModal show={show} setShow={setShow} />
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,11 @@ import UpComingTab from "./UpComingTab";
 import ActiveTab from "./ActiveTab";
 import CheckedOutTab from "./CheckedOutTab";
 import CancelledTab from "./CancelledTab"
+import { useAppDispatch } from "@/store/hooks";
+import { MyBooking } from "@/store/features/accommodation/types/myBookingTypes";
+import { setMyBooking } from "@/store/features/accommodation/slices/myBookingSlice";
+
+
 const MyBookingsTabs = () => {
   const router = useRouter();
 

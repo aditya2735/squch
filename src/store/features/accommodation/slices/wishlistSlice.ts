@@ -1,17 +1,17 @@
 import { fetchAllWishlist } from "@/services/accommodation/wishlistServices";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {wishlisData} from '../staticData/wishlistdata'
-import { CountryHotels } from "../types/wishlistTypes";
+import { WishlistData } from "../types/wishlistTypes";
 
-interface wishlistState {
-    data: CountryHotels;
-    status:string;
-    loading: boolean;
-    error: string | null;
+export interface WishlistState {
+  data: WishlistData[];
+  status: string;
+  loading: boolean;
+  error: string | null;
 }
 
- const initialState: wishlistState = {
-    data:wishlisData,
+ const initialState: WishlistState = {
+    data:wishlisData.data,
     // data: {} as CountryHotels, 
     status:'idle',
     loading: false,

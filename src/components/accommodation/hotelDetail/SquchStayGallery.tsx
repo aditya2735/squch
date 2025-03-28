@@ -49,9 +49,9 @@ const SquchStayGallery = ({ show, handleClose, selectedTab }: any) => {
           <Tab key={"all"}  eventKey="All" title="All">
             <div className="row">
               <div className="col-md-12">
-                <div className="d-flex align-items-center justify-content-between gap-2 mb={2}">
+                <div className="d-flex align-items-center justify-content-between gap-2 mb-3">
                   <h2>All Images</h2>
-                  <span className="total-img">26 images</span>
+                  <span className="total-img">{ hotelViewImages?.reduce((acc, room) => acc + (room.images?.length || 0), 0) }  images</span>
                 </div>
               </div>
               {/* <div className="col-lg-12">
@@ -75,9 +75,7 @@ const SquchStayGallery = ({ show, handleClose, selectedTab }: any) => {
                         </div>
                       ))
                   )}
-                <div className="gallery-img">
-                  <Image alt="" src={Gallery1}></Image>
-                </div>
+               
               </div>
             </div>
           </Tab>          
@@ -86,7 +84,7 @@ const SquchStayGallery = ({ show, handleClose, selectedTab }: any) => {
                 <div className="col-md-12">
                   <div className="d-flex align-items-center justify-content-between gap-2">
                     <h2>Room</h2>
-                    <span className="total-img">4 images</span>
+                    <span className="total-img"> {rooms?.reduce((acc, room) => acc + (room.images?.length || 0), 0)} images</span>
                   </div>
                 </div>
               </div>
@@ -122,7 +120,7 @@ const SquchStayGallery = ({ show, handleClose, selectedTab }: any) => {
                   <div className="col-md-12 mb-3">
                     <div className="d-flex align-items-center justify-content-between gap-2">
                       <h2>{view.viewName}</h2>
-                      <span className="total-img">4 images</span>
+                      <span className="total-img">{hotelViewImages?.length} images</span>
                     </div>
                   </div>
                   {/* <div className="col-lg-12">

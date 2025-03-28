@@ -1,4 +1,4 @@
-import { AddProductProps, RemoveProductProps } from "@/store/features/Mart/Cart/cartTypes";
+import { AddProductProps, PlaceOrderRequest, RemoveProductProps } from "@/store/features/Mart/Cart/cartTypes";
 import { ProductFilters } from "../../store/features/Mart/MartProduct/productTypes";
 import { apiConnector } from "../connector"
 import { ENDPOINTS } from "./endpoint"
@@ -246,11 +246,20 @@ export const applyOffer = async (offerId: number, cartId: number): Promise<any> 
     }
 };
 
-export const removeOffer = async(offerId: number, cartId: number): Promise<any> => {
+export const removeOffer = async (offerId: number, cartId: number): Promise<any> => {
     try {
         const response: any = await apiConnector('post', MART.CART.REMOVE_OFFER, { offerId, cartId });
         return { data: response.data.data };
     } catch (error: any) {
         throw new Error(error.response?.data?.message || "Failed to remove offer");
+    }
+};
+
+export const placeOrderFromCart = async (data: PlaceOrderRequest): Promise<any> => {
+    try {
+        const response: any = await apiConnector('post', MART.CART.PLACR_ORDER_FROM_CART, data);
+        return { data: response.data.data };
+    } catch (error: any) {
+        throw new Error(error.response?.data?.message || "Failed to place order");
     }
 };

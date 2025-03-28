@@ -1191,7 +1191,7 @@ footer.footer ul li a:hover {
 }
 
 .location-sec .location-box ul.location-listing-box li.location-second-box {
-  width: 20%;
+  width: 40%;
   padding: 0 15px;
   border-right: 1px solid #e5e7eb;
 }
@@ -4138,6 +4138,27 @@ button {
   -webkit-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
+}
+
+.social-auth div {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple);
+  border-radius: 50%;
+  transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -webkit-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+}
+
+.social-auth div:hover {
+  border-color: var(--purple);
 }
 
 .social-auth li a:hover {
@@ -10435,7 +10456,7 @@ button.btn.btn-primary.btnpay {
   box-shadow: 0px 4px 20px 0px rgba(82, 48, 127, 0.16);
 }
 
-.card-text {
+.card-home .card-text {
   padding: 24px;
   display: block;
   text-transform: uppercase;
@@ -10445,7 +10466,7 @@ button.btn.btn-primary.btnpay {
   width: 100%;
 }
 
-.card-text .card-text-ttl {
+.card-home .card-text .card-text-ttl {
   font-weight: 700;
   font-size: 32px;
   line-height: 44.8px;
@@ -10453,7 +10474,7 @@ button.btn.btn-primary.btnpay {
   margin-bottom: 4px;
 }
 
-.card-text p {
+.card-home .card-text p {
   font-weight: 500;
   font-size: 18px;
   line-height: 25.2px;
@@ -12839,6 +12860,179 @@ body .sec-get-app .container {
 
 
 
+.icon-arrow-home {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+}
+
+
+
+.feature-top-slider-box {
+  margin: 20px 0 45px;
+}
+
+.feature-top-slider-box .feature-slider-box {
+  background: var(--bs-white);
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.07);
+  border-radius: 15px;
+  padding: 10px 10px 25px;
+  position: relative;
+}
+
+.feature-top-slider-box .feature-slider-box .feature-box {
+  text-align: center;
+}
+
+.feature-top-slider-box .feature-box .img-feature {
+  background: rgba(246, 243, 243, 1);
+  padding: 7px;
+  border-radius: 100px;
+  width: 45px;
+  height: 45px;
+  display: block;
+  margin: 0 auto 7px;
+}
+
+.feature-top-slider-box .feature-box .img-feature img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.feature-top-slider-box .feature-box h6 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0px;
+}
+
+
+
+
+
+
+
+
+
+.feature-top-slider-box .feature-slider-box .custom-pagination {
+  position: absolute;
+  bottom: -23px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: var(--bs-white);
+  max-width: max-content;
+  border: 1px solid rgba(227, 210, 240, 1);
+  border-radius: 20px;
+  padding: 2px 10px;
+  height: auto;
+}
+
+.feature-top-slider-box .feature-slider-box .custom-pagination .swiper-pagination-bullet {
+  background: rgba(33, 20, 50, 0.7);
+  width: 8px;
+  height: 8px;
+  margin: 0 3px;
+}
+
+.feature-top-slider-box .feature-slider-box:before {
+  background: url(/images/feature-top-bg.png);
+  content: "";
+  width: 100px;
+  height: 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.card-home-explore-img {
+  width: 66px;
+  height: 66px;
+  border: 1px solid #211432;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  margin-bottom: 12px;
+}
+
+.card-home-explore {
+  text-align: center;
+}
+
+.card-home-explore p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #211432;
+}
+
+.sec-explore-squch [class*='col-'] {
+  margin-bottom: 18px;
+}
+
+.card-shop-groceries {
+  display: block;
+  text-align: center;
+}
+
+.card-shop-groceries .fig-img {
+  background: #FCF5FE;
+  border-radius: 8px;
+  padding: 10px;
+  display: block;
+  height: 85px;
+  margin-bottom: 8px;
+}
+
+.card-shop-groceries .fig-img img {
+  object-fit: contain;
+  height: 100% !important;
+}
+
+.card-shop-groceries p {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #262626;
+}
+
+
+.sec-invite-frend {
+  background: #fff;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.sec-invite-frend p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #373637;
+  margin-bottom: 0;
+}
+
+.sec-invite-frend .invite-code {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #262626;
+}
+
+.sec-invite-frend .d-flex.align-items-center {
+  gap: 10px;
+}
+
+
 @media only screen and (max-width:1680px) {
   .container-fluid {
     max-width: 1320px;
@@ -12918,17 +13112,17 @@ body .sec-get-app .container {
     width: 870px;
   }
 
-  .card-text .card-text-ttl {
+  .card-home .card-text .card-text-ttl {
     font-size: 20px;
     line-height: 25px;
   }
 
-  .card-text p {
+  .card-home .card-text p {
     font-size: 14px;
     line-height: 20px;
   }
 
-  .card-text {
+  .card-home .card-text {
     padding: 15px;
   }
 
@@ -14464,6 +14658,7 @@ body .sec-get-app .container {
   .banner-main {
     min-height: inherit;
     padding-top: 100px;
+    display: none;
   }
 
   .card-home {
@@ -14520,7 +14715,7 @@ body .sec-get-app .container {
     padding: 10px 15px;
   }
 
-  .card-text p {
+  .card-home .card-text p {
     font-size: 12px;
     line-height: 17px;
   }
@@ -14555,6 +14750,7 @@ body .sec-get-app .container {
 
   .sec-useful-links {
     padding: 30px 0 15px;
+    display: none;
   }
 
   .link-useful-item {
@@ -14567,6 +14763,7 @@ body .sec-get-app .container {
 
   .header {
     padding: 10px 0px;
+    display: none;
   }
 
   .logo {
@@ -14760,6 +14957,10 @@ body .sec-get-app .container {
     font-size: 12px;
   }
 
+  .sec-get-app {
+    display: none;
+  }
+
   .myBooking-sec .tabs-booking-inner .myBooking-box ul.btn-box-bottom {
     width: 100%;
   }
@@ -14897,7 +15098,342 @@ body .sec-get-app .container {
     padding: 5px;
   }
 
+  .icon-arrow-home {
+    width: 20px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .icon-arrow-home svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .multislider-sec .text-box h3 {
+    font-size: 14px;
+    line-height: 140%;
+  }
+
+  .home-page-main {
+    background: #ECE9EF;
+  }
+
+  .text-box.px-3.py-4 {
+    padding: 12px !important;
+  }
+
+
 }
+
+
+
+/* Datepicker css start */
+.location-sec .location-box ul.location-listing-box li.location-second-box .rs-picker-toggle-wrapper {
+  width: 100%;
+  display: none;
+}
+
+.location-sec .location-box ul.location-listing-box li.location-second-box .rs-picker-toggle-wrapper input {
+  border: 0;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.rs-input-group:focus-within,
+.rs-input-group:not(.rs-input-group-disabled).rs-input-group-focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.rs-input-group {
+  border: 0;
+}
+
+.location-sec .location-box ul.location-listing-box li.location-second-box .rs-input-group-addon {
+  display: none;
+}
+
+
+.rs-input-group.rs-input-group-inside {
+  border: 0;
+}
+
+#date-picker-parent {
+  position: relative;
+}
+
+.custom-date-display {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.custom-date-display strong {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: rgba(61, 61, 61, 1);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.checkin,
+.checkout {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 14px;
+  color: #000;
+  flex: 1;
+  position: relative;
+}
+
+.checkin {
+  padding-right: 16px;
+  margin-right: 16px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.icon-date {
+  position: absolute;
+  right: 16px;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.placebox-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-date svg {
+  display: block;
+}
+
+.rs-picker-popup {
+  left: 0 !important;
+  right: auto !important;
+}
+
+.rs-picker-popup.rs-picker-popup-daterange {
+  box-shadow: none;
+  border-radius: 0;
+  width: 100%;
+}
+
+.rs-picker-popup.rs-picker-popup-daterange,
+.rs-calendar-table-header-cell-content,
+.rs-calendar-table-cell-content,
+.rs-btn-xs {
+  /* font-size: 15px !important;  */
+  font-weight: 500 !important;
+}
+
+.rs-picker-popup .rs-calendar .rs-calendar-table-cell-selected:hover .rs-calendar-table-cell-content {
+  background-color: var(--purple);
+}
+
+.rs-calendar-table-cell-selected .rs-calendar-table-cell-content {
+  background-color: var(--purple) !important;
+}
+
+.rs-calendar-table-cell-in-range:before {
+  background-color: rgba(248, 235, 252, 1) !important;
+}
+
+.rs-calendar-table-cell-is-today .rs-calendar-table-cell-content {
+  box-shadow: inset 0 0 0 1px var(--purple) !important;
+}
+
+.rs-picker-popup .rs-calendar .rs-calendar-table-cell:hover .rs-calendar-table-cell-content {
+  background-color: var(--purple) !important;
+  color: var(--bs-white) !important;
+}
+
+.rs-btn-link {
+  color: var(--purple) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+}
+
+.rs-btn-primary,
+.rs-btn-primary:focus,
+.rs-btn-primary:hover {
+  background-color: var(--purple) !important;
+}
+
+.rs-picker-popup .rs-calendar .rs-calendar-month-dropdown-cell-active .rs-calendar-month-dropdown-cell-content:hover,
+.rs-calendar-month-dropdown-cell-active .rs-calendar-month-dropdown-cell-content {
+  background-color: var(--purple) !important;
+}
+
+.rs-calendar-month-view .rs-calendar-header-title-date,
+.rs-calendar-month-dropdown-year-active {
+  color: var(--purple) !important;
+}
+
+.rs-picker-popup .rs-calendar {
+  min-width: 315px !important;
+}
+
+.rs-picker-daterange-header {
+  display: none;
+}
+
+.rs-picker-popup .rs-picker-toolbar-ranges {
+  display: none;
+}
+
+.rs-calendar-table-cell-content {
+  border-radius: 50% !important;
+}
+
+.location-sec .location-box ul.location-listing-box li.location-second-box .dropdown-position-fixed {
+  width: 665px;
+  overflow-y: visible;
+  height: auto;
+}
+
+.rs-picker-popup {
+  position: static !important;
+}
+
+.tabs-Dropdown {
+  display: flex;
+  justify-content: center;
+  border-bottom: 0;
+  background: #EBEBEB;
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.tabs-Dropdown .nav-link {
+  color: #000;
+  border-radius: 30px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.tabs-Dropdown .nav-link.active {
+  border-color: #ddd;
+}
+
+.date-picker-ttl {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+
+.date-slider-sec .btn-box {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #dbdbdb;
+  display: block;
+  border-radius: 12px;
+  text-decoration: none !important;
+}
+
+.date-slider-sec .btn-box svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+  margin: 0 auto;
+  fill: #767676;
+}
+
+.rs-picker-popup.rs-picker-popup-daterange .rs-calendar:first-child {
+  border-right: 0px !important;
+}
+
+.date-slider-sec .btn-box h5 {
+  color: #343434;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.date-slider-sec .btn-box h6 {
+  margin: 0;
+  font-size: 14px;
+  color: #343434;
+  font-weight: 400;
+}
+
+.list-stay ul {
+  margin-bottom: 30px;
+  gap: 10px
+}
+
+.list-stay li .btn {
+  border: 1px solid #DDDDDD;
+  border-radius: 30px;
+}
+
+.list-stay li .btn:focus,
+.list-stay li .btn:hover {
+  border: 1px solid #000;
+}
+
+.date-slider-sec {
+  position: relative;
+}
+
+.date-slider-sec .outer-prev-button,
+.date-slider-sec .outer-next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 17px;
+  padding: 2px 5px;
+  width: 32px;
+  height: 32px;
+  z-index: 1;
+  background: var(--bs-white);
+  box-shadow: rgba(49, 49, 49, 0.12) 0px 4px 10px !important;
+}
+
+.date-slider-sec .outer-prev-button {
+  left: -10px;
+}
+
+.date-slider-sec .outer-next-button {
+  right: -10px;
+}
+
+.box-circle-chart {
+  position: relative;
+}
+
+.box-circle-chart .month-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.box-circle-chart .month-text .month-number {
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.box-circle-chart .month-text .month-label {
+  font-weight: 500;
+}
+
+/* Datepicker css end*/
+
+
 
 
 
@@ -14943,6 +15479,24 @@ body .sec-get-app .container {
   line-height: 15.51px;
   letter-spacing: 0;
   color: rgba(131, 131, 131, 1);
+}
+
+
+.social-auth div {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple);
+  border-radius: 50%;
+  transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -webkit-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
 }
 
 /**************************** Aditya Css End ***************/

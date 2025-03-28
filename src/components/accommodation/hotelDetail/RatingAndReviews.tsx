@@ -8,9 +8,31 @@ import { useAppSelector } from "@/store/hooks";
 import { formatDate } from "@/utils/formatData";
 import { Review } from "@/store/features/accommodation/types/hotelTypes";
 import ShowAllReviewModal from "./ShowAllReviewModal";
+import { fetchReviewsData } from "@/services/accommodation/hotelDetails";
+import { ReviewData } from "@/store/features/accommodation/staticData/reviews";
 const RatingAndReviews = () => {
-  const {avg_ratings: avgRating, total_ratings: totalRating,reviews, categoryRatings} = useAppSelector((state) => state.hotelDetail.data);
+  const {avg_ratings: avgRating, total_ratings: totalRating,reviews, categoryRatings,id} = useAppSelector((state) => state.hotelDetail.data);
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewsData, setReviewsData] = useState (ReviewData.data);
+  // (ReviewData.data)
+  // (null);
+  const [loading, setLoading] = useState(false);
+
+  const handleModal=async()=>{
+    if (reviewsData) {
+      // If data is already present, open the modal without fetching
+      setShowReviewModal(true);
+      return;
+    }  setLoading(true);
+    try {
+      const response = await fetchReviewsData({  "hotel_id": id}); // API call
+      setReviewsData(response.data);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    } finally {
+      setLoading(false);
+      setShowReviewModal(true); // Open the modal after setting state
+    } }
 
   return (
     <div className="sec-rating-reviews mb-24">
@@ -52,12 +74,12 @@ const RatingAndReviews = () => {
           {reviews?.length > 0 &&
             reviews.slice(0, 3).map((item: Review) => (
               <div key={item.id} className="reviewed-card-item">
-                <h3 className="use-name-ttl">{item.user.firstName} {item.user.lastName}</h3>
+                {/* <h3 className="use-name-ttl">{item?.user?.firstName} {item?.user?.lastName}</h3> */}
                 <p>{item.comment}</p>
                 <div className="d-flex align-items-center">
                   <div className="reviewed-date">
                     {/* 10 Sep 2024 */}
-                    {formatDate(item.createdAt)}
+                    {formatDate(item?.createdAt)}
                   </div>
                   <div className="ms-auto">
                     <div className="d-flex align-items-center">
@@ -71,15 +93,24 @@ const RatingAndReviews = () => {
         </div>
         <button
           className="btn btn-white w-100 btn-view-reviewed"
-          onClick={() => setShowReviewModal(true)}
+          onClick={handleModal}
         >
           Show All reviews
         </button>
       </div>
-      <ShowAllReviewModal
+      {/* <ShowAllReviewModal
         show={showReviewModal}
         handleClose={() => setShowReviewModal(false)}
-      />
+      /> */}
+
+{showReviewModal && (
+        <ShowAllReviewModal
+          show={showReviewModal}
+          handleClose={() => setShowReviewModal(false)}
+          reviews={reviewsData}
+          loading={loading}
+        />
+      )}
     </div>
   );
 };

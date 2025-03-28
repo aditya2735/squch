@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addProduct, applyOffer, fetchCartItem, fetchCartOffers, removeOffer, removerProduct } from "@/services/mart/service";
+import { addProduct, applyOffer, fetchCartItem, fetchCartOffers, placeOrderFromCart, removeOffer, removerProduct } from "@/services/mart/service";
 import {
     ADD_PRODUCT_TO_CART,
     AddProductProps,
@@ -10,6 +10,8 @@ import {
     GET_CART_ITEMS,
     GET_CART_OFFERS,
     GetCartItemResponse,
+    PLACE_ORDER_FROM_CART,
+    PlaceOrderRequest,
     REMOVE_CART_OFFER,
     REMOVE_PRODUCT_FROM_CART,
     RemoveOfferResponse,
@@ -87,6 +89,18 @@ export const removeCartOffer = createAsyncThunk<RemoveOfferResponse, { offerId: 
             return response.data;
         } catch (error: any) {
             return rejectWithValue(error.message || "An error occurred while removing the offer.");
+        }
+    }
+);
+
+export const placeMartOrder = createAsyncThunk<any, PlaceOrderRequest, {rejectValue: string}> (
+    PLACE_ORDER_FROM_CART,
+    async (data, { rejectWithValue}) => {
+        try {
+            const response = await placeOrderFromCart(data);
+            return response.data.data;
+        } catch (error: any) {
+            return rejectWithValue(error.message || "An error occurred while placing order");
         }
     }
 );

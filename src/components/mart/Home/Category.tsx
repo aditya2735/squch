@@ -15,7 +15,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({ categories }) => {
     const router = useRouter();
 
     const handleClick = () => {
-        router.push('/home/mart/category')
+        router.push('/home/mart/category');
     }
 
     return (

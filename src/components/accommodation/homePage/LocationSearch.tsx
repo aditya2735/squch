@@ -4,16 +4,9 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Location01 from "../../../public/images/location-01.png";
-import Location02 from "../../../public/images/location-02.png";
-import Location03 from "../../../public/images/location-03.png";
-import Location04 from "../../../public/images/location-04.png";
-import Location05 from "../../../public/images/location-05.png";
-import Location06 from "../../../public/images/location-06.png";
+
 import { useRouter } from "next/navigation";
-import { UseStateNumber } from "@/store/features/accommodation/types/hotelTypes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { updateCounterFilter } from "@/store/features/accommodation/slices/selectedFilterSlice";
 import {
   setDate,
   setGuestCount,
@@ -21,6 +14,17 @@ import {
 } from "@/store/features/accommodation/slices/housePoliciesSlice";
 import { LocationData } from "@/store/features/accommodation/staticData/locationData";
 import { LocationType } from "@/store/features/accommodation/types/homePageTypes";
+import { useTranslations } from "next-intl";
+  
+import CheckInOut from "../Details/CheckInOut";
+import LocationList from "../Details/LocationList";
+import GuestList from "../Details/Guests";
+
+
+import "react-datepicker/dist/react-datepicker.css";
+import { DateRangePicker } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
+ 
 
 const LocationSearch = ({
   locationData,
@@ -30,18 +34,23 @@ const LocationSearch = ({
   setLocationData: any;
 }) => {
   const dispatch = useAppDispatch();
+  const router= useRouter()
+  const t = useTranslations("Accommodation.BookingDetail");
   const selectedFilters = useAppSelector((state) => state.housePolicy);
   const [locationValue,setLocationValue]=useState<string | null>(null);
-  const [checkInDate, setCheckInDate] = useState<Date | null>(null);
-  const [checkOutDate, setCheckOutDate] = useState<Date | null>(null);
+  const [checkInDate, setCheckInDate] = useState<Date    | null  >(null); 
+  const [checkOutDate, setCheckOutDate] = useState<Date  | null >(null);
   const guestTypes = [
-    { key: "adults", label: "Adults", description: "Ages 13 or above" },
-    { key: "children", label: "Children", description: "Ages 2 - 12" },
-    { key: "infants", label: "Infants", description: "Under 2" },
-    { key: "pets", label: "Pets", description: "Bringing a service animal?" },
-    { key: "specialCare", label: "Needs Special Care", description: "Senior citizens or people with wheelchair" },
-
+    { key: "adults", label: t("adults"), description: t("adultsAge") },
+    { key: "children", label: t("children"), description: t("childrenAge") },
+    { key: "infants", label: t("infants"), description: t("infantsAge") },
+    { key: "pets", label: t("pets"), description: t("serviceAnimal") },
+    { key: "specialCare", label: t("specialCare"), description: t("seniorCitizens") }
   ];
+
+  const [range, setRange] = useState([null, null]);
+  console.log('range: ', range);
+  const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (selectedFilters?.locationName) {
@@ -54,11 +63,13 @@ const LocationSearch = ({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+// Search Button Disable
+  const isDisabled = !selectedFilters?.checkIn || !selectedFilters?.checkOut || !selectedFilters?.locationId;
+
   // State and ref for location dropdown
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const locationDropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const router = useRouter();
   // Toggle function for the general dropdown
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -111,7 +122,50 @@ const LocationSearch = ({
     dispatch(setLocation(item))
   }
 
- 
+//  ------------------
+const formatDate = (date: Date | null): string => {
+  if (!date) return '--';
+  return date.toLocaleDateString();
+};
+
+// Open the date picker
+const openPicker = () => {
+  const input = pickerRef.current?.querySelector('input');
+  input?.click();
+};
+
+// Handle date range changes
+const handleDateRangeChange = (value: [Date, Date] | null) => {
+  if (value) {
+    const [start, end] = value;
+    setCheckInDate(start);
+    setCheckOutDate(end);
+    
+    // Dispatch to Redux
+    dispatch(setDate({ key: "checkIn", value: start.toLocaleDateString("en-CA") }));
+    dispatch(setDate({ key: "checkOut", value: end.toLocaleDateString("en-CA") }));
+  }
+};
+useEffect(() => {
+  console.log("CheckInDate updated:", checkInDate);
+}, [checkInDate]);
+
+useEffect(() => {
+  console.log("CheckOutDate updated:", checkOutDate);
+}, [checkOutDate]);
+
+// Disable dates before today
+const disabledDate = (current: Date): boolean => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return current < today;
+};
+
+const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+const handleDropdownToggle = (dropdownName: string) => {
+  setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
+};
 
   return (
     <div className="location-sec px-40">
@@ -119,8 +173,26 @@ const LocationSearch = ({
         <ul className="location-listing-box w-100 d-flex flex-wrap align-items-center">
           {/* Location Section */}
           <li className="location-fiest-box">
+          <LocationList      isOpen={activeDropdown === 'location'}
+              onToggle={() => handleDropdownToggle('location')}
+              locationData={LocationData} />
+          </li>
+          <li className="location-second-box">
+          <CheckInOut 
+              isOpen={activeDropdown === 'dates'}
+              onToggle={() => handleDropdownToggle('dates')}
+            />
+          </li>
+          <li className="location-fourth-box">
+          <GuestList 
+              isOpen={activeDropdown === 'guests'}
+              onToggle={() => handleDropdownToggle('guests')}
+            />
+          </li>
+
+          {/* <li className="location-fiest-box">
             <div className="w-100 position-relative" ref={locationDropdownRef}>
-              <h5>Location</h5>
+              <h5>{t("location")}</h5>
               <div className="w-100">
                 <input
                   type="text"
@@ -139,7 +211,7 @@ const LocationSearch = ({
                       <div key={category} className="location-item-box" >
                         <h3>
                           {category.charAt(0).toUpperCase() + category.slice(1)}{" "}
-                          searches
+                          {t("searches")}
                         </h3>
                         {locationData1[category]?.map((item: any) => (
                           <ul
@@ -160,9 +232,7 @@ const LocationSearch = ({
                               <span className="d-block w-100 location-filter-text-top">
                                 {item.locationName}
                               </span>
-                              {/* <span className="d-block w-100 location-filter-text-bottom">
-                15-18 Jan • 2 guests
-              </span> */}
+                           
                             </li>
                           </ul>
                         ))}
@@ -174,169 +244,15 @@ const LocationSearch = ({
             </div>
           </li>
 
-          {/* Check-In Section */}
-          <li className="location-second-box position-relative">
-            <h5> Check-In </h5>
-            <div className="d-flex justify-content-between">
-              <DatePicker
-               selected={
-                checkInDate || (selectedFilters?.checkIn ? new Date(selectedFilters.checkIn) : null)
-              }
-                onChange={(date) => handleDateChange("checkIn", date)}
-                placeholderText="Add Dates"
-                className="calendar-picker"
-                dateFormat="dd-MM-yyyy"
-              />
-              <span className="calendar-right position-absolute">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.66602 1.6665V4.1665"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M13.334 1.6665V4.1665"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2.91602 7.5752H17.0827"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9.99607 11.4167H10.0036"
-                    stroke="#838383"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M6.91209 11.4167H6.91957"
-                    stroke="#838383"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M6.91209 13.9167H6.91957"
-                    stroke="#838383"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </div>
-          </li>
+<li className="location-second-box">
+          <CheckInOut/>
+          </li> */}
 
-          {/* Check-Out Section */}
-          <li className="location-second-box position-relative">
-            <h5> Check-Out </h5>
-            <div className="d-flex justify-content-between">
-              <DatePicker
-                 selected={
-                  checkOutDate || (selectedFilters?.checkOut ? new Date(selectedFilters.checkOut) : null)
-                }
-                onChange={(date) => handleDateChange("checkOut", date)}
-                placeholderText="Add Dates"
-                className="calendar-picker"
-                dateFormat="dd-MM-yyyy"
-              />
-              <span className="calendar-right position-absolute">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6.66602 1.6665V4.1665"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M13.334 1.6665V4.1665"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2.91602 7.5752H17.0827"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
-                    stroke="#838383"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9.99607 11.4167H10.0036"
-                    stroke="#838383"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M6.91209 11.4167H6.91957"
-                    stroke="#838383"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M6.91209 13.9167H6.91957"
-                    stroke="#838383"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </div>
-          </li>
 
           {/* Guests Section */}
-          <li className="location-fourth-box">
-            <div className="w-100 position-relative" ref={dropdownRef}>
-              {/* Button */}
-              <h5> Guests </h5>
+          {/* <li className="location-fourth-box">
+            <div className="w-100 position-relative" ref={dropdownRef}> 
+              <h5> {t("guests")}</h5>
               <div className="w-100">
                 <button
                   type="button"
@@ -346,7 +262,7 @@ const LocationSearch = ({
                   aria-haspopup="true"
                   onClick={toggleDropdown}
                 >
-                  Add Guests
+                   {t("addGuests")}
                   <svg
                     className="-mr-1 size-6 txet-[#838383]"
                     viewBox="0 0 20 20"
@@ -362,8 +278,7 @@ const LocationSearch = ({
                   </svg>
                 </button>
               </div>
-
-              {/* Dropdown Menu */}
+ 
               {isOpen && (
                 <div
                   className="menu-dropdown dropdown-position-fixed"
@@ -373,7 +288,7 @@ const LocationSearch = ({
                   tabIndex={-1}
                 >
                   <div className="coming-inner-sec" role="none">
-                    <h5>Who’s coming?</h5>
+                  <h5> {t("whosComing")}</h5>
                     {guestTypes.map(({ key, label, description }) => (
                       <div
                         key={key}
@@ -385,11 +300,11 @@ const LocationSearch = ({
                         </div>
                         <form className="add-remove-btn">
                           <div className="d-flex align-items-center justify-content-between gap-2 position-relative text-center">
-                            {/* Decrement Button */}
+                         
                             <button
                               type="button"
                               onClick={() =>
-                                // handleGuestChange(key, "decrement")
+                              
                                 dispatch(
                                   setGuestCount({
                                     key: key,
@@ -423,7 +338,7 @@ const LocationSearch = ({
                               </svg>
                             </button>
 
-                            {/* Input Field */}
+                          
                             <input
                               type="text"
                               value={selectedFilters[key] ?? 0}
@@ -431,11 +346,11 @@ const LocationSearch = ({
                               className=""
                             />
 
-                            {/* Increment Button */}
+                         
                             <button
                               type="button"
                               onClick={() =>
-                                // handleGuestChange(key, "increment")
+                              
                                 dispatch(
                                   setGuestCount({
                                     key: key,
@@ -483,12 +398,15 @@ const LocationSearch = ({
                 </div>
               )}
             </div>
-          </li>
+          </li> */}
 
           <li className="location-fifth-box">
             {/* Search Button */}
-            <div className="flex">
-              <Link href="/home/accommodation/seeAll/search">
+            <button className="flex"
+            disabled={isDisabled}
+            onClick={()=>router.push("/home/accommodation/searchList")}
+            >
+              {/* <Link href="/home/accommodation/seeAll/search"> */}
                 <svg
                   width="48"
                   height="48"
@@ -512,8 +430,8 @@ const LocationSearch = ({
                     strokeLinejoin="round"
                   />
                 </svg>
-              </Link>
-            </div>
+              {/* </Link> */}
+            </button>
           </li>
         </ul>
       </div>

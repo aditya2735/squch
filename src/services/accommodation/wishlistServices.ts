@@ -2,9 +2,10 @@ import { apiConnector } from "../connector"
 import { ENDPOINTS } from "./endpoint"
 const { ACCOMMODATION } = ENDPOINTS
 
-export const addWishlist =async(id:number) => {
+export const addWishlist =async(id:number,addToWishlist:boolean) => {
     const data={
-        hotel_id:id
+        hotel_id:id,
+        addToWishlist
     }
     // console.log("api wishlist calledd", data)
     try {

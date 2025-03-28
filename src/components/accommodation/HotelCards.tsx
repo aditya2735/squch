@@ -16,6 +16,7 @@ import {
   ImageHotel,
 } from "@/store/features/accommodation/types/hotelTypes";
 import { getCurrencySymbol } from "@/utils/formatData";
+import debounce from "lodash.debounce";
 
 export const SwiperRows = ({
   hotelData,
@@ -24,49 +25,49 @@ export const SwiperRows = ({
   hotelData: Hotel;
   CardName: string;
 }) => {
-
   const [data, setData] = useState(hotelData);
-  const [wishlistUpdate, setWishlistUpdate] = useState<number | null>(null);
+  const {
+    id,
+    name,
+    description,
+    avgPricePerNight,
+    currency,
+    country,
+    state,
+    isInWishList,
+    address
+  } = data;
   const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { id, name, description, avgPricePerNight, currency, country, state } = data;
   const hotelImages: ImageHotel[] = data.primaryImages;
 
-  useEffect(() => {
-    if (wishlistUpdate === null) return;
-  
-    const timer = setTimeout(async () => {
-      try {
-        // await addWishlist(wishlistUpdate);
-      } catch (error) {
-        console.log("Error in toggle catch");
-  
-        setData((prev) => ({
-          ...prev,
-          isInWishList: !prev.isInWishList,
-        }));
-      } finally {
-        setWishlistUpdate(null); 
-      }
-    }, 500);
-  
-    return () => clearTimeout(timer);
-  }, [wishlistUpdate]);
-  
+  const updateWishlist = async (addToWishlist: boolean) => {
+    try {
+      await addWishlist(id, addToWishlist);
+    } catch (error) {
+      console.error("Error in toggle catch", error);
+      // Revert state if API call fails
+      setData((prev) => ({
+        ...prev,
+        isInWishList: !prev.isInWishList,
+      }));
+    }
+  };
+
+  // Debouncing to avoid spamming API
+  const debouncedUpdateWishlist = useCallback(
+    debounce((addToWishlist: boolean) => updateWishlist(addToWishlist), 500),
+    [id]
+  );
+
+  const handleWishlistToggle = () => {
+    setData((prev) => {
+      const newState = !prev.isInWishList;
+      debouncedUpdateWishlist(newState);
+      return { ...prev, isInWishList: newState };
+    });
+  };
 
   const currencySymbol = getCurrencySymbol(currency);
-
-  const handleWishlistToggle = (hotel: Hotel) => {
-    if (!hotel) return;
-  
-    setData((prev) => ({
-      ...prev,
-      isInWishList: !prev.isInWishList,
-    }));
-  
-    setWishlistUpdate(hotel.id); 
-  };
-  
 
   const handleHotelClick = (id: number) => {
     router.push(`/home/accommodation/details/${id}`);
@@ -74,8 +75,7 @@ export const SwiperRows = ({
 
   return (
     <SwiperSlide key={`${CardName}-parent-${id}`} style={{ cursor: "pointer" }}>
-      <div className="position-relative multislider-com-box  bg-white">
-        {/* bg-white rounded-radius */}
+      <div className="position-relative multislider-com-box bg-white rounded-radius">
         <div className="top-slider position-relative">
           <Swiper
             key={`${CardName}-${id}`}
@@ -136,11 +136,20 @@ export const SwiperRows = ({
                           </ul>
                         </div>
                         <div
-                          className="position-absolute z-2 right-card-box"
-                          onClick={() => handleWishlistToggle(data)}
+                          className="position-absolute z-2 right-card-box d-flex align-items-center justify-content-center"
+                          onClick={handleWishlistToggle}
                         >
                           <div className="">
-                            <Image src={data.isInWishList ? '/svg/like-active.svg':'/svg/like.svg'} alt={"Like"} height={20} width={20} />
+                            <Image
+                              src={
+                                isInWishList
+                                  ? "/svg/like-active.svg"
+                                  : "/svg/like.svg"
+                              }
+                              alt={"Like"}
+                              height={20}
+                              width={20}
+                            />
                           </div>
                         </div>
                       </div>
@@ -151,19 +160,21 @@ export const SwiperRows = ({
           </Swiper>
         </div>
         <div
-          className="text-box px-3 py-4"
+          className={`text-box px-3 ${
+            ["detailCard", "WishList"].includes(CardName) ? "pt-3" : "py-4"
+          }`}
           onClick={() => handleHotelClick(id)}
         >
           <h3 className="">
             {name}, {state}
           </h3>
           <p className="mb-3">
-            640 m drive to Accra Airport (ACC-Kotoka Intl.)
+           {address}
           </p>
           <div className="d-flex align-items-center mb-1">
             <h6 className="d-flex align-items-center align-items-center">
               {currencySymbol} {avgPricePerNight}
-              <span className="d-block  ">₵30.00</span>
+              <span className="d-block text-decoration-line-through">₵30.00</span>
             </h6>
             <span className="text-sm d-block">71% off</span>
           </div>

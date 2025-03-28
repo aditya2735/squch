@@ -34,7 +34,8 @@ const ENDPOINTS = {
             REMOVER_PRODUCT_FROM_CART: `${MART_BASE}/remove-product-from-cart`,
             GET_CART_OFFERS: `${MART_BASE}/get-cart-offers`,
             APPLY_OFFER: `${MART_BASE}/apply-offer`,
-            REMOVE_OFFER: `${MART_BASE}/remove-offer`
+            REMOVE_OFFER: `${MART_BASE}/remove-offer`,
+            PLACR_ORDER_FROM_CART: `${MART_BASE}/place-order-from-cart`
         }
     }
 };

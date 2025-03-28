@@ -18,7 +18,7 @@ const page = () => {
             <div className='wrapper-box'>
                 <div className='gradient-1 mb-4'>
                     <div className="px-40">
-                        <BackLink pageName={"search"} />
+                        <BackLink pageName={"map"} />
                         <DealsDiscount />
                         <FilterSlider />
                     </div>

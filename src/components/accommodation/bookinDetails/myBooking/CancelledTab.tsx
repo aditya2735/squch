@@ -9,7 +9,7 @@ import Link from "next/link";
 
 import BookingTop from "../../../../../public/images/detail-imags-1.jpg";
 import BookBtn from "../../../../../public/images/book-btn.png";
-import { MyBookingState } from "@/store/features/accommodation/types/myBookingTypes";
+import { MyBooking, MyBookingState } from "@/store/features/accommodation/types/myBookingTypes";
 import { useAppSelector } from "@/store/hooks";
 import { useRouter } from "next/navigation";
 import { formatDate } from "@/utils/formatData";
@@ -22,9 +22,6 @@ const CancelledTab = () => {
   const router = useRouter();
   const { cancelled } = useAppSelector((state) => state.myBookings.data);
 
-  const handleHotelNav = (hotelId: number) => {
-    router.push(`details/${hotelId}`);
-  };
   return (
     <div className="row">
       {cancelled.length > 0 &&
@@ -38,11 +35,11 @@ const CancelledTab = () => {
                 <div className="book-again-box d-flex align-items-end justify-content-between flex-wrap gap-2">
                   <div className="book-again-left d-flex align-items-center gap-2">
                     <div className="book-again-img-box">
-                      <Image alt="" src={BookBtn}></Image>
+                    <Image src={item?.primaryImage?.url} alt="hotel image" height={80} width={80}></Image>
                     </div>
                     <div className="book-again-text-box">
                       <h4>
-                        {name}, {country}
+                        {name} 
                       </h4>
                       <h5>
                         {getDateNGuest(
@@ -53,7 +50,7 @@ const CancelledTab = () => {
                           item.specialCareCount
                         )}
                       </h5>
-                      <h5>640 m drive to Accra Airport (ACC-Kotoka Intl.)</h5>
+                      <h5> {address} {city}, {state} </h5>
                     </div>
                   </div>
                   <div className="right-box-cancelled  d-flex align-items-center gap-2 flex-wrap">
@@ -96,7 +93,7 @@ const CancelledTab = () => {
                     ) : (
                       <div className="book-again-right">
                         <Link
-                          href=""
+                           href={`/home/accommodation/details/${item.hotelId}`} 
                           className="btn-book d-flex flex-wrap align-items-center gap-2"
                         >
                           <svg
@@ -131,7 +128,7 @@ const CancelledTab = () => {
           );
         })}
 
-      <div className="col-md-12 mb-3 mb-2">
+      {/* <div className="col-md-12 mb-3 mb-2">
         <div className="mybooking-tab bg-white rounded-radius alert-box-magssage">
           <div className="book-again-box d-flex align-items-end justify-content-between flex-wrap gap-2">
             <div className="book-again-left d-flex align-items-center gap-2">
@@ -226,7 +223,7 @@ const CancelledTab = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

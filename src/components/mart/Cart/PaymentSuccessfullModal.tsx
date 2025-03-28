@@ -22,7 +22,7 @@ const PaymentSuccessfullModal: React.FC<PaymentSuccessfullModalProps> = ({ show,
                 className="text-center modal-filter cancel-confirmation-sec details pt-4"
             >
                 <Modal.Header>
-                    <Button variant="close-btn" onClick={handleClose}>
+                    <Button variant="close-btn" onClick={() => handleClose()}>
                         <Image src={CloseModal} alt="" />
                     </Button>
                 </Modal.Header>

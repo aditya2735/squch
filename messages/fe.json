@@ -1,33 +1,60 @@
 {
-    "Accommodation": {
-      "popularHotels": "Hôtels Populaires",
-      "nearYou": "Près de Chez Vous",
-      "others": "Autres",
-      "trendingDestinations": "Destinations Tendance",
-      "seeAll": "Voir Tout",
-      "upcomingStays": "Séjours à Venir",
-  
-      "FilterModal": {
-        "filters": "Filtres",
-        "typeOfPlace": "Type de Logement",
-        "anyType": "Tout type",
-        "room": "Chambre",
-        "entireHome": "Maison entière",
-        "priceRange": "Fourchette de Prix",
-        "minimum": "Minimum",
-        "maximum": "Maximum",
-        "roomsAndBeds": "Chambres et Lits",
-        "amenities": "Équipements",
-        "bookingOptions": "Options de Réservation",
-        "topRated": "Les Mieux Notés",
-        "starCategory": "Catégorie d'Étoiles",
-        "propertyType": "Type de Propriété",
-        "accessibilityFeatures": "Caractéristiques d'Accessibilité",
-        "clearAll": "Tout Effacer",
-        "showMore": "Afficher Plus",
-        "showLess": "Afficher Moins",
-        "userRating": "Évaluation des Utilisateurs"
-      }
+  "Accommodation": {
+    "popularHotels": "Hôtels populaires",
+    "nearYou": "Près de chez vous",
+    "others": "Autres",
+    "trendingDestinations": "Destinations tendance",
+    "seeAll": "Voir tout",
+    "upcomingStays": "Séjours à venir",
+    "back": "Retour",
+    "explore": "Explorer",
+    "wishlist": "Liste de souhaits",
+    "booking": "Réservation",
+    "reserveSpot": "Réservez votre place",
+
+    "FilterModal": {
+      "filters": "Filtres",
+      "typeOfPlace": "Type de lieu",
+      "anyType": "Tout type",
+      "room": "Chambre",
+      "entireHome": "Maison entière",
+      "priceRange": "Gamme de prix",
+      "minimum": "Minimum",
+      "maximum": "Maximum",
+      "roomsAndBeds": "Chambres et lits",
+      "amenities": "Équipements",
+      "bookingOptions": "Options de réservation",
+      "topRated": "Les mieux notés",
+      "userRating": "Évaluation des utilisateurs",
+      "starCategory": "Catégorie d'étoiles",
+      "propertyType": "Type de propriété",
+      "accessibilityFeatures": "Caractéristiques d'accessibilité",
+      "clearAll": "Tout effacer",
+      "showMore": "Afficher plus",
+      "showLess": "Afficher moins",
+      "bedrooms": "Bedrooms",
+  "beds": "Beds",
+  "bathrooms": "Bathrooms"
+    },
+
+    "BookingDetail": {
+      "location": "Emplacement",
+      "checkIn": "Arrivée",
+      "checkOut": "Départ",
+      "guests": "Invités",
+      "addGuests": "Ajouter des invités",
+      "whosComing": "Qui vient ?",
+      "adults": "Adultes",
+      "adultsAge": "Âgés de 13 ans ou plus",
+      "children": "Enfants",
+      "childrenAge": "Âgés de 2 à 12 ans",
+      "infants": "Bébés",
+      "infantsAge": "Moins de 2 ans",
+      "pets": "Animaux",
+      "serviceAnimal": "Apportez un animal d'assistance ?",
+      "specialCare": "Besoin de soins spéciaux",
+      "seniorCitizens": "Personnes âgées ou en fauteuil roulant",
+      "searches": "Recherches"
     }
   }
-  
+}

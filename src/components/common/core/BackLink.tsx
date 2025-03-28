@@ -22,14 +22,14 @@ const BackLink: React.FC<{ ShowOption: boolean }> = ({ ShowOption = false }) => 
                     <div className='d-flex social-auth'>
                         <ul className='d-flex align-items-center list-unstyled m-0'>
                             <li>
-                                <Link href="">
+                                <div>
                                     <Image src={"/images/share.svg"} alt='share icon' width={15} height={17} />
-                                </Link>
+                                </div>
                             </li>
                             <li>
-                                <Link href="">
+                                <div >
                                     <Image src={"/images/heart.svg"} alt='share icon' width={21} height={20} />
-                                </Link>
+                                </div>
                             </li>
                         </ul>
                     </div>

@@ -4,21 +4,26 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-
-const navItems = [
-    { key: "back", path: "", label: "Back", activePath: "/", icon: "goBack" },
-    { key: "explore", path: "/home/accommodation/explore", label: "Explore", activePath: "/explore", icon: "explore" },
-    { key: "wishlist", path: "/home/accommodation/wishlist", label: "Wishlist", activePath: "/wishlist", icon: "wishlist" },
-    { key: "booking", path: "/home/accommodation/mybooking", label: "Booking", activePath: "/mybooking", icon: "booking" }
-];
 
 const StayNavigationBottom = () => {
     const pathname = usePathname();
     const router = useRouter();
-
+    const t = useTranslations("Accommodation");
+    const navItems = [
+        { key: "back", path: "", label: t("back"), activePath: "/", icon: "goBack" },
+        { key: "explore", path: "/home/accommodation/explore", label: t("explore"), activePath: "/explore", icon: "explore" },
+        { key: "wishlist", path: "/home/accommodation/wishlist", label: t("wishlist"), activePath: "/wishlist", icon: "wishlist" },
+        { key: "booking", path: "/home/accommodation/mybooking", label: t("booking"), activePath: "/mybooking", icon: "booking" }
+      ];
+      
     return (
-        <nav className="sec-navigation-bottom">
+        <nav className="sec-navigation-bottom"
+        style={{ position: "fixed", bottom: 0, left: 0, width: "100%"
+            , zIndex: 9999 
+        }}
+        >
             <div className="container">
                 <ul className="d-flex align-items-center justify-content-between list-unstyled m-0">
                     {navItems.map(({ key, path, label, activePath, icon }) => {

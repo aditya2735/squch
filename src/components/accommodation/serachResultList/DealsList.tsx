@@ -18,12 +18,11 @@ import { SwiperRows } from "../HotelCards";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useEffect } from "react";
 import { getHotelData } from "@/store/features/accommodation/slices/homeHotelSlice";
+import { Hotel } from "@/store/features/accommodation/types/hotelTypes";
   
-const DealsList = () => {
+const DealsList = ({hotelData,page}:{ hotelData: Hotel[], page?:string}) => {
   const dispatch= useAppDispatch()
-   const { popular: hotelData } = useAppSelector((state) => state.homeHotels.data);
    const { status } = useAppSelector((state) => state.hotelDetail);
-
   // useEffect(() => {
   //    if (hotelData.length===0 && status === "idle") { 
   //      dispatch(getHotelData());
@@ -31,11 +30,11 @@ const DealsList = () => {
   //  }, [hotelData, status, dispatch]);
 
   return (
-    <div className="multislider-sec pt-md-5 pb-md-5 pt-3 pb-3">
+    <div className={`multislider-sec ${page==="search"? "pt-md-5":"pt-md-2"} pb-md-5 pt-3 pb-3`}>
       <div className="px-40">
-        <div className="found-title d-block d-md-none mb-3 text-center">
+        {/* <div className="found-title d-block d-md-none mb-3 text-center">
           <h2>6 Results Found</h2>
-        </div>
+        </div> */}
         <div className="inner-multislider row ">
           {hotelData?.length > 0 &&
             hotelData?.map((hotel: any, index:number) => {
@@ -326,6 +325,7 @@ const DealsList = () => {
             </div>
           </div> */}
 
+{ page ==="search" &&
           <div className="col-md-12 text-center mt-4">
             <Link
             href="/home/accommodation/searchMap" 
@@ -364,6 +364,7 @@ const DealsList = () => {
               </svg>
             </Link>
           </div>
+}
         </div>
       </div>
     </div>

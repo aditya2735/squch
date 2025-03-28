@@ -16,10 +16,12 @@ import selectedFiltersSlice from './features/accommodation/slices/selectedFilter
 import hotelDetailSlice from './features/accommodation/slices/hotelDetailSlice';
 import wishlistSlice from './features/accommodation/slices/wishlistSlice';
 import homeBannerSlice from './features/accommodation/slices/bannerSlice';
- import homeDealsSlice from './features/accommodation/slices/dealsSlice';
+import homeDealsSlice from './features/accommodation/slices/dealsSlice';
 import housePoliciesSlice from './features/accommodation/slices/housePoliciesSlice';
 import myBookingSlice from './features/accommodation/slices/myBookingSlice';
- 
+import chatSlice from './features/accommodation/slices/hostChatSlice';
+import searchSlice from './features/accommodation/slices/searchSlice';
+
 
 
 const rootReducer = combineReducers({
@@ -32,15 +34,17 @@ const rootReducer = combineReducers({
     martCart: MartCartReducer,
     address: addressReducer,
 
-    allFilters: filtersSlice,  
+    allFilters: filtersSlice,
     homeHotels: homeHotelSlice,
     selectedFilters: selectedFiltersSlice,
     hotelDetail: hotelDetailSlice,
     wishListData: wishlistSlice,
-    bannerData:homeBannerSlice,
-    dealsData:homeDealsSlice,
-    housePolicy:housePoliciesSlice,
-    myBookings:myBookingSlice
+    bannerData: homeBannerSlice,
+    dealsData: homeDealsSlice,
+    housePolicy: housePoliciesSlice,
+    myBookings: myBookingSlice,
+    hostChat:chatSlice,
+    serachHotel:searchSlice,
 });
 
 export default rootReducer;

@@ -2,7 +2,7 @@ import {  fetchBannerData } from '@/services/accommodation/homeService';
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Banner } from '../types/homePageTypes';
-import {BannerData} from '../staticData/bannerData'
+import {BannerData} from '../staticData/bannerData';
  export const getBannerData = createAsyncThunk(
   'home/fetchBannerData',
   async (_, { rejectWithValue }) => {
@@ -24,7 +24,7 @@ interface BannerState {
 
 const initialState: BannerState = {
   // data: { } as Banner[],
-  data: BannerData,
+  data:BannerData,
     loading: false,
     error: null,
     status:"idle",

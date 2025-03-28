@@ -3,7 +3,7 @@ import { ENDPOINTS } from "./endpoint"
 import { apiConnector } from "../connector";
 const { ACCOMMODATION } = ENDPOINTS
 
-export const fetchMyBookings = (): Promise<any> => fetchData("get", ACCOMMODATION.BOOKING.GET_MY_BOOKING);
+export const fetchMyBookings = (): Promise<any> => fetchData("post", ACCOMMODATION.BOOKING.GET_MY_BOOKING);
 
 export const checkInPost = async (data: any) => {
     try {

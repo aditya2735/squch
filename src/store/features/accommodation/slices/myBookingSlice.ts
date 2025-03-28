@@ -1,11 +1,12 @@
 import { fetchAllWishlist } from "@/services/accommodation/wishlistServices";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
  import { fetchMyBookings } from "@/services/accommodation/bookingServices";
-import { MyBookingState } from "../types/myBookingTypes";
+import { MyBooking, MyBookingState } from "../types/myBookingTypes";
 import { mybookingData } from "../staticData/myBooking";
 
 interface myBookingState {
     data: MyBookingState;
+    myBookingData:MyBooking;
     status:string;
     loading: boolean;
     error: string | null;
@@ -13,6 +14,7 @@ interface myBookingState {
 
  const initialState: myBookingState = {
     data:mybookingData.data,
+    myBookingData: {} as MyBooking ,
     // data: {} as CountryHotels, 
     status:'idle',
     loading: false,
@@ -35,6 +37,10 @@ const myBookingSlice = createSlice({
   name: "myBookingSlice",
   initialState,
   reducers: {
+    setMyBooking(state, action) {
+      state.myBookingData = action.payload;
+
+    },
   },
       extraReducers: (builder) => {
         builder
@@ -55,5 +61,6 @@ const myBookingSlice = createSlice({
           });
       },
   });
+  export const { setMyBooking} =  myBookingSlice.actions;
 
 export default myBookingSlice.reducer;

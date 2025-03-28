@@ -1,22 +1,25 @@
 {
-    "MART":{
-        "Top Rated Near You": "Top Rated Near You"
-    },
-    "Accommodation": {
-
+  "MART": {
+    "Top Rated Near You": "Top Rated Near You"
+  },
+  "Accommodation": {
     "popularHotels": "Popular Hotels",
     "nearYou": "Near You",
     "others": "Others",
     "trendingDestinations": "Trending Destinations",
     "seeAll": "See All",
     "upcomingStays": "Upcoming Stays",
-
+    "back": "Back",
+    "explore": "Explore",
+    "wishlist": "Wishlist",
+    "booking": "Booking",
+    "reserveSpot": "Reserve your spot",
     "FilterModal": {
       "filters": "Filters",
       "typeOfPlace": "Type of Place",
-      "anyType":"Any Type",
-      "room":"Room",
-      "entireHome":"Entire Home",
+      "anyType": "Any Type",
+      "room": "Room",
+      "entireHome": "Entire Home",
       "priceRange": "Price Range",
       "minimum": "Minimum",
       "maximum": "Maximum",
@@ -24,15 +27,35 @@
       "amenities": "Amenities",
       "bookingOptions": "Booking Options",
       "topRated": "Top Rated",
-       "userRating": "User Rating",
+      "userRating": "User Rating",
       "starCategory": "Star Category",
       "propertyType": "Property Type",
       "accessibilityFeatures": "Accessibility Features",
       "clearAll": "Clear All",
       "showMore": "Show More",
-      "showLess": "Show Less"
-
+      "showLess": "Show Less",
+      "bedrooms": "Bedrooms",
+      "beds": "Beds",
+      "bathrooms": "Bathrooms"
+    },
+    "BookingDetail": {
+      "location": "Location",
+      "checkIn": "Check-In",
+      "checkOut": "Check-Out",
+      "guests": "Guests",
+      "addGuests": "Add Guests",
+      "whosComing": "Who's coming?",
+      "adults": "Adults",
+      "adultsAge": "Ages 13 or above",
+      "children": "Children",
+      "childrenAge": "Ages 2 - 12",
+      "infants": "Infants",
+      "infantsAge": "Under 2",
+      "pets": "Pets",
+      "serviceAnimal": "Bringing a service animal?",
+      "specialCare": "Needs Special Care",
+      "seniorCitizens": "Senior citizens or people with wheelchair",
+      "searches": "searches"
     }
-
   }
 }
