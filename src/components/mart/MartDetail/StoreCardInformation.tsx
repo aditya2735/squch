@@ -9,8 +9,9 @@ interface StoreCardInformationProps {
     type: string;
     rating: number | undefined;
     openingHours: { [key: string]: string };
-}
-
+    showModal: boolean;
+    setShowModal: (value: boolean) => void;
+};
 
 const StoreCardInformation: React.FC<StoreCardInformationProps> = (props) => {
 
@@ -31,12 +32,12 @@ const StoreCardInformation: React.FC<StoreCardInformationProps> = (props) => {
                                 </p>
                                 <p className="items">{props.type}</p>
                             </div>
-                            <div className="rating">
+                            <div className="rating" onClick={() => props.setShowModal(true)} style={{ cursor: "pointer" }}>
                                 <span className="rating-badge">
                                     <Image src={Rating} alt='rating icon' />
                                     {props.rating}
                                 </span>
-                                <p>20k+ ratings</p>
+                                <p>{props.rating}ratings</p>
                             </div>
                         </div>
                         <div className="open-status">

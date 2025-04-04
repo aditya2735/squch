@@ -12,12 +12,13 @@ import DataLoader from '@/components/common/core/DataLoader';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useSearchParams } from 'next/navigation';
-import { getStoreDetail } from '@/store/features/Mart/MartStores/storeThunk';
+import { getStoreDetail, getStoreReviews, makeStoreFavouriteFromDetail } from '@/store/features/Mart/MartStores/storeThunk';
 import { getProductList } from '@/store/features/Mart/MartProduct/productThunk';
 
 import "./martDetail.css"
 import { getCartItems } from '@/store/features/Mart/Cart/cartThunk';
 import { getAllMartOffer } from '@/store/features/Mart/MartOffer/offerThunk';
+import ShowAllReviewModal from '@/components/common/core/ShowAllReview';
 
 interface MartDetailProps {
     storeId: string;
@@ -28,6 +29,7 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
 
     const searchParams = useSearchParams();
     const dispatch = useAppDispatch();
+    const [showReviewModal, setShowReviewModal] = useState<boolean>(false);
 
     const [filter, setFilter] = useState({
         storeId: storeId,
@@ -42,7 +44,12 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
     const { loading, error, storeDetail } = useAppSelector((state) => state.martStore);
     const { loading: offerLoading, error: offerError, offer } = useAppSelector((state) => state.martOffer);
     const { loading: productLoading, error: productError, products } = useAppSelector((state) => state.martProduct);
+    const { review } = useAppSelector((state) => state.martStore)
 
+    const handleFavourite = () => {
+        const data = { userId: 2, storeId: storeId, status: !storeDetail.isFavourite }
+        dispatch(makeStoreFavouriteFromDetail(data));
+    };
 
     useEffect(() => {
         dispatch(getStoreDetail(storeId));
@@ -55,6 +62,7 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
     useEffect(() => {
         dispatch(getAllMartOffer({ storeId: storeId }))
         dispatch(getCartItems());
+        dispatch(getStoreReviews({ storeId: storeId }));
     }, []);
 
     return (
@@ -63,15 +71,22 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
                 <div className='container px-0 bg-dark-gray'>
                     <GetAppsDownload />
                     <div className='px-40 purple-flate'>
-                        <BackLink ShowOption={true}/>
+
+                        <BackLink
+                            ShowOption={true}
+                            IsFavourite={storeDetail.isFavourite}
+                            handleFavourite={handleFavourite}
+                        />
                         <DataLoader loading={loading.storeLoading} error={error} retryFunction={() => dispatch(getStoreDetail(storeId))} data={storeDetail}>
                             <StoreCardInformation
                                 name={storeDetail.name}
                                 address={storeDetail.address}
                                 time={storeDetail.time}
                                 type={storeDetail.type}
-                                rating={storeDetail.rating}
+                                rating={review.rating}
                                 openingHours={storeDetail.openingHours}
+                                showModal={showReviewModal}
+                                setShowModal={setShowReviewModal}
                             />
                         </DataLoader>
                     </div>
@@ -96,6 +111,7 @@ const Home: React.FC<MartDetailProps> = ({ storeId }) => {
                         </div>
                     </div>
                 </div>
+                <ShowAllReviewModal show={showReviewModal} handleClose={() => setShowReviewModal(false)} />
             </div>
         </>
     );

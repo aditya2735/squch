@@ -10,14 +10,12 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { ProductProps } from '@/store/features/Mart/MartProduct/productTypes';
 import { addProductFromProductList, removeProductFromProductList } from '@/store/features/Mart/MartProduct/productThunk';
 
-
 interface ProductCardProps {
     product: ProductProps;
     expanded: boolean;
     onToggleExpand: () => void;
     onClick: () => void;
 }
-
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, expanded, onToggleExpand, onClick }) => {
 
@@ -36,7 +34,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, expanded, onToggleEx
             displayCategory: product.displayCategory
         }));
     }, [dispatch, product.productId, product.storeId, cart?.[0]?.cartId]);
-
 
 
     return (

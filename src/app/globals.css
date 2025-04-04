@@ -134,7 +134,6 @@ a {
 .btn.btn-primary:hover {
   background: #712F79;
   border-color: #712F79;
-  ;
   color: var(--bs-white);
 }
 
@@ -4140,27 +4139,6 @@ button {
   -o-transition: all 500ms ease;
 }
 
-.social-auth div {
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  border: 1px solid #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--purple);
-  border-radius: 50%;
-  transition: all 500ms ease;
-  -moz-transition: all 500ms ease;
-  -webkit-transition: all 500ms ease;
-  -ms-transition: all 500ms ease;
-  -o-transition: all 500ms ease;
-}
-
-.social-auth div:hover {
-  border-color: var(--purple);
-}
-
 .social-auth li a:hover {
   border-color: var(--purple);
 }
@@ -6021,6 +5999,7 @@ button.menu-toggle {
 
 .ghana-squch-slider img {
   border-radius: 12px;
+  display: block;
 }
 
 .ghana-squch-slider .multislider-com-box {
@@ -6390,10 +6369,6 @@ button.menu-toggle {
   padding: 7px;
 }
 
-.add-remove-btn-box button img {
-  width: 20px;
-}
-
 .add-remove-btn-box p {
   width: 100%;
   border: none;
@@ -6527,6 +6502,7 @@ button.menu-toggle {
   text-align: center;
   min-width: 75px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .btn-tipped.most-topped {
@@ -7993,6 +7969,7 @@ li.btn-tipped.active-btn {
   left: 0;
   background: linear-gradient(85.18deg, rgba(0, 0, 0, 0.8) 8.27%, rgba(0, 0, 0, 0) 50.94%);
 }
+
 
 .full-box-up-next-trip .img-top .text-box h3 {
   font-weight: 500;
@@ -11968,7 +11945,7 @@ body .sec-get-app .container {
 
 
 .dropdown-card .dropdown-toggle:after {
-  background-image: url("/images/dropdown-icon.png");
+  background-image: url("../../public/images/dropdown-icon.png");
   width: 24px;
   background-size: 23px;
   border: 0;
@@ -12938,7 +12915,7 @@ body .sec-get-app .container {
 }
 
 .feature-top-slider-box .feature-slider-box:before {
-  background: url(/images/feature-top-bg.png);
+  background: url(../../public/images/feature-top-bg.png);
   content: "";
   width: 100px;
   height: 15px;
@@ -13030,6 +13007,60 @@ body .sec-get-app .container {
 
 .sec-invite-frend .d-flex.align-items-center {
   gap: 10px;
+}
+
+
+.ghana-squch-slider img.object-cover {
+  height: 180px !important;
+  object-fit: cover;
+}
+
+.modal-filter.modal-share .modal-dialog {
+  max-width: 680px;
+}
+
+.share-box ul li {
+  width: 50%;
+  padding: 0px 10px;
+  margin-top: 10px;
+}
+
+.share-box ul li a {
+  border: 1px solid #ddd;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  padding: 10px;
+  color: #000;
+  font-weight: 500;
+}
+
+.share-box ul li .ic-box {
+  flex: 0 0 auto;
+  width: 20px;
+  margin-right: 5px;
+}
+
+.share-box ul li .ic-box svg {
+  display: block;
+}
+
+.share-box .d-flex {
+  margin: 0px -10px;
+}
+
+
+body:not(.sec-navigation-bottom) {
+  margin-bottom: 90px;
+}
+
+.sec-navigation-bottom {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
 }
 
 
@@ -15432,9 +15463,6 @@ body .sec-get-app .container {
 }
 
 /* Datepicker css end*/
-
-
-
 
 
 

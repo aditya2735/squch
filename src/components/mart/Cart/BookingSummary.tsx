@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getCartItems, getCartOffers } from "@/store/features/Mart/Cart/cartThunk";
+import { getCancellationReson, getCartItems, getCartOffers } from "@/store/features/Mart/Cart/cartThunk";
 
 import GreenStar from "../../../../public/images/green-star.svg";
 
@@ -20,11 +20,11 @@ const BookingSummary = () => {
 
     const dispatch = useAppDispatch();
     const [showConfirmError, setShowConfirmError] = useState(false);
-
-    const { items, storeDetails, loading, offers, error } = useAppSelector((state) => state.martCart);
+    const { items, storeDetails, loading, error } = useAppSelector((state) => state.martCart);
 
     useEffect(() => {
         dispatch(getCartItems());
+        dispatch(getCancellationReson());
     }, []);
 
     useEffect(() => {
@@ -53,7 +53,7 @@ const BookingSummary = () => {
 
                             {/* Ordered Items */}
                             <DataLoader loading={loading.storeLoading} error={error} data={items} retryFunction={() => dispatch(getCartItems())}>
-                                <OrderedItem items={items} storeDetails={storeDetails}/>
+                                <OrderedItem items={items} storeDetails={storeDetails} />
                             </DataLoader>
 
                             {/* Tip section */}

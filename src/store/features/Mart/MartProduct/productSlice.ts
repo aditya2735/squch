@@ -3,12 +3,12 @@ import { ProductProps, ProductStateProps } from "./productTypes";
 import {
     addProductFromProductDetail,
     addProductFromProductList,
+    favouriteProduct,
     getProductDetails,
     getProductList,
     removeProductFromProductDetail,
     removeProductFromProductList
 } from "./productThunk";
-import { access } from "fs";
 
 const initialState: ProductStateProps = {
     loading: {
@@ -137,6 +137,18 @@ const ProductSlice = createSlice({
             .addCase(removeProductFromProductDetail.rejected, (state, action) => {
                 state.loading.quantityLoading = false;
                 state.error = action.payload || "Failed to remove product"
+            })
+            .addCase(favouriteProduct.pending, (state, action) => {
+                state.loading.quantityLoading = true;
+            })
+            .addCase(favouriteProduct.fulfilled, (state, action) => {
+                state.productDetails.isFavourite = action.payload.status;
+                state.error = null;
+                state.loading.quantityLoading = false;
+            })
+            .addCase(favouriteProduct.rejected, (state, action) => {
+                state.error = action.payload || "Failed to Mark Favourite Product";
+                state.loading.quantityLoading = false
             })
     }
 });

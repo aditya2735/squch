@@ -2,8 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
     ADD_PRODUCT_FROM_PRODUCT_DETAIL,
     ADD_PRODUCT_FROM_PRODUCT_LIST,
+    FavouriteProductRequestProps,
+    FavouriteProductResponseProps,
     GET_PRODUCT_DETAILS,
     GET_PRODUCT_LIST,
+    MAKE_PRODUCT_FAVORITE,
     ProductFilters,
     ProductListProps,
     ProductProps,
@@ -14,6 +17,7 @@ import {
     addProduct,
     fetchProductDetail,
     fetchProductList,
+    makeProductFavourite,
     removerProduct
 } from "@/services/mart/service";
 import {
@@ -40,7 +44,7 @@ export const getProductDetails = createAsyncThunk<ProductProps, number, { reject
         try {
             const details = await fetchProductDetail(productId);
             return details.data.data;
-        } catch (error: any) {
+        } catch (error: any) {  
             return rejectWithValue(error.message || "Failed to fetch product detail");
         }
     }
@@ -90,6 +94,18 @@ export const removeProductFromProductDetail = createAsyncThunk<AddProductRespons
             return items.data.data;
         } catch (error: any) {
             return rejectWithValue(error.message || "Failed to add product in cart");
+        }
+    }
+);
+
+export const favouriteProduct = createAsyncThunk<FavouriteProductResponseProps, FavouriteProductRequestProps, { rejectValue: string}>(
+    MAKE_PRODUCT_FAVORITE,
+    async (data, { rejectWithValue }) => {
+        try {
+            const result = await makeProductFavourite(data);
+            return result.data;
+        } catch (error: any) {
+            return rejectWithValue(error.message || " Failed to Make Product Favourite");
         }
     }
 );

@@ -1,5 +1,5 @@
 import { AddProductProps, PlaceOrderRequest, RemoveProductProps } from "@/store/features/Mart/Cart/cartTypes";
-import { ProductFilters } from "../../store/features/Mart/MartProduct/productTypes";
+import { FavouriteProductRequestProps, ProductFilters } from "../../store/features/Mart/MartProduct/productTypes";
 import { apiConnector } from "../connector"
 import { ENDPOINTS } from "./endpoint"
 import { FavouriteStoreProps, TopRatedProps } from "@/store/features/Mart/MartStores/storeTypes";
@@ -15,11 +15,7 @@ export const fetchAllBanners = async (bannerType: string): Promise<any> => {
             undefined,
             { type: bannerType }
         );
-
-        return {
-            data: response.data,
-            status: response.status,
-        };
+        return { data: response.data.data }
     } catch (error: any) {
         throw new Error(error.response?.data?.message || "Failed to fetch banners");
     }
@@ -261,5 +257,38 @@ export const placeOrderFromCart = async (data: PlaceOrderRequest): Promise<any> 
         return { data: response.data.data };
     } catch (error: any) {
         throw new Error(error.response?.data?.message || "Failed to place order");
+    }
+};
+
+export const makeProductFavourite = async (data: FavouriteProductRequestProps): Promise<any> => {
+    try {
+        const response: any = await apiConnector('post', MART.STORE.FAVOURITE_PRODUCT, data);
+        return { data: response.data.data };
+    } catch (error: any) {
+        throw new Error(error.response?.data?.message || "Failed to Mark Favourite Product");
+    }
+};
+
+export const fetchStoreReview = async (storeId:number|string): Promise<any> => {
+    try {
+        const response: any = await apiConnector(
+            'get',
+            MART.STORE.GET_REVIEWS,
+            null,
+            undefined,
+            { storeId: storeId }
+        );
+        return { data: response.data.data }
+    } catch (error: any) {
+        throw new Error(error.response?.data?.message || "Failed to fetch reviews");
+    }
+};
+
+export const fetchCancellationReason = async ():Promise<any> => {
+    try {
+        const response: any = await apiConnector('get', MART.CART.GET_CANCELLATION_REASON);
+        return { data: response.data.data }
+    } catch (error: any) {
+        throw new Error(error.response?.data?.message || "Failed to fetch cancellation reason");
     }
 };

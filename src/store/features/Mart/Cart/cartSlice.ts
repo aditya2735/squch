@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartStateProps, StoreAddressProps } from "./cartTypes";
-import { addProductToCart, applyCartOffer, getCartItems, getCartOffers, placeMartOrder, removeCartOffer, removeProductFromCart } from "./cartThunk";
+import { addProductToCart, applyCartOffer, getCancellationReson, getCartItems, getCartOffers, placeMartOrder, removeCartOffer, removeProductFromCart } from "./cartThunk";
 
 const initialState: CartStateProps = {
     loading: {
@@ -22,6 +22,7 @@ const initialState: CartStateProps = {
     tipAmount: 0,
     error: null,
     paymentSuccess: false,
+    cancelReason: []
 };
 
 const cartSlice = createSlice({
@@ -162,6 +163,18 @@ const cartSlice = createSlice({
                 state.paymentSuccess = false;
                 state.loading.productLoading = false;
                 state.error = action.payload || "Failed to place order"
+            })
+            .addCase(getCancellationReson.pending, (state,action) => {
+                state.loading.offerLoading = true;
+            })
+            .addCase(getCancellationReson.fulfilled, (state, action) => {
+                state.cancelReason = action.payload
+                state.error = null;
+                state.loading.offerLoading = false;
+            })
+            .addCase(getCancellationReson.rejected, (state, action) => {
+                state.error = action.payload || "failed to get cancellation reason";
+                state.loading.offerLoading = false;
             })
     }
 });

@@ -22,7 +22,12 @@ const nextConfig = {
       { protocol: "https", hostname: "media.istockphoto.com" },
       { protocol: "https", hostname: "img.freepik.com" },
       { protocol: "https", hostname: "example.com" },
-      { protocol: "https", hostname: "squchstorageaccount.blob.core.windows.net" },
+      {
+        protocol: 'https',
+        hostname: 'squchstorageaccount.blob.core.windows.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   eslint: {

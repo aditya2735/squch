@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 
 const FoodNavigationBottom = () => {
+
     const pathname = usePathname();
     const router = useRouter();
 

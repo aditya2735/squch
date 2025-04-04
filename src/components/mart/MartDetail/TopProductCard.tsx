@@ -3,7 +3,6 @@ import ImagesTopPicks from "../../../../public/images/top-picks.jpg"
 import Image from 'next/image';
 import { ProductProps } from '@/store/features/Mart/MartProduct/productTypes';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { addProductToCart, removeProductFromCart } from '@/store/features/Mart/Cart/cartThunk';
 import QuantityControls from '@/components/common/core/QuantityControl';
 import { addProductFromProductList, removeProductFromProductList } from '@/store/features/Mart/MartProduct/productThunk';
 import { useRouter } from 'next/navigation';
@@ -24,7 +23,7 @@ const TopProductCard: React.FC<TopProductCardProps> = ({ product }) => {
     };
 
     const handleAddProduct = useCallback((event: React.MouseEvent) => {
-        event.stopPropagation();  // ✅ Prevent navigation
+        event.stopPropagation();
         dispatch(addProductFromProductList({
             productId: product.productId,
             storeId: product.storeId
@@ -32,7 +31,7 @@ const TopProductCard: React.FC<TopProductCardProps> = ({ product }) => {
     }, [dispatch, product.productId, product.storeId]);
 
     const handleRemoveProduct = useCallback((event: React.MouseEvent) => {
-        event.stopPropagation();  // ✅ Prevent navigation
+        event.stopPropagation();
         dispatch(removeProductFromProductList({
             cartId: cart[0].cartId,
             productId: product.productId,
@@ -40,8 +39,6 @@ const TopProductCard: React.FC<TopProductCardProps> = ({ product }) => {
             displayCategory: product.displayCategory
         }));
     }, [dispatch, product.productId, product.storeId, cart?.[0]?.cartId]);
-    
-
 
     return (
         <div className="card card-picks" onClick={() => handleClick(product.productId)}>

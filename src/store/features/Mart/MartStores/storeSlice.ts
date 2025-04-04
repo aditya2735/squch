@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { MartStoreProps, MartStoreStateProps } from "./storeTypes";
-import { getMartStores, getStoreDetail, getTopRatedStores, makeStoreFavourite } from "./storeThunk";
+import { MartStoreProps, MartStoreStateProps, RatingReviewProps } from "./storeTypes";
+import { getMartStores, getStoreDetail, getStoreReviews, getTopRatedStores, makeStoreFavourite, makeStoreFavouriteFromDetail } from "./storeThunk";
 
 const initialState: MartStoreStateProps = {
     loading: {
@@ -9,6 +9,7 @@ const initialState: MartStoreStateProps = {
     },
     storeDetail: {} as MartStoreProps,
     stores: [],
+    review: {} as RatingReviewProps,
     topRated: [],
     error: null
 };
@@ -42,7 +43,8 @@ const MartStoreSlice = createSlice({
         handleAsyncActions(builder, getMartStores, "stores", "storeLoading");
         handleAsyncActions(builder, getStoreDetail, "storeDetail", "storeLoading");
         handleAsyncActions(builder, getTopRatedStores, "topRated", "topRatedLoading");
-
+        handleAsyncActions(builder, getStoreReviews, "review", "storeLoading");
+        
         builder
             .addCase(makeStoreFavourite.pending, (state) => {
                 state.loading.topRatedLoading = true;
@@ -59,7 +61,19 @@ const MartStoreSlice = createSlice({
                 state.loading.topRatedLoading = false;
                 state.error = action.payload || "Failed to mark favorite";
             })
-       
+            .addCase(makeStoreFavouriteFromDetail.pending, (state,action) => {
+                state.loading.topRatedLoading = true;
+            })
+            .addCase(makeStoreFavouriteFromDetail.fulfilled, (state, action) => {
+                const { storeId, status } = action.payload;
+                state.loading.topRatedLoading = false;
+                state.error = null;
+                state.storeDetail.isFavourite = status;
+            })
+            .addCase(makeStoreFavouriteFromDetail.rejected, (state, action) => {
+                state.loading.topRatedLoading = false;
+                state.error = action.payload || "erorr in making a store favourite"
+            })
     },
 });
 

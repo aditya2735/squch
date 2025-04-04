@@ -4,7 +4,7 @@ const MART_BASE = `${API_BASE_URL}/mart`;
 const ENDPOINTS = {
     MART: {
         BANNER: {
-            GET_ALL: `${API_BASE_URL}/getAll`
+            GET_ALL: `${MART_BASE}/get-banners`
         },
         OFFER: {
             GET_ALL_OFFER: `${MART_BASE}/get-all-offers`
@@ -15,7 +15,9 @@ const ENDPOINTS = {
             GET_STORE_DETAIL: `${MART_BASE}/store-details`,
             GET_PRODUCT_LIST: `${MART_BASE}/product-list`,
             GET_PRODUCT_DETAIL: `${MART_BASE}/product-details`,
-            FAVOURITE_STORE: `${MART_BASE}/mark-store-favourite`
+            FAVOURITE_STORE: `${MART_BASE}/mark-store-favourite`,
+            FAVOURITE_PRODUCT: `${MART_BASE}/mark-product-favourite`,
+            GET_REVIEWS: `${MART_BASE}/get-store-reviews`
         },
         CATEGORY: {
             GET_ALL_CATEGORY: `${MART_BASE}/category-list`
@@ -35,7 +37,9 @@ const ENDPOINTS = {
             GET_CART_OFFERS: `${MART_BASE}/get-cart-offers`,
             APPLY_OFFER: `${MART_BASE}/apply-offer`,
             REMOVE_OFFER: `${MART_BASE}/remove-offer`,
-            PLACR_ORDER_FROM_CART: `${MART_BASE}/place-order-from-cart`
+            PLACR_ORDER_FROM_CART: `${MART_BASE}/place-order-from-cart`,
+            GET_CANCELLATION_REASON: `${MART_BASE}/get-cancellation-reasons`,
+            CANCEL_ORDER: `${MART_BASE}/cancel-order`
         }
     }
 };

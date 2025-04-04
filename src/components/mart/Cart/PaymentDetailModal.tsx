@@ -26,8 +26,7 @@ const PaymentDetailModal: React.FC<PaymentDetailProps> = ({ show, handleClose })
 
     const dispatch = useAppDispatch();
     const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-    const [showCancelConfirmation, setShowCancelConfirmation] = useState(false);
-
+    
     const { items, tipAmount } = useAppSelector((state) => state.martCart);
     const { selectedAddress } = useAppSelector((state) => state.address);
     const { paymentSuccess } = useAppSelector((state) => state.martCart);
@@ -63,7 +62,7 @@ const PaymentDetailModal: React.FC<PaymentDetailProps> = ({ show, handleClose })
                         <Image src={CloseModal} alt="" />
                     </Button>
                 </Modal.Header>
-                
+
                 <Modal.Body className="filter-modal-body">
                     <div className='modal-block-header'>
                         <h2 className='modal-title'>Payment</h2>

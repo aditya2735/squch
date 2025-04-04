@@ -19,13 +19,13 @@ const OrderedItemCard: React.FC<OrderedItemProps> = ({ item }) => {
             await dispatch(addProductToCart({
                 productId: item.Product.productId,
                 storeId: item.Product.storeId
-            })).unwrap(); // ✅ Wait for `addProductToCart` to complete
-
-            await dispatch(getCartItems()).unwrap(); // ✅ Now fetch updated cart
+            })).unwrap();
+            await dispatch(getCartItems()).unwrap();
         } catch (error) {
             console.error("Error adding product:", error);
         }
     }, [dispatch, item.Product.productId, item.Product.storeId]);
+    
     const handleRemoveProduct = useCallback(() => {
         dispatch(removeProductFromCart({
             cartId: item.cartId,

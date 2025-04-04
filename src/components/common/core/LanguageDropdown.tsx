@@ -15,9 +15,7 @@ export default function LanguageDropdown() {
   };
 
   const handleLangChange = (nextLocale: string) => {
-
     const cleanPath = pathname.replace(`/${currentLocale}`, "");
-
     router.replace(`/${nextLocale}${cleanPath}`);
   };
 

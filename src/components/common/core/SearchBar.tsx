@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Image from "next/image";
 import ImageSearch from "../../../../public/images/icon-search.svg";
 import ImageMicro from "../../../../public/images/icon-microphone.svg";
-import { setTime } from 'react-datepicker/dist/date_utils';
 
 interface SearchbarProps {
     onSearch: (query: string) => void;

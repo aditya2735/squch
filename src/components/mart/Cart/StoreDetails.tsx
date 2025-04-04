@@ -62,7 +62,7 @@ const StoreDetails: React.FC<{ storeDetails: StoreAddressProps }> = ({ storeDeta
                     <div className='biffie-left-mart'>
                         <h5>Order date</h5>
                         <p>wed, 07 Jan 2025</p>
-                    </div>      
+                    </div>
                     <h6>07:00 PM onwards</h6>
                 </div>
                 <Accordion activeKey={activeKey} onSelect={(eventKey) => setActiveKey(eventKey ? String(eventKey) : null)}>
@@ -84,7 +84,8 @@ const StoreDetails: React.FC<{ storeDetails: StoreAddressProps }> = ({ storeDeta
                                                 <div className='icbox'>
                                                     <Image
                                                         src={
-                                                            ["home", "work", "other", "Friend and Family"].some(type => address.adresstype?.toLowerCase().includes(type))
+                                                            ["home", "work", "other", "Friend and Family"]
+                                                                .some(type => address.adresstype?.toLowerCase().includes(type))
                                                                 ? `/images/${address.adresstype}.svg`
                                                                 : `/images/other.svg`
                                                         }

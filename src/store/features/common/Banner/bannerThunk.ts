@@ -7,7 +7,9 @@ export const getAllBanners = createAsyncThunk<BannerProps[], string>(
     async (bannerType, { rejectWithValue }) => {
         try {
             const banners = await fetchAllBanners(bannerType);
-            return banners.data.data;
+            console.log('banners: ', banners);
+            console.log('banners.data.data: ', banners.data);
+            return banners.data;
         } catch (error: any) {
             return rejectWithValue(error.message || "Failed to fetch Banners");
         }

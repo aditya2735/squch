@@ -13,16 +13,9 @@ import { useAppSelector } from '@/store/hooks';
 
 const BillingSummary: React.FC = () => {
 
-    const {
-        totalPrice,
-        discountAmount,
-        finalAmount,
-        cartAmount,
-        currency,
-        tipAmount
-    } = useAppSelector((state) => state.martCart);
     const [showPaymentDetails, setShowPaymentDetails] = useState(false);
     const [showCancelBooking, setShowCancelBooking] = useState(false);
+    const { totalPrice, discountAmount, finalAmount, cartAmount, currency, tipAmount } = useAppSelector((state) => state.martCart);
 
     return (
         <div className='sec-billingbox'>

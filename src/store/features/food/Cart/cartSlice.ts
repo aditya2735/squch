@@ -21,7 +21,8 @@ const initialState: CartStateProps = {
     deliveryCharge: 0,
     tipAmount: 0,
     error: null,
-    paymentSuccess: false
+    paymentSuccess: false,
+    cancelReason: []
 };
 
 

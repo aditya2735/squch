@@ -5,6 +5,7 @@ export const GET_CART_OFFERS = "martCart/getOffers";
 export const APPLY_CART_OFFER = "martCart/applyOffer";
 export const REMOVE_CART_OFFER = "martCart/removeOffer";
 export const PLACE_ORDER_FROM_CART = "martCart/place-order";
+export const GET_CANCELLATION_REASON = "martCart/get-cancellation-reason";
 
 export interface StoreAddressProps {
     storeId: number | string;
@@ -74,6 +75,7 @@ export interface CartStateProps {
     tipAmount: number | null;
     deliveryCharge: number;
     paymentSuccess: boolean;
+    cancelReason: CancellationResonProps[]
 };
 
 export interface AddProductProps {
@@ -139,4 +141,10 @@ export interface PlaceOrderRequest {
     deliveryInstruction: string;
     tipAmount: number | null;
     deliveryFee: number;
-}
+};
+
+export interface CancellationResonProps {
+    reasonId: number;
+    reason: string;
+};
+

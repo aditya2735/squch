@@ -10,9 +10,7 @@ interface OrderedItemProps {
     storeDetails: StoreAddressProps
 }
 
-const OrderedItem: React.FC<OrderedItemProps> = ({ items,storeDetails  }) => {
-    console.log('storeDetails: ', storeDetails);
-
+const OrderedItem: React.FC<OrderedItemProps> = ({ items, storeDetails }) => {
     return (
         <div className="accordion-bigger-mart">
             <Accordion defaultActiveKey="0">
@@ -24,8 +22,11 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ items,storeDetails  }) => {
                                 <OrderedItemCard key={index} item={item} />
                             ))}
                             <div className='add-more-button-box text-center mt-4'>
-                                <Link className='btn-border btn d-flex align-items-center gap-2 justify-content-center' href={`/home/mart/store-detail/${storeDetails.storeId}`}>
-                                    <Image src={"/images/plus.svg"} alt="plus icon" height={16} width={17}/>
+                                <Link
+                                    className='btn-border btn d-flex align-items-center gap-2 justify-content-center'
+                                    href={`/home/mart/store-detail/${storeDetails.storeId}`}
+                                >
+                                    <Image src={"/images/plus.svg"} alt="plus icon" height={16} width={17} />
                                     Add more items
                                 </Link>
                             </div>

@@ -80,7 +80,6 @@ const UserAuth = () => {
         }
     }, []);
 
-
     return (
         <div className="sec-user-auth">
             <div className="d-flex align-items-center">
@@ -96,58 +95,7 @@ const UserAuth = () => {
                             </span>
                         </Dropdown.Toggle>
 
-                        {/* <Dropdown.Menu>
-                            {addresses && addresses?.slice(0, 3).map((address, index) => {
-                                const { addressAlias, adresstype, city, area, state, zipCode, country } = address;
-
-                                return <Dropdown.Item
-                                    key={index}
-                                    onClick={() => handleAddress(address)}
-                                >
-                                    <span className="d-flex align-items-center">
-                                        <Image
-                                            src={
-                                                ["home", "work", "other", "friend and family"].some((type) =>
-                                                    address.adresstype
-                                                        ?.toLowerCase()
-                                                        .includes(type)
-                                                )
-                                                    ? `/images/${adresstype?.replace(/\s+/g, "").toLowerCase()}.svg`
-                                                    : `/images/other.svg`
-                                            }
-                                            alt="Map Icon"
-                                            height={16}
-                                            width={17}
-                                        />
-                                        {addressAlias}
-                                    </span>
-                                    <p className="m-0">
-                                        {`${city}, ${area}, ${state}, ${zipCode}, ${country}`}
-                                    </p>
-                                </Dropdown.Item>
-                            })}
-
-                            {addresses?.length > 3 && (
-                                <>
-                                    <Dropdown.Divider />
-                                    <Link href="/home/address/savedAddress" passHref legacyBehavior>
-                                        <Dropdown.Item>
-                                            Select Other Address
-                                        </Dropdown.Item>
-                                    </Link>
-                                </>
-                            )}
-
-                            <Link href="/home/address/addAddress" passHref legacyBehavior>
-                                <Dropdown.Item>
-                                    Add New Address
-                                </Dropdown.Item>
-                            </Link>
-
-                            <Dropdown.Item onClick={() => getCurrentLocation()}>
-                                Use Current Location
-                            </Dropdown.Item>
-                        </Dropdown.Menu> */}
+                       
 
                         <Dropdown.Menu>
                             {addresses && [...addresses].reverse().slice(0, 3).map((address, index) => {

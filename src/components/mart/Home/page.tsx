@@ -12,7 +12,7 @@ const TopRated = lazy(() => import("./TopRated"));
 const HomeBanner = lazy(() => import("./Banner"));
 const PopularBrands = lazy(() => import("./PopularBrands"));
 const DiscountedBrands = lazy(() => import("./DiscountedBrands"));
-const PromotionalBrands = lazy(() => import("./PromotionalBrands"));
+const PromotionalBrands = lazy(() => import("./PromotionalBrands"));    
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
@@ -25,13 +25,14 @@ import DataLoader from "@/components/common/core/DataLoader";
 import { getAddressList } from "@/store/features/common/Address/addressThunk";
 import { useRouter } from "next/navigation";
 import NotificationButton from "@/components/common/core/NotificatioButton";
+import CategoryMenu from "./CategoryMenu";
 
 
 const Mart: React.FC = () => {
 
     const dispatch = useAppDispatch();
     const router = useRouter();
-    const { banner } = useAppSelector((state) => state.banner);
+    const { banner, loading: bannerLoading, error: bannerError } = useAppSelector((state) => state.banner);
     const { latLong } = useAppSelector((state) => state.address);
     const { offer, loading: loadingOffers, error: errorOffers } = useAppSelector((state) => state.martOffer);
     const { topRated, loading: loadingStores, error: errorStores } = useAppSelector((state) => state.martStore);
@@ -43,7 +44,7 @@ const Mart: React.FC = () => {
 
     const handleClick = (storeId: any) => {
         router.push(`/home/mart/store-detail/${storeId}`)
-    }
+    };
 
     const handleFavourite = (event: React.MouseEvent, storeId: number, status: boolean) => {
         event.stopPropagation();
@@ -52,7 +53,7 @@ const Mart: React.FC = () => {
     };
 
     useEffect(() => {
-        dispatch(getAllBanners("mart"));
+        dispatch(getAllBanners("MARTHOME"));
         dispatch(getAllMartOffer({}));
         dispatch(getAllMartCategory("grocery"));
         dispatch(getDiscountedBrands());
@@ -76,19 +77,21 @@ const Mart: React.FC = () => {
             <div className="container px-0 bg-dark-gray">
                 <GetAppsDownload />
 
-                {/* <NotificationButton /> */}
-
                 <div className="wrapper-box">
                     <div className="gradient-1 px-40">
                         <UserAuth />
 
                         <SearchBar
                             onSearch={handleSearch}
-                            placeHolder='Searcg "item Category" '
+                            placeHolder='Search "Item Category" '
                             debounceDelay={1000}
                         />
+            
+                        <CategoryMenu />
 
-                        <HomeBanner banners={banner} />
+                        <DataLoader loading={bannerLoading} error={bannerError} retryFunction={() => dispatch(getAllBanners("MARTHOME"))} data={banner}>
+                            <HomeBanner banners={banner} />
+                        </DataLoader>
 
                         <DataLoader loading={loadingOffers} error={errorOffers} retryFunction={() => dispatch(getAllMartOffer({}))} data={offer}>
                             <Suspense fallback={<Loader />}>

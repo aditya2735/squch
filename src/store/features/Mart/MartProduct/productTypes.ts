@@ -3,7 +3,8 @@ export const GET_PRODUCT_DETAILS = "produtc/product-details";
 export const ADD_PRODUCT_FROM_PRODUCT_LIST = "product/add-product";
 export const ADD_PRODUCT_FROM_PRODUCT_DETAIL = "product/add-product-from-detail";
 export const REMOVE_PRODUCT_FROM_PRODUCT_DETAIL = "product/remove-product-from-detail";
-export const REMOVE_PRODUCT_FROM_PRODUCT_LIST = "produtc/remove-product"
+export const REMOVE_PRODUCT_FROM_PRODUCT_LIST = "produtc/remove-product";
+export const MAKE_PRODUCT_FAVORITE = "product/mark-favourite-product";
 
 export interface ProductFilters {
     // storeId: string;
@@ -52,6 +53,7 @@ export interface ProductProps {
     quantity: number;
     rating_reviews: [] | null;
     sellerDetails: SellerProps;
+    isFavourite: boolean;
 };
 
 export interface CategoryProps {
@@ -68,9 +70,20 @@ export interface ProductListProps {
 export interface ProductStateProps {
     loading: {
         pageLoading: boolean;
-        quantityLoading: boolean; 
+        quantityLoading: boolean;
     };
     productDetails: ProductProps;
     products: CategoryProps[];
     error: string | null;
 };
+
+export interface FavouriteProductRequestProps {
+    userId: number;
+    status: boolean;
+    productId: number;
+};
+
+export interface FavouriteProductResponseProps {
+    productId: number;
+    status: boolean;
+}

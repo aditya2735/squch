@@ -6,17 +6,11 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { CategoryProps } from "@/store/features/Mart/MartProduct/productTypes";
-import { useAppDispatch } from '@/store/hooks';
-import { addProductToCart, removeProductFromCart } from '@/store/features/Mart/Cart/cartThunk';
 import TopProductCard from './TopProductCard';
-import { useRouter } from 'next/navigation';
+
 
 
 const TopPicks: React.FC<CategoryProps> = ({ categoryName, products }) => {
-
-    const dispatch = useAppDispatch()
-    
-
 
     return (
         <div className="sec-top-picks sec-gap">

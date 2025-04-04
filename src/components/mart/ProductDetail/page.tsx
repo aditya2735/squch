@@ -8,7 +8,7 @@ import ItemDetail from './ItemDetail';
 import DataLoader from '@/components/common/core/DataLoader';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { getProductDetails } from '@/store/features/Mart/MartProduct/productThunk';
+import { favouriteProduct, getProductDetails } from '@/store/features/Mart/MartProduct/productThunk';
 
 interface ItemDetailsProps {
     productId: any;
@@ -17,7 +17,15 @@ interface ItemDetailsProps {
 const Page: React.FC<ItemDetailsProps> = ({ productId }) => {
 
     const dispatch = useAppDispatch();
-    const { loading, error, productDetails } = useAppSelector((state) => state.martProduct)
+    const { loading, error, productDetails } = useAppSelector((state) => state.martProduct);
+
+    const handleFavouriteProduct = () => {
+        dispatch(favouriteProduct({
+            productId: productDetails.productId,
+            status: !productDetails.isFavourite,
+            userId: 2
+        }))
+    };
 
     useEffect(() => {
         dispatch(getProductDetails(productId));
@@ -37,7 +45,11 @@ const Page: React.FC<ItemDetailsProps> = ({ productId }) => {
                     <div className='wrapper-box'>
                         <div className='gradient-1'>
                             <div className='px-40'>
-                                <BackLink ShowOption={true} />
+                                <BackLink
+                                    ShowOption={true}
+                                    IsFavourite={productDetails.isFavourite}
+                                    handleFavourite={handleFavouriteProduct}
+                                />
 
                                 <DataLoader
                                     loading={loading.pageLoading}

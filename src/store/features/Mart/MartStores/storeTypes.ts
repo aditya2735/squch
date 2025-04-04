@@ -3,7 +3,8 @@ export const GET_STORE_DETAILS = "martStore/store-details";
 export const FAVOURITE_STORE = "martStore/mark-store-favourite";
 export const GET_TOP_RATED_STORE = "martStore/top-rated";
 export const MARK_STORE_FAVOURITE = "martStore/make-store-favourite";
-
+export const MARK_STORE_FAVOURITE_FROM_DETAIL = "martStore/mark-store-favorite-details";
+export const GET_STORE_REVIEWS = "martStore/get-store-reviews"
 
 
 export interface MartStoreImageProps {
@@ -29,7 +30,6 @@ export interface MartStoreProps {
     location: MartStoreLocationProps;
     address: string;
     status: string;
-    is_favourite: boolean;
     openingHours: MartOpeningHoursProps;
     supportsDineIn: boolean;
     supportsDelivery: boolean;
@@ -48,6 +48,30 @@ export interface FavouriteStoreProps {
     storeId: number | string;
 };
 
+export interface UserProps {
+    id: number;
+    firstName: string;
+    lastName: string;
+}
+
+export interface ReviewProps {
+    id: number,
+    userId: number,
+    storeId: number,
+    productId: number | null,
+    rating: number,
+    review: string,
+    createdAt: string,
+    updatedAt: string,
+    user: UserProps
+}
+
+export interface RatingReviewProps {
+    storeId: number;
+    rating: number;
+    reviews: ReviewProps[]
+};
+
 export interface MartStoreStateProps {
     loading: {
         storeLoading: boolean;
@@ -56,6 +80,7 @@ export interface MartStoreStateProps {
     storeDetail: MartStoreProps;
     stores: MartStoreProps[];
     topRated: MartStoreProps[];
+    review: RatingReviewProps
     error?: string | null;
 };
 

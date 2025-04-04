@@ -21,20 +21,20 @@ const MartNavigationBottom = () => {
                             <p className="m-0">Back</p>
                         </div>
                     </li>
-                    <li className={pathname.includes("/home") ? "active" : ""}>
-                        <Link href="/mart" className="nav-item">
-                            <span className="navicon d-block">
-                                <Image src="/images/mart.svg" alt="Squchmart" height={29} width={28} />
-                            </span>
-                            <p className="m-0">Squchmart</p>
-                        </Link>
-                    </li>
                     <li className={pathname.includes("/category") ? "active" : ""}>
                         <Link href="/home/mart/category" className="nav-item">
                             <span className="navicon d-block">
                                 <Image src="/images/categories.svg" alt="Categories" height={29} width={28} />
                             </span>
                             <p className="m-0">Categories</p>
+                        </Link>
+                    </li>
+                    <li className={pathname.includes("/home") ? "active" : ""}>
+                        <Link href="/mart" className="nav-item">
+                            <span className="navicon d-block">
+                                <Image src="/images/mart.svg" alt="Squchmart" height={29} width={28} />
+                            </span>
+                            <p className="m-0">Squchmart</p>
                         </Link>
                     </li>
                     <li className={pathname.includes("/cart") ? "active" : ""}>

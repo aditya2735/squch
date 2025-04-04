@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import CloseModal from "../../../../public/images/close-modal.png";
 import Link from 'next/link';
 import PhoneDropdown from "./PhoneDropdown";
-import { SignInWithGoogle, logout } from '@/lib/firebase';
+import { SignInWithGoogle } from '@/lib/firebase';
 import "./flag.css";
 
 const ModalLogin = ({ show, setModalLogin, setOtpVerification }: any) => {
@@ -45,19 +45,39 @@ const ModalLogin = ({ show, setModalLogin, setOtpVerification }: any) => {
                             <div className='form-languageswitcher d-flex'>
                                 <PhoneDropdown />
                                 <div className='flex-grow-1'>
-                                    <input type='text' placeholder='Phone number' className='form-control' />
+                                    <input
+                                        type='text'
+                                        placeholder='Phone number'
+                                        className='form-control'
+                                    />
                                 </div>
                             </div>
-                            <small className='d-block'>We’ll call or text you to confirm your number. Standard message and data rates apply.</small>
+
+                            <small className='d-block'>
+                                We’ll call or text you to confirm your number. Standard message and data rates apply.
+                            </small>
                         </div>
                     )}
 
                     {loginMethod === 'email' && (
                         <div className='form-group-single mb-16'>
                             <label>Email</label>
-                            <input type='email' placeholder='Email' className='form-control mb-3' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input
+                                type='email'
+                                placeholder='Email'
+                                className='form-control mb-3'
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+
                             <label>Password</label>
-                            <input type='password' placeholder='Password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input
+                                type='password'
+                                placeholder='Password'
+                                className='form-control'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
                     )}
 

@@ -3,7 +3,6 @@ import Image from "next/image";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-
 import CloseModal from "../../../../public/images/close-modal.png";
 import PaymentSuccessful from "../../../../public/images/payment-successful.png";
 

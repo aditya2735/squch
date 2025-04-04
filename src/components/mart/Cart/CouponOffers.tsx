@@ -10,7 +10,7 @@ import { applyCartOffer, removeCartOffer } from '@/store/features/Mart/Cart/cart
 
 const CouponOffers: React.FC = () => {
     const dispatch = useAppDispatch();
-    const { offers, items, totalPrice } = useAppSelector((state) => state.martCart);
+    const { offers, items } = useAppSelector((state) => state.martCart);
 
     const handleApplyOffer = (offerId: number, cartId: number) => {
         dispatch(applyCartOffer({ offerId, cartId }));
@@ -67,7 +67,7 @@ const CouponOffers: React.FC = () => {
                                     <button
                                         className="btn btn-applay"
                                         onClick={() => handleApplyOffer(offer.offerId, items[0].cartId)}
-                                        disabled={!offer.eligible} // ✅ Disable button if not eligible
+                                        disabled={!offer.eligible}
                                     >
                                         {offer.eligible ? "Apply" : "Not Eligible"}
                                     </button>

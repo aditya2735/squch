@@ -1,12 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addProduct, applyOffer, fetchCartItem, fetchCartOffers, placeOrderFromCart, removeOffer, removerProduct } from "@/services/mart/service";
+import { addProduct, applyOffer, fetchCancellationReason, fetchCartItem, fetchCartOffers, placeOrderFromCart, removeOffer, removerProduct } from "@/services/mart/service";
 import {
     ADD_PRODUCT_TO_CART,
     AddProductProps,
     AddProductResponsProps,
     APPLY_CART_OFFER,
     ApplyOfferResponse,
+    CancellationResonProps,
     CartOfferProps,
+    GET_CANCELLATION_REASON,
     GET_CART_ITEMS,
     GET_CART_OFFERS,
     GetCartItemResponse,
@@ -93,14 +95,26 @@ export const removeCartOffer = createAsyncThunk<RemoveOfferResponse, { offerId: 
     }
 );
 
-export const placeMartOrder = createAsyncThunk<any, PlaceOrderRequest, {rejectValue: string}> (
+export const placeMartOrder = createAsyncThunk<any, PlaceOrderRequest, { rejectValue: string }>(
     PLACE_ORDER_FROM_CART,
-    async (data, { rejectWithValue}) => {
+    async (data, { rejectWithValue }) => {
         try {
             const response = await placeOrderFromCart(data);
             return response.data.data;
         } catch (error: any) {
             return rejectWithValue(error.message || "An error occurred while placing order");
+        }
+    }
+);
+
+export const getCancellationReson = createAsyncThunk<CancellationResonProps[], void, { rejectValue: string }>(
+    GET_CANCELLATION_REASON,
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await fetchCancellationReason();
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.message || "An error occurred while getting cancellation reason");
         }
     }
 );

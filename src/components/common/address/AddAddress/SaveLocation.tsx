@@ -21,8 +21,6 @@ const SaveLocation = () => {
         navigator.geolocation.getCurrentPosition(
             async (position) => {
                 const { latitude, longitude } = position.coords;
-                console.log('latitude: ', latitude);
-                console.log("Fetched coordinates:", latitude, longitude);
                 setLocation([longitude, latitude]);
                 setMapUrl(`https://www.google.com/maps?q=${latitude},${longitude}&hl=en&z=15&output=embed`);
 
@@ -32,11 +30,9 @@ const SaveLocation = () => {
                     if (response?.address) {
                         setLocationAddress(response);
                     } else {
-                        console.warn('Invalid response format:', response);
                         setLocationAddress(null);
                     }
                 } catch (error) {
-                    console.error('Error fetching location address:', error);
                     setLocationAddress(null);
                     setError(error);
                 } finally {
@@ -44,7 +40,6 @@ const SaveLocation = () => {
                 }
             },
             (error) => {
-                console.error("Error getting location:", error);
                 setIsLoading(false);
                 setError(error);
             }
@@ -54,10 +49,6 @@ const SaveLocation = () => {
     useEffect(() => {
         fetchLocation();
     }, [fetchLocation]);
-
-    useEffect(() => {
-        console.log("Updated location state:", location);
-    }, [location]);
 
 
     return (
@@ -91,7 +82,7 @@ const SaveLocation = () => {
 
                     <div className='message-warning'>
                         <p className='m-0'>
-                            A detailed address will help our Delivery Partner reach your doorstep easily
+                            A detailed Address Will Help Our Delivery Partner Reach Your Doorstep Easily
                         </p>
                     </div>
 

@@ -14,7 +14,6 @@ import { OfferProps } from '@/store/features/Mart/MartOffer/offerTypes';
 
 const SpecialOffer: React.FC<{ offers: OfferProps[] }> = ({ offers }) => {
 
-
     return (
         <div className="sec-slider-browse-offers">
             <div className="block-header">
