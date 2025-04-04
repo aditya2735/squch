@@ -53,7 +53,7 @@ const Offer: React.FC<MartOfferProps> = ({ offers }) => {
                             <SwiperSlide key={index}>
                                 <div className="big-offer-box" onClick={() => handleClick()}>
                                     <Image
-                                        src={offer.offerImage}
+                                        src={"https://squchstorageaccount.blob.core.windows.net/squchcontainer/uploads/banners/1743756140048"}
                                         className="w-100"
                                         alt="offer image"
                                         width={300}
