@@ -274,7 +274,9 @@ export default function Home() {
                 </Link>
               </li>
               <li>
-                <Link href="/home/accommodation/explore" className="card-home">
+                {/* <Link href="/home/accommodation/explore" className="card-home"> */}
+                <Link href="https://squch-stay.vercel.app/en/home/accommodation/explore" className="card-home">
+                
                   <div className="card-text">
                     <h3 className="card-text-ttl">STAY</h3>
                     <p>Book your accomodation</p>

@@ -27,7 +27,7 @@ const ModalBusBookingFilter = ({ show, handleClose }: any) => {
                             <button className='btn btnfilters-wedge active'>Date (Recent First)</button>
                             <button className='btn btnfilters-wedge'>Date (Oldest First)</button>
                             <button className='btn btnfilters-wedge'>By Bus Operators (A-Z)</button>
-                            <button className='btn btnfilters-wedge'>By Bus Operators (A-Z)</button>
+                            <button className='btn btnfilters-wedge'>By Bus Operators (Z-A)</button>
 
 
                         </div>

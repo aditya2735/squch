@@ -125,15 +125,26 @@ a {
   color: #454545;
 }
 
+.btn {
+  text-decoration: none !important;
+}
+
 .top-header-sec .btn.btn-primary {
   background: var(--bs-white);
   color: var(--purple);
   font-weight: 700;
+  text-decoration: none;
+}
+
+.top-header-sec .btn.btn-primary:hover {
+  background: #fff;
+  color: var(--purple);
 }
 
 .btn.btn-primary:hover {
   background: #712F79;
   border-color: #712F79;
+  ;
   color: var(--bs-white);
 }
 
@@ -7703,6 +7714,7 @@ li.btn-tipped.active-btn {
   line-height: 18px;
   letter-spacing: 0;
   color: rgba(109, 109, 109, 1) !important;
+  flex-basis: auto;
 }
 
 .gallery-modal-body ul li.nav-item button.active {
@@ -13063,6 +13075,34 @@ body:not(.sec-navigation-bottom) {
   z-index: 2;
 }
 
+.booking-bottom .btn.btn-primary img {
+  filter: invert(1) brightness(2);
+  opacity: 1;
+}
+
+.form-check-input:checked[type=checkbox] {
+  background-color: #652669;
+  border-color: #652669;
+}
+
+
+
+.box-footer .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 5px;
+  background: #fff;
+  border: 1px solid rgba(33, 19, 50, 0.2);
+  border-radius: 8px;
+  min-height: 45px;
+  color: rgba(33, 19, 50, 1);
+}
+
+.box-footer .dropdown-toggle .icon-map {
+  margin-right: 10px;
+}
+
 
 @media only screen and (max-width:1680px) {
   .container-fluid {
@@ -15463,6 +15503,8 @@ body:not(.sec-navigation-bottom) {
 }
 
 /* Datepicker css end*/
+
+
 
 
 

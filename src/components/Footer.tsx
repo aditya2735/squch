@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import Image from "next/image";
 // import AppleStore from "../../../public/images/apple-store.png";
@@ -6,14 +7,16 @@ import AppleStore from "../../public/images/apple-store.png"
 import PlayStore from "../../public/images/play-store.png"
 
 import Link from 'next/link';
-import LanguageDropdown from './LanguageDropdown';
 
- 
-async function Footer () {
- 
+import "../app/flag.css"; 
+import LanguageDropDown from '@/components/LanguageDropdown';
+
+import Dropdown from 'react-bootstrap/Dropdown';
+
+const Footer = () => {
   return (
-    <footer className="footer bg-light-grey">
-      <div className="container px-0">
+    <footer className="footer">
+      <div className="container px-0 bg-light-grey">
         <div className='inner-footer md:px-3'>
           <div className="footer-top-box d-flex flex-wrap justify-content-between align-items-center mb-8">
             <Link href="#">
@@ -62,13 +65,35 @@ async function Footer () {
                 />
               </svg>
             </Link>
-            
             <div className='location-lung-box d-flex flex-wrap gap-2'>
-              <select name="" id="">
-                <option value="">Ghana</option>
-                <option value="">Ind</option>
-              </select>
-              <LanguageDropdown />
+              <div className='d-flex gap-2'>
+                <div className='box-footer'>
+                  <LanguageDropDown/>
+                </div>
+                <div className='box-footer'>
+                <Dropdown align={'start'}>
+                  <Dropdown.Toggle variant="light">
+                    <span className="d-flex align-items-center">
+                      <span className="icon-map">
+                      <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 23.3105C6.07 23.3105 1.25 18.4905 1.25 12.5605C1.25 6.63055 6.07 1.81055 12 1.81055C17.93 1.81055 22.75 6.63055 22.75 12.5605C22.75 18.4905 17.93 23.3105 12 23.3105ZM12 3.31055C6.9 3.31055 2.75 7.46055 2.75 12.5605C2.75 17.6605 6.9 21.8105 12 21.8105C17.1 21.8105 21.25 17.6605 21.25 12.5605C21.25 7.46055 17.1 3.31055 12 3.31055Z" fill="#292D32"/>
+<path d="M9.00023 22.3105H8.00023C7.59023 22.3105 7.25023 21.9705 7.25023 21.5605C7.25023 21.1505 7.57023 20.8205 7.98023 20.8105C6.41023 15.4505 6.41023 9.67055 7.98023 4.31055C7.57023 4.30055 7.25023 3.97055 7.25023 3.56055C7.25023 3.15055 7.59023 2.81055 8.00023 2.81055H9.00023C9.24023 2.81055 9.47023 2.93055 9.61023 3.12055C9.75023 3.32055 9.79023 3.57055 9.71023 3.80055C7.83023 9.45055 7.83023 15.6705 9.71023 21.3305C9.79023 21.5605 9.75023 21.8105 9.61023 22.0105C9.47023 22.1905 9.24023 22.3105 9.00023 22.3105Z" fill="#292D32"/>
+<path d="M15.0004 22.3102C14.9204 22.3102 14.8404 22.3002 14.7604 22.2702C14.3704 22.1402 14.1504 21.7102 14.2904 21.3202C16.1704 15.6702 16.1704 9.45024 14.2904 3.79024C14.1604 3.40024 14.3704 2.97024 14.7604 2.84024C15.1604 2.71024 15.5804 2.92024 15.7104 3.31024C17.7004 9.27024 17.7004 15.8302 15.7104 21.7802C15.6104 22.1102 15.3104 22.3102 15.0004 22.3102Z" fill="#292D32"/>
+<path d="M12 17.7603C9.21 17.7603 6.43 17.3703 3.75 16.5803C3.74 16.9803 3.41 17.3103 3 17.3103C2.59 17.3103 2.25 16.9703 2.25 16.5603V15.5603C2.25 15.3203 2.37 15.0903 2.56 14.9503C2.76 14.8103 3.01 14.7703 3.24 14.8503C8.89 16.7303 15.12 16.7303 20.77 14.8503C21 14.7703 21.25 14.8103 21.45 14.9503C21.65 15.0903 21.76 15.3203 21.76 15.5603V16.5603C21.76 16.9703 21.42 17.3103 21.01 17.3103C20.6 17.3103 20.27 16.9903 20.26 16.5803C17.57 17.3703 14.79 17.7603 12 17.7603Z" fill="#292D32"/>
+<path d="M20.9998 10.3109C20.9198 10.3109 20.8398 10.3009 20.7598 10.2709C15.1098 8.3909 8.87978 8.3909 3.22978 10.2709C2.82978 10.4009 2.40978 10.1909 2.27978 9.8009C2.15978 9.4009 2.36978 8.9809 2.75978 8.8509C8.71978 6.8609 15.2798 6.8609 21.2298 8.8509C21.6198 8.9809 21.8398 9.4109 21.6998 9.8009C21.6098 10.1109 21.3098 10.3109 20.9998 10.3109Z" fill="#292D32"/>
+</svg>
+                      </span>
+                      <span className="m-0">English</span>
+                    </span>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">English</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">English</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">English</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -311,7 +336,7 @@ async function Footer () {
             </div>
         </div>
       </div>
-  </footer>
+   </footer>
   )
 }
 

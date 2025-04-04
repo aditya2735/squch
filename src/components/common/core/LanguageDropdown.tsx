@@ -1,36 +1,116 @@
+// "use client";
+
+// import { useRouter, usePathname } from "next/navigation";
+// import { useLocale } from "next-intl";
+// import { routing } from "@/i18n/routing"; // Ensure this contains `locales`
+
+// export default function LanguageDropdown() {
+//   const router = useRouter();
+//   const pathname = usePathname();
+//   const currentLocale = useLocale();
+
+//   const languageMap: Record<string, string> = {
+//     en: "English",
+//     hn: "Hindi", 
+//   };
+
+//   const handleLangChange = (nextLocale: string) => {
+//     const cleanPath = pathname.replace(`/${currentLocale}`, "");
+//     router.replace(`/${nextLocale}${cleanPath}`);
+//   };
+
+//   return (
+//          <select
+//         id="language-select"
+//         onChange={(e) => handleLangChange(e.target.value)}
+//         defaultValue={currentLocale}
+        
+//       >
+//          {routing.locales.map((locale) => (
+//           <option key={locale} value={locale}>
+//             {languageMap[locale] || locale.toUpperCase()} 
+//           </option>
+//         ))}
+//       </select>
+//    );
+// }
+
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
-import { useLocale } from "next-intl";
-import { routing } from "@/i18n/routing"; // Ensure this contains `locales`
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+
+const languages = [
+  { code: "us", className: "gb", name: "United States" },
+  { code: "in", className: "in", name: "India" },
+  { code: "am", className: "am", name: "Armenia" },
+  { code: "za", className: "za", name: "South Africa" },
+];
 
 export default function LanguageDropdown() {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const pathname = usePathname();
-  const currentLocale = useLocale();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const languageMap: Record<string, string> = {
-    en: "English",
-    hn: "Hindi", 
+  const currentLang = searchParams.get("lang") || "us";
+  const currentLanguage = languages.find((l) => l.code === currentLang);
+
+  const changeLanguage = (lang: string) => {
+    const currentPath = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+    params.set("lang", lang);
+    router.replace(`${currentPath}?${params.toString()}`, { scroll: false });
+    setDropdownOpen(false);
   };
 
-  const handleLangChange = (nextLocale: string) => {
-    const cleanPath = pathname.replace(`/${currentLocale}`, "");
-    router.replace(`/${nextLocale}${cleanPath}`);
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setDropdownOpen(false);
+    }
   };
+
+  useEffect(() => {
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownOpen]);
 
   return (
-         <select
-        id="language-select"
-        onChange={(e) => handleLangChange(e.target.value)}
-        defaultValue={currentLocale}
-        
+    <div className="dropdown" ref={dropdownRef}>
+      <button
+        className="btn btn-light dropdown-toggle d-flex align-items-center"
+        type="button"
+        onClick={() => setDropdownOpen((prev) => !prev)}
       >
-         {routing.locales.map((locale) => (
-          <option key={locale} value={locale}>
-            {languageMap[locale] || locale.toUpperCase()} 
-          </option>
-        ))}
-      </select>
-   );
+        <span className={`flag-icon ${currentLanguage?.className} me-2`}></span>
+        <span>{currentLanguage?.name}</span>
+      </button>
+
+      {dropdownOpen && (
+        <ul className="dropdown-menu show">
+          {languages.map(({ code, className, name }) => (
+            <li key={code}>
+              <button
+                className="dropdown-item d-flex align-items-center"
+                onClick={() => changeLanguage(code)}
+              >
+                <span className={`flag-icon ${className} me-2`}></span>
+                <span>{name}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }

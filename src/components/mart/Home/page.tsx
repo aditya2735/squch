@@ -71,7 +71,6 @@ const Mart: React.FC = () => {
         }
     }, [dispatch, latLong]);
 
-
     return (
         <div className="main-wrapper">
             <div className="container px-0 bg-dark-gray">
