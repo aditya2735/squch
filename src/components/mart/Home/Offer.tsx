@@ -52,13 +52,18 @@ const Offer: React.FC<MartOfferProps> = ({ offers }) => {
                         {offers?.map((offer, index) => (
                             <SwiperSlide key={index}>
                                 <div className="big-offer-box" onClick={() => handleClick()}>
-                                    <Image
+                                    {/* <Image
                                         src={"https://squchstorageaccount.blob.core.windows.net/squchcontainer/uploads/banners/1743756140048"}
                                         className="w-100"
                                         alt="offer image"
                                         width={300}
                                         height={300}
                                         quality={100}
+                                    /> */}
+                                    <img
+                                        src={"https://squchstorageaccount.blob.core.windows.net/squchcontainer/uploads/banners/1743756140048"}
+                                        className="w-100"
+                                        alt="offer image"
                                     />
                                 </div>
                             </SwiperSlide>
